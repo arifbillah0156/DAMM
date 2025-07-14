@@ -3,10 +3,10 @@ import "./globals.css";
 import Footer from "@/components/Footer/Footer";
 
 export const metadata = {
-  title: "Studio Architect",
+  title: "DAMM",
   description:
-    "Studio Architect - Best Building Design Architect In Bangladesh.",
-  icons: "/Images/Studio Architect.jpeg",
+    "Darul Azhar Model Madrasah",
+  // icons: "/Images/Studio Architect.jpeg",
 };
 
 export default function RootLayout({ children }) {

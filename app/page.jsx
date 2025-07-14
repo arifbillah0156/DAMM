@@ -1,6 +1,6 @@
 import HomeBanners from "@/components/Home/HomeBanners";
 import HomeSection10 from "@/components/Home/HomeSection10";
-import HomeSection2 from "@/components/Home/HomeSection2";
+import SmallBanners from "@/components/Home/SmallBanners";
 import HomeSection3 from "@/components/Home/HomeSection3";
 import HomeSection4 from "@/components/Home/HomeSection4";
 import HomeSection5 from "@/components/Home/HomeSection5";
@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div>
       <HomeBanners />
-      <HomeSection2 />
+      <SmallBanners />
       <HomeSection3 />
       <HomeSection4 />
       <HomeSection5 />
