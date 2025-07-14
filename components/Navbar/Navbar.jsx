@@ -21,8 +21,8 @@ const NavbarWithDropdown = () => {
   return (
     <div className="pb-2 ">
       <NavHead />
-      {/* Nav Links */}
-      <nav className="text-[#00a24f] py-2">
+      {/* Nav Links bg-[#0072BC] */}
+      <nav className="text-[#0072BC] py-2">
         <div className="max-w-7xl mx-auto px-1 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
@@ -43,14 +43,14 @@ const NavbarWithDropdown = () => {
                   Academic <i className="fa-solid fa-caret-down"></i>
                 </button>
                 {isDropdownOpen && (
-                  <div className="absolute bg-[#00a24f] text-white ring-2 rounded-[6px] shadow-lg">
-                    <NavDropdownDesktop href="/" text="Admission fee" />
-                    <NavDropdownDesktop href="/" text="Education system" />
-                    <NavDropdownDesktop href="/" text="Result method" />
-                    <NavDropdownDesktop href="/" text="Rules" />
-                    <NavDropdownDesktop href="/" text="Co-curriculum" />
-                    <NavDropdownDesktop href="/" text="Hostel rules" />
-                    <NavDropdownDesktop href="/" text="Information for parents" />
+                  <div className="absolute bg-[#0072BC] text-white ring-2 rounded-[6px] shadow-lg">
+                    <NavDropdownDesktop href="/" text="▶ Admission fee" />
+                    <NavDropdownDesktop href="/" text="▶ Education system" />
+                    <NavDropdownDesktop href="/" text="▶ Result method" />
+                    <NavDropdownDesktop href="/" text="▶ Rules" />
+                    <NavDropdownDesktop href="/" text="▶ Co-curriculum" />
+                    <NavDropdownDesktop href="/" text="▶ Hostel rules" />
+                    <NavDropdownDesktop href="/" text="▶ Information for parents" />
                   </div>
                 )}
               </div>
@@ -65,9 +65,9 @@ const NavbarWithDropdown = () => {
                   Gallery <i className="fa-solid fa-caret-down"></i>
                 </button>
                 {isDropdownOpen2 && (
-                  <div className="absolute bg-[#00a24f] text-white ring-2 rounded-[6px] shadow-lg w-max">
-                    <NavDropdownDesktop2 href="/" text="Photos" />
-                    <NavDropdownDesktop2 href="/" text="Videos" />
+                  <div className="absolute bg-[#0072BC] text-white ring-2 rounded-[6px] shadow-lg w-max">
+                    <NavDropdownDesktop2 href="/" text="▶ Photos" />
+                    <NavDropdownDesktop2 href="/" text="▶ Videos" />
                   </div>
                 )}
               </div>
@@ -78,7 +78,7 @@ const NavbarWithDropdown = () => {
             <div className="lg:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-[#00a24f] border p-1 mr-6 rounded-md"
+                className="text-[#0072BC] border p-1 mr-6 rounded-md"
               >
                 <svg
                   className="h-7 w-7"
@@ -114,15 +114,19 @@ const NavbarWithDropdown = () => {
               <div>
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="block w-full text-left px-4 py-2 text-sm linkDropdownText"
+                  className="block w-full text-left px-4 py-2 text-sm linkDropdownText underline underline-offset-4"
                 >
-                  Projects <i className="fa-solid fa-caret-down"></i>
+                  Academic <i className="fa-solid fa-caret-down"></i>
                 </button>
                 {isDropdownOpen && (
                   <div className="pl-4">
-                    <NavDropdownMobile href="/" text="Residential" />
-                    <NavDropdownMobile href="/" text="Commercial" />
-                    <NavDropdownMobile href="/" text="Interior" />
+                    <NavDropdownMobile href="/" text="▶ Admission fee" />
+                    <NavDropdownMobile href="/" text="▶ Education system" />
+                    <NavDropdownMobile href="/" text="▶ Result method" />
+                    <NavDropdownMobile href="/" text="▶ Rules" />
+                    <NavDropdownMobile href="/" text="▶ Co-curriculum" />
+                    <NavDropdownMobile href="/" text="▶ Hostel rules" />
+                    <NavDropdownMobile href="/" text="▶ Information for parents" />
                   </div>
                 )}
               </div>
@@ -130,16 +134,14 @@ const NavbarWithDropdown = () => {
               <div>
                 <button
                   onClick={() => setIsDropdownOpen2(!isDropdownOpen2)}
-                  className="block w-full text-left px-4 py-2 text-sm linkDropdownText"
+                  className="block w-full text-left px-4 py-2 text-sm linkDropdownText underline underline-offset-4"
                 >
                   Gallery <i className="fa-solid fa-caret-down"></i>
                 </button>
                 {isDropdownOpen2 && (
                   <div className="pl-4">
-                    <NavDropdownMobile2 href="/" text="Duplex Home" />
-                    <NavDropdownMobile2 href="/" text="Interior Design" />
-                    <NavDropdownMobile2 href="/" text="Park/Resort Design" />
-                    <NavDropdownMobile2 href="/" text="4 Storied Building" />
+                    <NavDropdownMobile2 href="/" text="▶ Photos" />
+                    <NavDropdownMobile2 href="/" text="▶ Videos" />
                   </div>
                 )}
               </div>

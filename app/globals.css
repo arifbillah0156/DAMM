@@ -27,7 +27,7 @@ body {
 }
 
 .mobileNavMenubar {
-  background-color: #00a24f;
+  background-color: #0072BC;
   color: white;
   border-radius: 10px;
   margin: 6px;
@@ -42,12 +42,12 @@ body {
 }
 
 .linkDropdownMainText:hover {
-  background-color: #00a24f;
+  background-color: #0072BC;
   color: white;
 }
 .linkDropdownText:hover {
   background-color: white;
-  color: green;
+  color: #0072BC;
   text-decoration: underline;
   text-underline-offset: 4px;
   border-radius: 5px;
@@ -55,7 +55,7 @@ body {
 .linkDropdownText_M:hover {
   width: max-content;
   background-color: white;
-  color: green;
+  color: #0072BC;
   text-decoration: underline;
   text-underline-offset: 4px;
   border-radius: 6px;

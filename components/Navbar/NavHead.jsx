@@ -3,7 +3,7 @@ import React from "react";
 
 const NavHead = () => {
   return (
-    <div className="bg-[#00a24f] text-white text-md p-2 tracking-wider text-center md:flex md:justify-center md:gap-4">
+    <div className="bg-[#0072BC] text-white text-md p-2 tracking-wider text-center md:flex md:justify-center md:gap-4">
       <div className="">
         <Link
           href={"tel:+8801521254689"}
