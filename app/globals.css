@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Tiro+Bangla:ital@0;1&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.textGradient {
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-600;
+}
+
+.mobileNavMenubar {
+  background-color: #00a24f;
+  color: white;
+  border-radius: 10px;
+  margin: 6px;
+  margin-top: 0px;
+}
+
+.linkDropdownMainText {
+  padding: 6px 16px;
+  border-radius: 4px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.linkDropdownMainText:hover {
+  background-color: #00a24f;
+  color: white;
+}
+.linkDropdownText:hover {
+  background-color: white;
+  color: green;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  border-radius: 5px;
+}
+.linkDropdownText_M:hover {
+  width: max-content;
+  background-color: white;
+  color: green;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  border-radius: 6px;
+}
+.merriweather-light {
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.merriweather-regular {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.merriweather-bold {
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.merriweather-black {
+  font-family: "Merriweather", serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.merriweather-light-italic {
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.merriweather-regular-italic {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.merriweather-bold-italic {
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.merriweather-black-italic {
+  font-family: "Merriweather", serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+.tiro-bangla-regular {
+  font-family: "Tiro Bangla", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.tiro-bangla-regular-italic {
+  font-family: "Tiro Bangla", serif;
+  font-weight: 400;
+  font-style: italic;
+}
