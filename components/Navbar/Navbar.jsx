@@ -14,6 +14,10 @@ const NavbarWithDropdown = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDropdownOpen2, setIsDropdownOpen2] = useState(false);
 
+  // const AcademicDropdown = [
+  //   "Admission fee","Education system","Result method","Rules","Co-curriculum", "Hostel rules", "Information for parents"
+  // ]
+
   return (
     <div className="pb-2 ">
       <NavHead />
@@ -36,13 +40,17 @@ const NavbarWithDropdown = () => {
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               >
                 <button className="linkDropdownMainText mt-[-6px]  mb-1">
-                  Projects <i className="fa-solid fa-caret-down"></i>
+                  Academic <i className="fa-solid fa-caret-down"></i>
                 </button>
                 {isDropdownOpen && (
                   <div className="absolute bg-[#00a24f] text-white ring-2 rounded-[6px] shadow-lg">
-                    <NavDropdownDesktop href="/" text="Residential" />
-                    <NavDropdownDesktop href="/" text="Commercial" />
-                    <NavDropdownDesktop href="/" text="Interior" />
+                    <NavDropdownDesktop href="/" text="Admission fee" />
+                    <NavDropdownDesktop href="/" text="Education system" />
+                    <NavDropdownDesktop href="/" text="Result method" />
+                    <NavDropdownDesktop href="/" text="Rules" />
+                    <NavDropdownDesktop href="/" text="Co-curriculum" />
+                    <NavDropdownDesktop href="/" text="Hostel rules" />
+                    <NavDropdownDesktop href="/" text="Information for parents" />
                   </div>
                 )}
               </div>
@@ -58,10 +66,8 @@ const NavbarWithDropdown = () => {
                 </button>
                 {isDropdownOpen2 && (
                   <div className="absolute bg-[#00a24f] text-white ring-2 rounded-[6px] shadow-lg w-max">
-                    <NavDropdownDesktop2 href="/" text="Duplex Home" />
-                    <NavDropdownDesktop2 href="/" text="Interior Design" />
-                    <NavDropdownDesktop2 href="/" text="Park/Resort Design" />
-                    <NavDropdownDesktop2 href="/" text="4 Storied Building" />
+                    <NavDropdownDesktop2 href="/" text="Photos" />
+                    <NavDropdownDesktop2 href="/" text="Videos" />
                   </div>
                 )}
               </div>

@@ -39,12 +39,12 @@ const HomeSection2 = () => {
   return (
     <div>
       <div>
-        <div className="mt-8 md:mt-16 mb-2 text-center">
+        {/* <div className="mt-8 md:mt-16 mb-2 text-center">
           <h1 className="text-3xl md:text-5xl  text-green-600 font-bold tracking-wider px-4">
             আমাদের সম্পর্কে:-
           </h1>
           <i className="fa-solid fa-arrows-down-to-line mt-3 p-4 bg-green-200 rounded-full text-4xl text-green-600"></i>
-        </div>
+        </div> */}
         {/*  */}
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4 font-bold">
@@ -62,7 +62,7 @@ const HomeSection2 = () => {
                       className="h-[300px] w-full object-cover"
                     />
                     <div className="text-2xl mt-3 mb-2">{img.imgTxt}</div>
-                    <div className="absolute inset-0  text-white text-start text-3xl p-4">
+                    <div className="absolute inset-0  text-white text-start text-lg md:text-2xl p-4">
                       <Link
                         href={img.fullImgUrl}
                         passHref

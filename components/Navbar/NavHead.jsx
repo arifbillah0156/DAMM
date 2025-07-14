@@ -10,7 +10,7 @@ const NavHead = () => {
           className="ml-2 text-lg font-mono tracking-normal flex justify-center items-center gap-2"
         >
           <i className="fa-solid fa-phone text-xl"></i>{" "}
-          <span>+88 01521-254689</span>
+          <span>+88 01844-838723</span>
         </Link>
       </div>
          <div className="">
@@ -22,17 +22,7 @@ const NavHead = () => {
           <span>arifbillah0156@gmail.com</span>
         </Link>
       </div>
-      <div className="">
-        <Link
-          href={"https://www.facebook.com/arifbillah64"}
-          passHref
-          target="_blank"
-          rel="noopener noreferrer"
-          className="ml-2 text-lg font-mono tracking-normal flex justify-center items-center gap-3"
-        >
-          <i className="fa-brands fa-facebook text-xl pt-1"></i>{" "}
-        </Link>
-      </div>
+      
     </div>
   );
 };
