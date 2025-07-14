@@ -29,7 +29,7 @@ const images = [
 
 export default function FullSlider() {
   return (
-    <section id="slider_area" className="w-screen h-full z-0">
+    <section id="slider_area" className="w-full h-full z-0">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         navigation
@@ -45,7 +45,7 @@ export default function FullSlider() {
                         href={img.src}
                         passHref
                         rel="noopener noreferrer"
-                        className="absolute text-2xl right-[3%] top-4 text-white p-1 px-2 rounded-md border border-white "
+                        className="absolute text-sm md:text-2xl right-4 md:right-[3%] top-1 md:top-4 text-white md:p-1 md:px-2 md:rounded-md md:border md:border-white "
                       >
                         <i className="fa-solid fa-expand"></i>
                       </Link>

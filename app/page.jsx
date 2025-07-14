@@ -1,4 +1,4 @@
-import HomePage from "@/components/Home/Home";
+import HomeBanners from "@/components/Home/HomeBanners";
 import HomeSection10 from "@/components/Home/HomeSection10";
 import HomeSection2 from "@/components/Home/HomeSection2";
 import HomeSection3 from "@/components/Home/HomeSection3";
@@ -12,7 +12,7 @@ import HomeSection8 from "@/components/Home/HomeSection8";
 export default function Home() {
   return (
     <div>
-      <HomePage />
+      <HomeBanners />
       <HomeSection2 />
       <HomeSection3 />
       <HomeSection4 />
