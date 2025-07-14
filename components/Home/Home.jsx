@@ -6,24 +6,25 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import Link from "next/link";
 
 const images = [
   {
-    src: "https://darulazharbd.com/wp-content/uploads/2024/01/125-2000x700-1.jpg",
+    src: "/Banner1.jpg",
     alt: "ADMISSION IS GOING ON"
   },
   {
-    src: "https://darulazharbd.com/wp-content/uploads/2024/01/2-2000x700.jpg",
+    src: "/Banner2.jpg",
     alt: "ভর্তি চলিতেছে"
   },
   {
-    src: "https://darulazharbd.com/wp-content/uploads/2024/01/3-2000x700.jpg",
+    src: "/Banner3.jpg",
     alt: "DARUL AZHAR MODEL MADRASAH"
   },
-  {
-    src: "https://darulazharbd.com/wp-content/uploads/2024/12/225-2000x700-1.jpg",
-    alt: "EXAMINATION"
-  }
+  // {
+  //   src: "https://darulazharbd.com/wp-content/uploads/2024/12/225-2000x700-1.jpg",
+  //   alt: "EXAMINATION"
+  // }
 ];
 
 export default function FullSlider() {
@@ -40,6 +41,14 @@ export default function FullSlider() {
         {images.map((img, idx) => (
           <SwiperSlide key={idx}>
             <div className="w-full h-full relative">
+              <Link
+                        href={img.src}
+                        passHref
+                        rel="noopener noreferrer"
+                        className="absolute text-2xl right-[3%] top-4 text-white p-1 px-2 rounded-md border border-white "
+                      >
+                        <i className="fa-solid fa-expand"></i>
+                      </Link>
               <img
                 src={img.src}
                 alt={img.alt}
