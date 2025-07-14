@@ -20,10 +20,7 @@ const HomeSection10 = () => {
                 Initiate a Strategy Session
               </h3>
               <p className="text-gray-600 text-justify">
-                We begin by understanding your vision, goals, and needs in
-                detail. This collaborative phase allows us to create a concept
-                that aligns with your expectations, setting a strong foundation
-                for the project.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio fugit veniam architecto vero reiciendis eligendi cupiditate aliquam ullam totam. Earum debitis natus nemo, voluptatem ratione optio nobis nam distinctio aliquam.
               </p>
             </div>
           </div>
@@ -38,10 +35,7 @@ const HomeSection10 = () => {
                 Design & Planning
               </h3>
               <p className="text-gray-600 text-justify">
-                Our expert architects and planners refine the initial concept
-                into a comprehensive design. We focus on creating functional,
-                aesthetic, and sustainable spaces while ensuring all regulatory
-                and technical requirements are met.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem adipisci voluptate in sapiente nam dolores omnis fuga delectus nobis non eveniet autem quam consequuntur ratione laborum, est illum pariatur excepturi?
               </p>
             </div>
           </div>
@@ -56,10 +50,7 @@ const HomeSection10 = () => {
                 Execution & Project Delivery
               </h3>
               <p className="text-gray-600 text-justify">
-                Once the design is finalized, we move into the execution phase,
-                managing every aspect of construction. Our team ensures the
-                project stays on track, delivering your dream building with
-                precision and on schedule.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae deserunt animi provident optio eum distinctio. Incidunt odio quod libero ullam maxime error aperiam dicta ex atque. Explicabo sequi inventore ullam.
               </p>
             </div>
           </div>

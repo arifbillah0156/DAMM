@@ -1,7 +1,7 @@
 // components/Footer.js
 import Image from "next/image";
 import Link from "next/link";
-import StudioArch from "@/public/Images/Studio Architect.jpeg";
+import DAMM from "@/public/Images/DAMM Logo SVG.svg";
 
 const Footer = () => {
   return (
@@ -12,14 +12,12 @@ const Footer = () => {
           {/* Logo Section */}
           <div className="flex flex-col items-start">
             <Image
-              src={StudioArch}
+              src={DAMM}
               alt="Studio Architect"
               className="w-24 mb-1 rounded-sm"
             />
-            <p className="text-sm">
-              Studio Architect is a leading architectural firm in Bangladesh,
-              known for designing innovative, sustainable, and functional spaces
-              that enhance the lives of our clients.
+            <p className="text-sm text-justify">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, minus tempora! Sunt aliquid sint dolore eius iste doloribus, adipisci error neque, odio sed animi nulla. Voluptates quisquam iure blanditiis ab!
             </p>
             <div className="flex space-x-4 mt-4">
               <a
@@ -104,23 +102,23 @@ const Footer = () => {
                   className="flex items-center space-x-2 hover:text-gray-400"
                 >
                   <i className="fas fa-phone-alt"></i>
-                  <span>(+880) 01521254689</span>
+                  <span>(+880) 01511-111111</span>
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:studioarchitect.bd@gmail.com"
+                  href="mailto:darulazhar@gmail.com"
                   className="flex items-center space-x-2 hover:text-gray-400"
                 >
                   <i className="fas fa-envelope"></i>
-                  <span>studioarchitect.bd@gmail.com</span>
+                  <span>darulazhar@gmail.com</span>
                 </a>
               </li>
               <li>
                 <p className="flex items-center space-x-2 hover:text-gray-400">
                   <i className="fas fa-map-marker-alt"></i>
                   <span>
-                    52/7 (2nd Floor), West Rajabazar, Panthapath, Dhaka-1215.
+                    Road-20, Uttara, Dhaka-1230.
                   </span>
                 </p>
               </li>
@@ -131,7 +129,7 @@ const Footer = () => {
         {/* Footer Bottom Section */}
         <div className="text-center mt-8">
           <h1 className="mr-2 text-xl font-mono">
-            The website was created by-
+            The website was developed by-
           </h1>
           <div className="mt-2">
             <Link
@@ -139,7 +137,7 @@ const Footer = () => {
               passHref
               target="_blank"
               rel="noopener noreferrer"
-              className="border-2 border-y-green-600 border-x-white font-bold px-4 py-2 text-lg rounded-full underline underline-offset-4 text-white decoration-2 tracking-wider font-mono decoration-blue-600"
+              className="border border-blue border-x-white font-bold px-4 py-2 text-md rounded-full underline underline-offset-4 decoration-blue  tracking-wider font-mono decoration-blue-600"
             >
               Arif Billah
             </Link>
@@ -147,7 +145,7 @@ const Footer = () => {
         </div>
         <div className="mt-6 text-center">
           <p className="text-sm px-1">
-            © All Rights Reserved {new Date().getFullYear()} - Studio Architect.
+            © All Rights Reserved {new Date().getFullYear()} - DAMM.
           </p>
         </div>
       </div>

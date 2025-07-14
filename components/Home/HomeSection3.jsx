@@ -29,31 +29,28 @@ const HomeSection3 = () => {
           backgroundImage: `url(${images[currentImageIndex]})`,
         }}
       >
-        <div className="h-full w-full p-4 py-20 mt-2">
-          <p className="text-[25px] md:text-[34px] text-start text-green-600">
-            We are committed to give you
-          </p>
+        <div className="h-full w-full p-4 py-8 mt-2">
+          {/* <p className="text-[25px] md:text-[34px] text-start text-green-600">
+            Lorem ipsum dolor sit amet
+          </p> */}
           <h1 className="text-[40px] text-start ">
-            New <span className="text-green-600">Building Design</span> In
-            Bangladesh.
+            Lorem <span className="text-green-600">ipsum dolor</span> sit amet consectetur.
           </h1>
           <p className="mt-4 text-[16px] sm:text-[20px] text-green-700 text-start ">
-            When it comes to innovative and new building design, Green Architect
-            stands out as the premier building designer and planner in
-            Bangladesh. Our service includes:
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, molestias eligendi deserunt velit quia quasi aliquid ullam officiis blanditiis assumenda voluptas:
           </p>
           <div className="ml-[2%] text-start text-[18px] sm:text-xl text-green-700 mt-3">
             <p>
               <i className="fa-solid fa-arrow-right mr-2 text-pink-600 mb-2"></i>
-              Duplex House Design.
+              Lorem ipsum dolor sit.
             </p>
             <p>
               <i className="fa-solid fa-arrow-right mr-2 text-pink-600 mb-2"></i>
-              Estimate Building Design Cost.
+              Lorem ipsum dolor sit amet.
             </p>
             <p>
               <i className="fa-solid fa-arrow-right mr-2 text-pink-600"></i>
-              Building plan approval in any city of Bangladesh.
+              Lorem ipsum dolor sit amet consectetur.
             </p>
           </div>{" "}
           <br /> <br />

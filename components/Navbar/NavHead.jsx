@@ -10,16 +10,16 @@ const NavHead = () => {
           className="ml-2 text-lg font-mono tracking-normal flex justify-center items-center gap-2"
         >
           <i className="fa-solid fa-phone text-xl"></i>{" "}
-          <span>+88 01844-838723</span>
+          <span>+88 01811-111111</span>
         </Link>
       </div>
          <div className="">
         <Link
-          href={"tel:+8801521254689"}
+          href={"mailto:darulazhar@gmail.com"}
           className="ml-2 text-lg font-mono tracking-normal flex justify-center items-center gap-2"
         >
           <i className="fa-solid fa-envelope text-xl"></i>{" "}
-          <span>arifbillah0156@gmail.com</span>
+          <span>darulazhar@gmail.com</span>
         </Link>
       </div>
       

@@ -15,7 +15,7 @@ const HomeSection8 = () => {
             <i className="fa-solid fa-check-double text-4xl text-green-600"></i>{" "}
             <br /> <br />
             <h3 className="text-2xl font-bold tracking-wide mb-3 textGradient">
-              Project Completed
+              Dummy Text
             </h3>
             <div className="text-4xl font-bold text-green-600">
               10,000<span className="">+</span>
@@ -26,10 +26,10 @@ const HomeSection8 = () => {
             <i className="fa-regular fa-face-smile text-4xl text-green-600"></i>{" "}
             <br /> <br />
             <h3 className="text-2xl font-bold tracking-wide mb-3 textGradient">
-              Satisfied Clients
+              Dummy Text
             </h3>
             <div className="text-4xl font-bold text-green-600">
-              10,000<span className="">+</span>
+              5,000<span className="">+</span>
             </div>
           </div>
           {/* Counter 3 */}

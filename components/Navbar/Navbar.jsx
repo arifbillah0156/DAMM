@@ -139,7 +139,7 @@ const NavbarWithDropdown = () => {
                   Gallery <i className="fa-solid fa-caret-down"></i>
                 </button>
                 {isDropdownOpen2 && (
-                  <div className="pl-4">
+                  <div className="pl-4 underline underline-offset-4">
                     <NavDropdownMobile2 href="/" text="▶ Photos" />
                     <NavDropdownMobile2 href="/" text="▶ Videos" />
                   </div>

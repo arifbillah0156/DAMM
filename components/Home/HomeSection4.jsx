@@ -7,23 +7,23 @@ export default function HomeSection4() {
   const tabs = [
     {
       id: 1,
-      title: "Rajuk Approval",
-      content: `Studio Architect simplifies the process of obtaining RAJUK and City Corporation approvals for building plans. Our experienced team ensures fast, hassle-free, and compliant approvals, protecting clients from legal issues and delays. Trust us to guide you through the complex process, providing personalized support and ensuring a smooth, efficient experience.`,
+      title: "Dummy slot 1",
+      content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, molestias eligendi deserunt velit quia quasi aliquid ullam officiis blanditiis assumenda voluptas.Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, molestias eligendi deserunt velit quia quasi aliquid ullam officiis blanditiis assumenda voluptas.`,
     },
     {
       id: 2,
-      title: "Soil Test",
-      content: `Studio Architect provides professional soil testing services for building construction projects. A soil test is essential for ensuring the stability and safety of a building, and our team uses the latest techniques and equipment to deliver accurate results.`,
+      title: "Dummy slot 2",
+      content: `Iusto, molestias eligendi deserunt velit quia quasi aliquid ullam officiis blanditiis assumenda voluptas.Iusto, molestias eligendi deserunt velit quia quasi aliquid ullam officiis blanditiis assumenda voluptas.`,
     },
     {
       id: 3,
-      title: "Cost Estimate",
-      content: `Studio Architect provides accurate and comprehensive cost estimates for building plans. Our experienced team takes into account all aspects of the construction process, including materials, labor, and local regulations, to ensure a realistic and accurate estimate.`,
+      title: "Dummy slot 3",
+      content: `Molestias eligendi deserunt velit quia quasi aliquid ullam officiis blanditiis assumenda voluptas.Molestias eligendi deserunt velit quia quasi aliquid ullam officiis blanditiis assumenda voluptas.`,
     },
     {
       id: 4,
-      title: "Digital Land Survey",
-      content: `Studio Architect provides precise digital land survey services to accurately measure and map properties. Our cutting-edge technology and experienced team ensure accurate results, saving clients time and money.`,
+      title: "Dummy slot 4",
+      content: `Testing Text. Iusto, molestias eligendi deserunt velit quia quasi aliquid ullam officiis blanditiis assumenda voluptas.Testing Text. Iusto, molestias eligendi deserunt velit quia quasi aliquid ullam officiis blanditiis assumenda voluptas.`,
     },
   ];
 

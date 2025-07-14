@@ -53,7 +53,7 @@ const HomeSection2 = () => {
                 return (
                   <div
                     key={img.imgTxt}
-                    className="bg-gray-200 rounded-lg shadow p-2 text-center textGradient relative "
+                    className="bg-white text-blue underline underline-offset-4 rounded-lg shadow p-2 text-center textGradient relative "
                   >
                     <Image
                       src={img.imgUrl}

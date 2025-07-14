@@ -21,10 +21,7 @@ const HomeSection7 = () => {
               Proven Track Record of Success
             </h3>
             <p className="text-gray-600">
-              Our portfolio speaks for itself. With a history of delivering
-              high-quality designs on time and within budget, we’ve built a
-              reputation for reliability and excellence that our clients trust
-              and recommend.
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel voluptas itaque, veniam libero praesentium numquam assumenda fugiat delectus eveniet ipsa sunt soluta, cum, dicta tempore illo omnis mollitia deserunt doloribus.
             </p>
           </div>
 
@@ -37,10 +34,7 @@ const HomeSection7 = () => {
               Expertise in Sustainable Design
             </h3>
             <p className="text-gray-600">
-              With years of experience, we specialize in creating eco-friendly,
-              energy-efficient buildings that align with the latest
-              sustainability standards. Our designs not only reduce
-              environmental impact but also maximize long-term savings.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt sequi quam, sed rerum alias veniam tempore, fuga quidem explicabo autem officia voluptatibus voluptates harum? Enim, libero vero? Id, beatae quis?
             </p>
           </div>
 
@@ -53,10 +47,7 @@ const HomeSection7 = () => {
               Complete and Smooth Project Delivery
             </h3>
             <p className="text-gray-600">
-              From initial concept to final construction, we oversee every
-              detail of your project. Our expert team handles all aspects of
-              design, planning, and execution, ensuring that your vision is
-              brought to life without any hassle or delays.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos error vitae similique harum iste reiciendis? Cumque provident nostrum ut voluptatum magni, blanditiis asperiores debitis quasi velit explicabo. Ducimus, ipsum! Praesentium!
             </p>
           </div>
         </div>
@@ -71,10 +62,7 @@ const HomeSection7 = () => {
               Customized Solutions for Every Project
             </h3>
             <p className="text-gray-600">
-              Every project is unique, and so is our approach. We take the time
-              to understand your needs and tailor each design to reflect your
-              vision, ensuring functional spaces that suit your lifestyle or
-              business requirements.
+             Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae est, cum aliquam quae iusto, corrupti, ut quo error harum repellendus cupiditate placeat consectetur distinctio quod ullam odio aperiam minima! Laboriosam?
             </p>
           </div>
         </div>

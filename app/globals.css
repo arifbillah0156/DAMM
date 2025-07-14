@@ -22,10 +22,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.textGradient {
-  @apply text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-600;
-}
-
 .mobileNavMenubar {
   background-color: #0072BC;
   color: white;

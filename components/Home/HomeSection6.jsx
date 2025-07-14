@@ -22,15 +22,11 @@ export default function HomeSection6() {
           {/* Left Column */}
           <div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 lg:mt-24">
-              We Are The Best Building Design{" "}
-              <span className="text-green-600">Company In Bangladesh</span>
+              We Are The Best ...........{" "} <br />
+              <span className="text-green-600">Madrasah In Bangladesh</span>
             </h2>
             <p className="mt-4 text-gray-600">
-              Studio Architect is the leading building design company in
-              Bangladesh, offering innovative and sustainable solutions for
-              residential and commercial projects. Whether you need a modern
-              villa, a green office, or a smart city, we have the expertise and
-              experience to make your vision a reality.
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut iste quam at rem molestias beatae, accusamus dignissimos natus architecto. Accusamus autem neque rem illo cupiditate mollitia necessitatibus illum ipsum dicta blanditiis. Culpa impedit dignissimos eveniet.
             </p>
           </div>
 
@@ -39,11 +35,10 @@ export default function HomeSection6() {
             {/* Icon Box 1 */}
             <div className="p-6 bg-white shadow-lg rounded-lg bg-gradient-to-r from-[#17c9fa] to-[#0088AE] text-white">
               <h3 className="text-xl font-semibold">
-                Designs that make you say 'wow'
+Designs that make you say 'wow'
               </h3>
               <p className="mt-2 text-lg">
-                We build extraordinary designs that leave a lasting impression
-                and make you say 'Wow' every time!
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis cum deserunt, quasi officia possimus temporibus voluptatibus! Qui facere aperiam, tempora esse aspernatur quidem obcaecati eaque? Sequi error quae iusto blanditiis.
               </p>
             </div>
             {/* Icon Box 2 */}
@@ -52,8 +47,7 @@ export default function HomeSection6() {
                 100% Eco-friendly, Sustainable Design
               </h3>
               <p className="mt-2 text-lg">
-                We are the only company in Bangladesh that guarantees 100%
-                eco-friendly and sustainable buildings.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum tenetur quaerat odit nemo id deserunt dicta molestiae ducimus voluptatibus doloremque, dolorum odio illo? Sit deserunt molestias eos odio, nostrum ipsa.
               </p>
             </div>
             {/* Icon Box 3 */}
@@ -62,8 +56,7 @@ export default function HomeSection6() {
                 Cost effective, Expert Solutions
               </h3>
               <p className="mt-2">
-                Get the design of your dream building without going over budget
-                with professional solutions.
+               Lorem ipsum dolor sit amet consectetur adipisicing elit. Non possimus sed ipsum? Esse beatae eum eaque rem molestias hic tenetur quia, possimus, voluptatum dolor placeat!
               </p>
             </div>
           </div>
