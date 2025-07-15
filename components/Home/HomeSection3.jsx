@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 const HomeSection3 = () => {
 
   return (
@@ -14,15 +12,15 @@ const HomeSection3 = () => {
           {/* <p className="text-[25px] md:text-[34px] text-start text-green-600">
             Lorem ipsum dolor sit amet
           </p> */}
-          <h1 className="text-[40px] md:text-[50px] text-center font-extrabold bg-gradient-to-r from-green-700 via-sky-500 to-purple-700 bg-clip-text text-transparent drop-shadow-md">
+          <h1 className="text-[30px] md:text-[60px] text-center font-extrabold bg-gradient-to-r from-green-700 via-sky-500 to-purple-700 bg-clip-text text-transparent drop-shadow-md galada-regular">
             দারুল আজহার মডেল মাদরাসা
           </h1>
 
-          <p className="mt-2 text-[16px] sm:text-[20px] text-blue-600  text-justify">
+          <p className="mt-2 text-[20px] sm:text-[24px] text-blue-600  text-justify tiro-bangla-regular">
             *** ঔপনিবেশিক শিক্ষার বিকল্প হিসেবে কুরআন-সুন্নাহভিত্তিক পাঠ্যক্রম ও বিজ্ঞানভিত্তিক আধুনিক জ্ঞান একত্রে তুলে ধরতে প্রতিষ্ঠিত হয়েছে দারুল আজহার মডেল মাদরাসা। এখানে শিক্ষার্থীরা পায় হিফজ, হাদিস, গণিত, ইংরেজি, কম্পিউটারসহ
             একটি পূর্ণাঙ্গ শিক্ষাব্যবস্থা।
           </p>
-          <div className="ml-[2%] text-start text-[18px] sm:text-xl text-blue-600 mt-3">
+          <div className="ml-[2%] text-start text-[18px] sm:text-[22px] text-blue-600 mt-3 tiro-bangla-regular">
             <p>
               <i className="fa-solid fa-arrow-right mr-2 text-green-600 mb-2"></i>
               দ্বীনি ও আধুনিক শিক্ষার সমন্বিত পথ
@@ -40,13 +38,12 @@ const HomeSection3 = () => {
               জাতীয় ও আন্তর্জাতিক মানের সিলেবাস অনুযায়ী শিক্ষা প্রদান
             </p>
           </div>{" "}
-          <br /> <br />
-          <Link
+          {/* <Link
             href="/services"
             className="p-4 rounded-lg border border-lc text-lc text-xl font-mono hover:bg-lc hover:text-white hover:ring duration-100 tracking-normal"
           >
             Read More...
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>

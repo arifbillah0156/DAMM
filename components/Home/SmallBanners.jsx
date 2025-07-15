@@ -51,7 +51,7 @@ const HomeSection2 = () => {
         </div> */}
         {/*  */}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4 font-bold">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4 font-bold tiro-bangla-regular">
           {imgData
             ? imgData.map((img) => {
               return (
