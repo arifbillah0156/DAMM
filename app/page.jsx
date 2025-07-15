@@ -13,8 +13,8 @@ export default function Home() {
   return (
     <div>
       <HomeBanners />
-      <SmallBanners />
       <HomeSection3 />
+      <SmallBanners />
       <HomeSection4 />
       <HomeSection5 />
       <HomeSection6 />

@@ -8,7 +8,7 @@ const HomeSection3 = () => {
     // "/1.jpeg",
     // "/2.jpeg",
     // "/3.jpeg",
-    "/Images/homeS3BG.png",
+    "/Images/homeS3BG.jpg",
     // "/5.jpeg",
   ];
 
@@ -24,7 +24,7 @@ const HomeSection3 = () => {
   return (
     <div>
       <div
-        className="w-full h-max bg-cover bg-center transition-all duration-1000 tracking-wider font-semibold text-start flex justify-center items-center px-4 pt-8 pb-14"
+        className="w-full h-max  bg-cover transition-all duration-1000 tracking-wider font-semibold text-start flex justify-center items-center px-4 pt-8 pb-14"
         style={{
           backgroundImage: `url(${images[currentImageIndex]})`,
         }}
@@ -38,8 +38,7 @@ const HomeSection3 = () => {
           </h1>
 
           <p className="mt-2 text-[16px] sm:text-[20px] text-blue-600  text-justify">
-            *** উপনিবেশিক শিক্ষার বিকল্প হিসেবে কুরআন-সুন্নাহভিত্তিক পাঠ্যক্রম ও বিজ্ঞানভিত্তিক আধুনিক জ্ঞান একত্রে তুলে ধরতে
-            প্রতিষ্ঠিত হয়েছে দারুল আজহার মডেল মাদরাসা। এখানে শিক্ষার্থীরা পায় হিফজ, হাদিস, গণিত, ইংরেজি, কম্পিউটারসহ
+            *** ঔপনিবেশিক শিক্ষার বিকল্প হিসেবে কুরআন-সুন্নাহভিত্তিক পাঠ্যক্রম ও বিজ্ঞানভিত্তিক আধুনিক জ্ঞান একত্রে তুলে ধরতে প্রতিষ্ঠিত হয়েছে দারুল আজহার মডেল মাদরাসা। এখানে শিক্ষার্থীরা পায় হিফজ, হাদিস, গণিত, ইংরেজি, কম্পিউটারসহ
             একটি পূর্ণাঙ্গ শিক্ষাব্যবস্থা।
           </p>
           <div className="ml-[2%] text-start text-[18px] sm:text-xl text-blue-600 mt-3">
