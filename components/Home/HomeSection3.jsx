@@ -9,7 +9,6 @@ const HomeSection3 = () => {
     // "/2.jpeg",
     // "/3.jpeg",
     "/Images/homeS3BG.jpg",
-    // "/5.jpeg",
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
