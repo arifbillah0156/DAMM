@@ -16,7 +16,7 @@ const HomeSection3 = () => {
             দারুল আজহার মডেল মাদরাসা
           </h1>
 
-          <p className="mt-2 text-[20px] sm:text-[24px] text-blue-600  text-justify tiro-bangla-regular">
+          <p className="mt-2 text-[20px] sm:text-[24px] text-blue-600  text-justify tiro-bangla-regular" id="arif">
             *** ঔপনিবেশিক শিক্ষার বিকল্প হিসেবে কুরআন-সুন্নাহভিত্তিক পাঠ্যক্রম ও বিজ্ঞানভিত্তিক আধুনিক জ্ঞান একত্রে তুলে ধরতে প্রতিষ্ঠিত হয়েছে দারুল আজহার মডেল মাদরাসা। এখানে শিক্ষার্থীরা পায় হিফজ, হাদিস, গণিত, ইংরেজি, কম্পিউটারসহ
             একটি পূর্ণাঙ্গ শিক্ষাব্যবস্থা।
           </p>
