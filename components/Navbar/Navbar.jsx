@@ -44,13 +44,13 @@ const NavbarWithDropdown = () => {
                 </button>
                 {isDropdownOpen && (
                   <div className="absolute bg-[#0072BC] text-white ring-2 rounded-[6px] shadow-lg">
-                    <NavDropdownDesktop href="/" text="‣ Admission fee" />
-                    <NavDropdownDesktop href="/" text="‣ Education system" />
-                    <NavDropdownDesktop href="/" text="‣ Result method" />
-                    <NavDropdownDesktop href="/" text="‣ Rules" />
-                    <NavDropdownDesktop href="/" text="‣ Co-curriculum" />
-                    <NavDropdownDesktop href="/" text="‣ Hostel rules" />
-                    <NavDropdownDesktop href="/" text="‣ Information for parents" />
+                    <NavDropdownDesktop href="/" text="↪ Admission fee" />
+                    <NavDropdownDesktop href="/" text="↪ Education system" />
+                    <NavDropdownDesktop href="/" text="↪ Result method" />
+                    <NavDropdownDesktop href="/" text="↪ Rules" />
+                    <NavDropdownDesktop href="/" text="↪ Co-curriculum" />
+                    <NavDropdownDesktop href="/" text="↪ Hostel rules" />
+                    <NavDropdownDesktop href="/" text="↪ Information for parents" />
                   </div>
                 )}
               </div>
@@ -66,8 +66,8 @@ const NavbarWithDropdown = () => {
                 </button>
                 {isDropdownOpen2 && (
                   <div className="absolute bg-[#0072BC] text-white ring-2 rounded-[6px] shadow-lg w-max">
-                    <NavDropdownDesktop2 href="/" text="‣ Photos" />
-                    <NavDropdownDesktop2 href="/" text="‣ Videos" />
+                    <NavDropdownDesktop2 href="/" text="↪ Photos" />
+                    <NavDropdownDesktop2 href="/" text="↪ Videos" />
                   </div>
                 )}
               </div>
@@ -120,13 +120,13 @@ const NavbarWithDropdown = () => {
                 </button>
                 {isDropdownOpen && (
                   <div className="pl-4">
-                    <NavDropdownMobile href="/" text="‣ Admission fee" />
-                    <NavDropdownMobile href="/" text="‣ Education system" />
-                    <NavDropdownMobile href="/" text="‣ Result method" />
-                    <NavDropdownMobile href="/" text="‣ Rules" />
-                    <NavDropdownMobile href="/" text="‣ Co-curriculum" />
-                    <NavDropdownMobile href="/" text="‣ Hostel rules" />
-                    <NavDropdownMobile href="/" text="‣ Information for parents" />
+                    <NavDropdownMobile href="/" text="↪ Admission fee" />
+                    <NavDropdownMobile href="/" text="↪ Education system" />
+                    <NavDropdownMobile href="/" text="↪ Result method" />
+                    <NavDropdownMobile href="/" text="↪ Rules" />
+                    <NavDropdownMobile href="/" text="↪ Co-curriculum" />
+                    <NavDropdownMobile href="/" text="↪ Hostel rules" />
+                    <NavDropdownMobile href="/" text="↪ Information for parents" />
                   </div>
                 )}
               </div>
@@ -140,8 +140,8 @@ const NavbarWithDropdown = () => {
                 </button>
                 {isDropdownOpen2 && (
                   <div className="pl-4 underline underline-offset-4">
-                    <NavDropdownMobile2 href="/" text="‣ Photos" />
-                    <NavDropdownMobile2 href="/" text="‣ Videos" />
+                    <NavDropdownMobile2 href="/" text="↪ Photos" />
+                    <NavDropdownMobile2 href="/" text="↪ Videos" />
                   </div>
                 )}
               </div>
