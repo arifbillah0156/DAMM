@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import img1 from "@/public/1.jpg";
+import img1 from "@/public/DAMM-Principal.jpeg";
 import img2 from "@/public/2.jpg";
 import img3 from "@/public/3.jpg";
 import img4 from "@/public/4.jpg";
@@ -15,8 +15,8 @@ const HomeSection2 = () => {
       {
         imgUrl: img1,
         imgTxt: "আমাদের কথা",
-        fullImgUrl: "/1.jpg",
-        src: "/Others/আমাদের-কথা"
+        fullImgUrl: "/DAMM-Principal.jpeg",
+        src: "/Others/"
       },
       {
         imgUrl: img2,
