@@ -1,31 +1,13 @@
-"use client";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
 
 const HomeSection3 = () => {
-  const images = [
-    //
-    // "/1.jpeg",
-    // "/2.jpeg",
-    // "/3.jpeg",
-    "/Images/homeS3BG.jpg",
-  ];
 
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000); // Change image every 5 seconds
-
-    return () => clearInterval(interval); // Cleanup on component unmount
-  }, [images.length]);
   return (
     <div>
       <div
         className="w-full h-max  bg-cover transition-all duration-1000 tracking-wider font-semibold text-start flex justify-center items-center px-4 pt-8 pb-14"
         style={{
-          backgroundImage: `url(${images[currentImageIndex]})`,
+          backgroundImage: `url(/Images/Home-S3-BG.jpg)`,
         }}
       >
         <div className="h-full max-w-[1000px]">
