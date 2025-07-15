@@ -29,7 +29,7 @@ const images = [
 
 export default function FullSlider() {
   return (
-    <section id="slider_area" className="w-full h-full z-0 ">
+    <section id="slider_area" className="w-full h-full z-0 lg:border-[10px] lg:border-gray-100">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         // navigation
