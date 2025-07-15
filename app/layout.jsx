@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </head>
-      <body className="bg-white text-gray-900 merriweather-regular">
+      <body className="bg-white text-gray-900 merriweather-regular noto-sans-bengali-damm">
         <Navbar />
         {children}
         <Footer />

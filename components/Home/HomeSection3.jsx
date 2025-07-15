@@ -24,39 +24,46 @@ const HomeSection3 = () => {
   return (
     <div>
       <div
-        className="h-max w-[100%] bg-cover bg-center transition-all duration-1000 tracking-wider font-semibold text-purple-600 pl-[20px] md:pl-[20%] text-start"
+        className="w-full h-max bg-cover bg-center transition-all duration-1000 tracking-wider font-semibold text-start flex justify-center items-center px-4 pt-8 pb-14"
         style={{
           backgroundImage: `url(${images[currentImageIndex]})`,
         }}
       >
-        <div className="h-full w-full p-4 py-8 mt-2">
+        <div className="h-full max-w-[1000px]">
           {/* <p className="text-[25px] md:text-[34px] text-start text-green-600">
             Lorem ipsum dolor sit amet
           </p> */}
-          <h1 className="text-[40px] text-start ">
-            Lorem <span className="text-green-600">ipsum dolor</span> sit amet consectetur.
+          <h1 className="text-[40px] md:text-[50px] text-center font-extrabold bg-gradient-to-r from-green-700 via-sky-500 to-purple-700 bg-clip-text text-transparent drop-shadow-md">
+            দারুল আজহার মডেল মাদরাসা
           </h1>
-          <p className="mt-4 text-[16px] sm:text-[20px] text-green-700 text-start ">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, molestias eligendi deserunt velit quia quasi aliquid ullam officiis blanditiis assumenda voluptas:
+
+          <p className="mt-2 text-[16px] sm:text-[20px] text-blue-600  text-justify">
+            *** উপনিবেশিক শিক্ষার বিকল্প হিসেবে কুরআন-সুন্নাহভিত্তিক পাঠ্যক্রম ও বিজ্ঞানভিত্তিক আধুনিক জ্ঞান একত্রে তুলে ধরতে
+            প্রতিষ্ঠিত হয়েছে দারুল আজহার মডেল মাদরাসা। এখানে শিক্ষার্থীরা পায় হিফজ, হাদিস, গণিত, ইংরেজি, কম্পিউটারসহ
+            একটি পূর্ণাঙ্গ শিক্ষাব্যবস্থা।
           </p>
-          <div className="ml-[2%] text-start text-[18px] sm:text-xl text-green-700 mt-3">
+          <div className="ml-[2%] text-start text-[18px] sm:text-xl text-blue-600 mt-3">
             <p>
-              <i className="fa-solid fa-arrow-right mr-2 text-pink-600 mb-2"></i>
-              Lorem ipsum dolor sit.
+              <i className="fa-solid fa-arrow-right mr-2 text-green-600 mb-2"></i>
+              দ্বীনি ও আধুনিক শিক্ষার সমন্বিত পথ
             </p>
             <p>
-              <i className="fa-solid fa-arrow-right mr-2 text-pink-600 mb-2"></i>
-              Lorem ipsum dolor sit amet.
+              <i className="fa-solid fa-arrow-right mr-2 text-green-600 mb-2"></i>
+              হিফজুল কুরআন ও দ্বীনি শিক্ষার সাথে আধুনিক বিষয়াবলী
             </p>
             <p>
-              <i className="fa-solid fa-arrow-right mr-2 text-pink-600"></i>
-              Lorem ipsum dolor sit amet consectetur.
+              <i className="fa-solid fa-arrow-right mr-2 text-green-600"></i>
+              বাংলা, ইংরেজি ও গণিত – সবই অভিজ্ঞ শিক্ষকের তত্ত্বাবধানে
+            </p>
+            <p>
+              <i className="fa-solid fa-arrow-right mr-2 text-green-600"></i>
+              জাতীয় ও আন্তর্জাতিক মানের সিলেবাস অনুযায়ী শিক্ষা প্রদান
             </p>
           </div>{" "}
           <br /> <br />
           <Link
             href="/services"
-            className="p-4 rounded-lg border border-green-500 text-green-700 text-xl font-mono hover:bg-green-600 hover:text-white hover:ring duration-100 tracking-normal"
+            className="p-4 rounded-lg border border-lc text-lc text-xl font-mono hover:bg-lc hover:text-white hover:ring duration-100 tracking-normal"
           >
             Read More...
           </Link>
