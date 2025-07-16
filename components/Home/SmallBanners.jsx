@@ -2,9 +2,9 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import img1 from "@/public/DAMM-Principal.jpeg";
-import img2 from "@/public/2.jpg";
-import img3 from "@/public/3.jpg";
-import img4 from "@/public/4.jpg";
+import img2 from "@/public/smallBanner2.png";
+import img3 from "@/public/smallBanner3.png";
+import img4 from "@/public/smallBanner4.png";
 import Link from "next/link";
 
 const HomeSection2 = () => {
