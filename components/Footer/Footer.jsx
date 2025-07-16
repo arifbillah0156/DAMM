@@ -60,27 +60,27 @@ const Footer = () => {
             <h3 className="text-lg font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="https://greenarchitectbd.com/about/">
+                <Link href="/">
+                  <span className="hover:text-gray-400">Home</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/About/PrincipalMessage">
                   <span className="hover:text-gray-400">About</span>
                 </Link>
               </li>
               <li>
-                <Link href="https://greenarchitectbd.com/blog/">
-                  <span className="hover:text-gray-400">Blog</span>
+                <Link href="/">
+                  <span className="hover:text-gray-400">Academic</span>
                 </Link>
               </li>
               <li>
-                <Link href="https://greenarchitectbd.com/faq">
-                  <span className="hover:text-gray-400">FAQ</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="https://greenarchitectbd.com/review">
+                <Link href="/">
                   <span className="hover:text-gray-400">Review</span>
                 </Link>
               </li>
               <li>
-                <Link href="https://greenarchitectbd.com/privacy-policy/">
+                <Link href="/">
                   <span className="hover:text-gray-400">Privacy Policy</span>
                 </Link>
               </li>
@@ -144,7 +144,7 @@ const Footer = () => {
             </Link>
           </div>
         </div>
-        <div className="mt-1 text-center">
+        <div className="mt-2 text-center">
           <p className="text-sm px-1">
             © All Rights Reserved {new Date().getFullYear()} - DAMM.
           </p>

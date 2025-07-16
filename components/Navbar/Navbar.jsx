@@ -39,7 +39,7 @@ const NavbarWithDropdown = () => {
                 onMouseLeave={() => setIsDropdownOpen(false)}
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               >
-                <button className="linkDropdownMainText mt-[-6px]  mb-1">
+                <button className="linkDropdownMainText mt-[-6px]  mb-1" id="NavAcademic">
                   Academic <i className="fa-solid fa-caret-down"></i>
                 </button>
                 {isDropdownOpen && (
@@ -61,7 +61,7 @@ const NavbarWithDropdown = () => {
                 onMouseLeave={() => setIsDropdownOpen2(false)}
                 onClick={() => setIsDropdownOpen2(!isDropdownOpen2)}
               >
-                <button className="linkDropdownMainText mt-[-6px]  mb-1">
+                <button className="linkDropdownMainText mt-[-6px]  mb-1" id="Gallery">
                   Gallery <i className="fa-solid fa-caret-down"></i>
                 </button>
                 {isDropdownOpen2 && (
@@ -71,7 +71,7 @@ const NavbarWithDropdown = () => {
                   </div>
                 )}
               </div>
-              <NavLinksDesktop href="/services" text="Services" />
+              <NavLinksDesktop href="/Notices" text="Notices" />
               <NavLinksDesktop href="/contact" text="Contact" />
             </div>
             {/* Mobile Menu Button */}
@@ -115,6 +115,7 @@ const NavbarWithDropdown = () => {
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                   className="block w-full text-left px-4 py-2 text-sm linkDropdownText underline underline-offset-4"
+                  id="NavAcademic"
                 >
                   Academic <i className="fa-solid fa-caret-down"></i>
                 </button>
@@ -135,6 +136,7 @@ const NavbarWithDropdown = () => {
                 <button
                   onClick={() => setIsDropdownOpen2(!isDropdownOpen2)}
                   className="block w-full text-left px-4 py-2 text-sm linkDropdownText underline underline-offset-4"
+                  id="Gallery"
                 >
                   Gallery <i className="fa-solid fa-caret-down"></i>
                 </button>
@@ -145,7 +147,7 @@ const NavbarWithDropdown = () => {
                   </div>
                 )}
               </div>
-              <NavLinksMobile href="/services" text="Services" />
+              <NavLinksMobile href="/Notices" text="Notices" />
               <NavLinksMobile href="/contact" text="Contact" />
             </div>
           </div>

@@ -8,22 +8,26 @@ export default function HomeSection4() {
     {
       id: 1,
       title: "Main Campus",
-      content: `Road: 20, Uttara, Dhaka-1230. Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, molestias eligendi deserunt velit quia quasi aliquid ullam officiis blanditiis assumenda voluptas.Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, molestias eligendi deserunt velit quia quasi aliquid ullam officiis blanditiis assumenda voluptas.`,
+      content: `Road: 20, Uttara, Dhaka-1230.`,
+      map: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d456.07899642205876!2d90.405565!3d23.867199!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c42e544cf359%3A0xde8af1e80b435980!2sDarul%20Azhar%20Model%20Madrasah%20Main%20Campus!5e0!3m2!1sen!2sbd!4v1752671746934!5m2!1sen!2sbd"
     },
     {
       id: 2,
       title: "Boys Campus",
-      content: `Road: 20/C, Azompur, Uttara. Iusto, molestias eligendi deserunt velit quia quasi aliquid ullam officiis blanditiis assumenda voluptas.Iusto, molestias eligendi deserunt velit quia quasi aliquid ullam officiis blanditiis assumenda voluptas.`,
+      content: `Road: 20/C, Azompur, Uttara.`,
+      map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d228.03859062740966!2d90.40506921708584!3d23.867714378619564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c56cfafd9c43%3A0xc50e40004ff57400!2sDarul%20Azhar%20model%20Madrasah%20(Boys%20campus)!5e0!3m2!1sen!2sbd!4v1752671894213!5m2!1sen!2sbd"
     },
     {
       id: 3,
       title: "Third Campus",
-      content: `Molestias eligendi deserunt velit quia quasi aliquid ullam officiis blanditiis assumenda voluptas.Molestias eligendi deserunt velit quia quasi aliquid ullam officiis blanditiis assumenda voluptas.`,
+      content: `Molestias eligendi deserunt velit quia quasi `,
+      map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d228.03859062740966!2d90.40506921708584!3d23.867714378619564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c56cfafd9c43%3A0xc50e40004ff57400!2sDarul%20Azhar%20model%20Madrasah%20(Boys%20campus)!5e0!3m2!1sen!2sbd!4v1752671894213!5m2!1sen!2sbd"
     },
     {
       id: 4,
       title: "VIP Campus",
-      content: `Testing Text. Iusto, molestias eligendi deserunt velit quia quasi aliquid ullam officiis blanditiis assumenda voluptas.Testing Text. Iusto, molestias eligendi deserunt velit quia quasi aliquid ullam officiis blanditiis assumenda voluptas.`,
+      content: `Testing Text. Iusto, molestias eligendi deserunt velit `,
+      map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d228.03859062740966!2d90.40506921708584!3d23.867714378619564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c56cfafd9c43%3A0xc50e40004ff57400!2sDarul%20Azhar%20model%20Madrasah%20(Boys%20campus)!5e0!3m2!1sen!2sbd!4v1752671894213!5m2!1sen!2sbd"
     },
   ];
 
@@ -64,6 +68,7 @@ export default function HomeSection4() {
               <p className="text-gray-800 text-lg px-4 py-3 border rounded-lg">
                 "{tab.content}"
               </p>{" "}
+              <iframe src={tab.map} className="h-full w-full p-1 rounded-xl border mt-1"></iframe>
             </div>
           ))}
         </div>
