@@ -127,23 +127,24 @@ const Footer = () => {
         </div>
 
         {/* Footer Bottom Section */}
-        <div className="text-center mt-8">
-          <h1 className="mr-2 text-xl font-mono">
-            The website was developed by-
+        <div className="text-center mt-8 font-mono md:flex md:justify-center md:items-center md:gap-2">
+          <h1 className="">
+            The website was developed by:
           </h1>
-          <div className="mt-2">
+          <div className="">
             <Link
               href="https://www.facebook.com/arifbillah64"
               passHref
               target="_blank"
               rel="noopener noreferrer"
-              className="border border-blue border-x-white font-bold px-4 py-2 text-md rounded-full underline underline-offset-4 decoration-blue  tracking-wider font-mono decoration-blue-600"
+
             >
-              Arif Billah
+
+              <span className="underline underline-offset-2">Arif Billah</span> <span>|</span> <span className="">IT Officer, DAMM</span>
             </Link>
           </div>
         </div>
-        <div className="mt-6 text-center">
+        <div className="mt-1 text-center">
           <p className="text-sm px-1">
             © All Rights Reserved {new Date().getFullYear()} - DAMM.
           </p>

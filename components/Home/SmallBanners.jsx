@@ -16,25 +16,25 @@ const HomeSection2 = () => {
         imgUrl: img1,
         imgTxt: "আমাদের কথা",
         fullImgUrl: "/DAMM-Principal.jpeg",
-        src: "/Others/"
+        src: "/#our-words"
       },
       {
         imgUrl: img2,
         imgTxt: "কেন এ আয়োজন",
         fullImgUrl: "/2.jpg",
-        src: "/Others/কেন-এ-আয়োজন"
+        src: "/#why-this-event"
       },
       {
         imgUrl: img3,
         imgTxt: "আমাদের স্বাতন্ত্র্য",
         fullImgUrl: "/3.jpg",
-        src: "/Others/আমাদের-স্বাতন্ত্র্য"
+        src: "/#our-uniqueness"
       },
       {
         imgUrl: img4,
         imgTxt: "আমাদের বৈশিষ্ট্য",
         fullImgUrl: "/4.jpg",
-        src: "/Others/আমাদের-বৈশিষ্ট্য"
+        src: "/#our-specialty"
       }
     ];
     setImgData(totalImg);
@@ -57,7 +57,7 @@ const HomeSection2 = () => {
               return (
                 <div
                   key={img.imgTxt}
-                  className="bg-white text-lc underline underline-offset-4 rounded-lg shadow p-2 text-center textGradient relative "
+                  className="bg-white text-lc underline underline-offset-4 rounded-lg shadow p-2 text-center textGradient relative hover:shadow-lg"
                 >
                   <Image
                     src={img.imgUrl}

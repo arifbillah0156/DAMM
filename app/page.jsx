@@ -1,7 +1,7 @@
 import HomeBanners from "@/components/Home/HomeBanners";
 import HomeSection10 from "@/components/Home/HomeSection10";
 import SmallBanners from "@/components/Home/SmallBanners";
-import HomeSection3 from "@/components/Home/HomeSection3";
+// import HomeSection3 from "@/components/Home/HomeSection3";
 import HomeSection4 from "@/components/Home/HomeSection4";
 import HomeSection5 from "@/components/Home/HomeSection5";
 import HomeSection6 from "@/components/Home/HomeSection6";
@@ -14,7 +14,7 @@ export default function Home() {
     <div>
       <HomeBanners />
       <SmallBanners />
-      <HomeSection3 />
+      {/* <HomeSection3 /> */}
       <HomeSection4 />
       <HomeSection5 />
       <HomeSection6 />

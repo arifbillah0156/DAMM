@@ -3,7 +3,7 @@ export default function HomeSection5() {
     <div className="h-max w-[100%] relative mt-12">
       {/* Background Image */}
       <div
-        className="absolute inset-0 bg-cover bg-center opacity-50"
+        className="absolute inset-0 bg-cover bg-center opacity-10"
         style={{
           backgroundImage: `url(/Images/HomeS5Bg.jpg)`,
         }}
@@ -16,29 +16,38 @@ export default function HomeSection5() {
         <div className="container mx-auto px-6 py-12 relative z-10">
           <div className="text-center">
             {/* Heading */}
-            <h2 className="text-2xl sm:text-5xl font-bold text-purple-600 mb-4 [text-shadow:_3px_3px_3px_rgb(255_255_255_/_100%)]">
-              Best Model{" "} <br />
-              <span className="text-green-500">Madrasah In Bangladesh</span>
+            <h2 className="text-2xl sm:text-4xl font-bold text-lc mb-4 [text-shadow:_3px_3px_3px_rgb(255_255_255_/_100%)]">
+              A Unique Model{" "} <p className="block lg:hidden"></p>
+              <span className="text-lc">Madrasah In Bangladesh</span>
             </h2>
             {/* Divider */}
-            <div className="w-full h-1 bg-green-500 mx-auto my-6"></div>
+            <div className="w-full h-1 bg-lc mx-auto my-6"></div>
           </div>
           {/* Additional Content */}
-          <div className="mt-12 space-y-8">
+          <div className="mt-12 md:text-lg text-justify">
             <div className="bg-white p-6 shadow-md rounded-lg" id="our-words">
-              <p className="text-gray-70 text-justify">
-                <strong>আমাদের কথা:</strong> উপনিবেশ আমল থেকেই এই উপমহাদেশে চলছে সেক্যুলার বা ধর্মনিরপেক্ষ শিক্ষাব্যবস্থা। যার পরিবর্তন সময়ের অপরিহার্য দাবি। কিন্তু কীভাবে তা পূরণ হবে? প্রয়োজন ইস্পাত কঠিন সিদ্ধান্তে দৃঢ় পদক্ষেপে এগিয়ে যাওয়া। সার্বজনীন একটি শিক্ষা কার্যক্রম চালু করা। সে লক্ষ্যেই একটি প্রতিশ্রুতিশীল শিক্ষা প্রতিষ্ঠান হিসেবে আত্মপ্রকাশ করেছে “দারুল আজহার মডেল মাদরাসা”। প্রচলিত প্রথায় যারা হাফেজে কুরআন হচ্ছেন তাদের অধিকাংশই কুরআন মজিদকে বুঝার প্রয়োজনীয়তা অনুভব করছেন না। যারা ধর্মীয় জ্ঞান অর্জন করছেন তারা ধর্মীয় জ্ঞানে একবা- রেই শিশু। আমরা এ তিনের সমন্বয় চাই। তা আমাদের সিলেবাসের অন্তর্ভুক্ত রয়েছে ধর্মীয় জ্ঞান শিক্ষার পাশাপাশি আধুনিক জ্ঞান বিজ্ঞা-েনও সমমানে পৌঁছার সুব্যবস্থা । বিশেষ করে ইসলামিক ও আধুনিক জ্ঞানের পাশাপাশি পবিত্র কুরআনের হিফজ এ সিলেবাসের অন্যতম বৈশিষ্ট্য। প্রফেসর ডঃ সৈয়দ আলী আশরাফ (রঃ) এর শিক্ষা দর্শনের আলোকে পৃথিবীর খ্যাতনামা ইসলামী শিক্ষায়তনগুলোর পাঠ্যক্রম অনুসারণে, বিশেষভাবে মিশরের আল আজহার বিশ্ববিদ্যালয়, সৌদি আরবে ও বাংলাদেশের শীর্ষস্থানীয় শিক্ষাপ্রতিষ্ঠানের পাঠ্যক্রমের সাথে সামঞ্জস্য বিধান করে আন্তর্জাতিক মানে এর সিলেবাস তৈরি করা হয়েছে। প্রাথমিকভাবে ঢাকা লক্ষ্মীপুর, ফেনী ও নোয়াখালীতে এর ক্যাম্পাস খোলা হয়েছে, এবছর উত্তরা মডেল টাউন ক্যাম্পাস, সিলেট ক্যাম্পাস, ও কুড়িগ্রাম ক্যাম্পাস প্রতিষ্ঠিত হয়েছে এভাবে প্রতিটি জেলায় একটি করে ক্যাম্পাস গড়ে তোলা আমাদের লক্ষ্য। আমরা চাই এক ও অভিন্ন সিলেবাসে এদেশের সকল শিক্ষার্থীরা শিক্ষাগ্রহন করবে। পর্যায়ক্রমে উচ্চ শিক্ষার দ্বার উন্মোচনের লক্ষ্যে একটি পূর্ণাঙ্গ ইসলামী বিশ্ববিদ্যালয় প্রতিষ্ঠা করা হবে।
+              <p className="text-gray-70">
+                <strong className="text-lc">আমাদের কথা:</strong> উপনিবেশ আমল থেকে প্রচলিত সেক্যুলার শিক্ষাব্যবস্থার পরিবর্তন সময়ের দাবি। সেই প্রয়োজন পূরণে “দারুল আজহার মডেল মাদরাসা” একটি প্রতিশ্রুতিশীল উদ্যোগ হিসেবে আত্মপ্রকাশ করেছে। এখানে ইসলামিক শিক্ষা, আধুনিক বিজ্ঞান ও হিফজুল কুরআনের সমন্বিত সিলেবাস চালু হয়েছে, যা আল-আজহারসহ আন্তর্জাতিক মানের পাঠ্যক্রম অনুসরণে প্রস্তুত। প্রাথমিকভাবে দেশের বিভিন্ন জেলায় ক্যাম্পাস চালু হয়েছে, ভবিষ্যতে প্রতিটি জেলায় ক্যাম্পাস স্থাপন ও একটি পূর্ণাঙ্গ ইসলামী বিশ্ববিদ্যালয় প্রতিষ্ঠার লক্ষ্য রয়েছে। আমরা চাই, এক ও অভিন্ন শিক্ষাব্যবস্থায় দেশব্যাপী শিক্ষার্থীরা সমভাবে উপকৃত হোক।
 
               </p>
-            </div>
-            <div className="bg-white p-6 shadow-md rounded-lg">
+            </div> <br />
+            <div className="bg-white p-6 shadow-md rounded-lg" id="why-this-event">
               <p className="text-gray-700">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos debitis assumenda molestias possimus ipsa distinctio laborum. Odit quo dolores fugit placeat doloremque? Iste nisi quas aut autem labore facere, culpa suscipit, distinctio doloremque tenetur commodi dolores deserunt fuga odio laboriosam!
+                <strong className="text-lc">কেন এ আয়োজন:</strong>  নতুন শতাব্দীর চ্যালেঞ্জ মোকাবিলায় জাগতিক বিদ্যা ও প্রযুক্তির পাশাপাশি দ্বীনি শিক্ষা ও নৈতিকতা অর্জন অপরিহার্য। অথচ দেশে এমন সার্বজনীন শিক্ষাব্যবস্থা প্রায় অনুপস্থিত। এই শূন্যতা পূরণে “দারুল আজহার মডেল মাদরাসা” গড়ে তোলা হয়েছে, যার লক্ষ্য হলো বিশ্বমানের শিক্ষার মাধ্যমে যুগোপযোগী, দক্ষ ও চারিত্রিকভাবে গঠিত মানুষ তৈরি করা।
               </p>
-            </div>
-            <div className="bg-white p-6 shadow-md rounded-lg">
+            </div> <br />
+            <div className="bg-white p-6 shadow-md rounded-lg" id="our-uniqueness">
               <p className="text-gray-700">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Est rem laboriosam ad adipisci fuga modi et, error debitis possimus consequatur officiis recusandae? Ipsum, aperiam, omnis iste fuga possimus quo porro ut architecto voluptate harum praesentium repudiandae perferendis animi quae nulla. Quisquam repellendus ratione, architecto cum voluptatem asperiores ut laboriosam incidunt.
+                <strong className="text-lc">আমাদের স্বাতন্ত্র্য:</strong> মাধ্যমিক ও উচ্চ মাধ্যমিক স্তরে ধর্মীয় জ্ঞানের পাশাপাশি বাংলা, ইংরেজি, গণিত, বিজ্ঞান, ইতিহাস, ভূগোল ও সমাজবিজ্ঞান শিক্ষা দেওয়া হয়, যাতে শিক্ষার্থীরা যুগোপযোগী, আধুনিক জ্ঞানসমৃদ্ধ আলেম হিসেবে গড়ে উঠতে পারে। হিফজ বিভাগের শিক্ষার্থীদের জন্যও বাংলা, ইংরেজি, গণিত ও আরবি ভাষা শিক্ষার বিশেষ ব্যবস্থা রয়েছে।
+
+
+              </p>
+            </div> <br />
+            <div className="bg-white p-6 shadow-md rounded-lg" id="our-specialty">
+              <p className="text-gray-700">
+                <strong className="text-lc">আমাদের বৈশিষ্ঠ্য:</strong> “দারুল আজহার মডেল মাদরাসা”-তে বিশুদ্ধ কুরআন তেলাওয়াত ও মর্মার্থ অনুধাবনের পাশাপাশি বলিষ্ঠ ইসলামী স্কলার তৈরির লক্ষ্যে কুরআনের আহকাম সম্পর্কিত আয়াতসহ ন্যূনতম ৫ পারা ও ৩০০ সহিহ হাদিস হিফজ বাধ্যতামূলক। পাঠদানে ইংরেজি ভাষায় দক্ষতা অর্জনের জন্য শ্রেণিভিত্তিক প্র্যাকটিক্যাল ইংলিশ কোর্স, ব্রিটিশ IELTS ধাঁচের মূল্যায়ন পদ্ধতি এবং আরবি ও ইংরেজি ভাষায় বিশুদ্ধ উচ্চারণে কথোপকথনের বিশেষ ব্যবস্থা রয়েছে। জাতীয় ও আন্তর্জাতিক শিক্ষাবিদ ও আলেমদের তত্ত্বাবধানে পরিচালিত এই প্রতিষ্ঠানে ছাত্রদের মেধা বিকাশে রয়েছে বক্তৃতা, বিতর্ক, লেখনী চর্চা ও ইসলামী সঙ্গীতের সুযোগ। ব্যস্ত ও প্রবাসী অভিভাবকদের জন্য পূর্ণ অভিভাবকত্ব গ্রহণের ব্যবস্থাসহ আবাসিক ছাত্রদের ২৪ ঘণ্টা শিক্ষকগণের সরাসরি তত্ত্বাবধানে রাখা হয়। নিরাপদ ক্যাম্পাসে রয়েছে সার্বক্ষণিক নিরাপত্তা, নিরবচ্ছিন্ন বিদ্যুৎ, স্বাস্থ্যসেবা, মাল্টি-সিস্টেম জেনারেটর, সিসিটিভি এবং প্রজেক্টরযুক্ত আধুনিক শ্রেণিকক্ষ। ছাত্রদের জন্য নির্ধারিত খাট, লন্ড্রি সার্ভিস, স্বাস্থ্যসম্মত উন্নতমানের খাবার, ইনডোর গেমস, শরীরচর্চা ও খেলাধুলার সুযোগ, কম্পিউটার ল্যাব ও সমৃদ্ধ লাইব্রেরির ব্যবস্থা রয়েছে। শিক্ষার মান উন্নয়নে শিক্ষকদের প্রশিক্ষণ ও প্রতিটি বিষয় অভিজ্ঞ ভিজিটিং শিক্ষকদের তত্ত্বাবধানে পরিচালিত হয়।
+
+
               </p>
             </div>
           </div>
