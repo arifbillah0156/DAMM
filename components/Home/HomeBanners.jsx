@@ -29,14 +29,14 @@ const images = [
 
 export default function FullSlider() {
   return (
-    <section id="slider_area" className="w-full h-full z-0 lg:border-[10px] lg:border-gray-100">
+    <section id="slider_area" className="w-full h-full z-0 border-[3px] lg:border-[10px] border-white">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         // navigation
         pagination={{ clickable: true }}
         autoplay={{ delay: 3000 }}
         loop={true}
-        className="w-full h-max"
+        className="w-full h-max rounded-md lg:rounded-lg"
       >
         {images.map((img, idx) => (
           <SwiperSlide key={idx}>

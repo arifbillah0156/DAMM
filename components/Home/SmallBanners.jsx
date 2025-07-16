@@ -63,7 +63,7 @@ const HomeSection2 = () => {
                     src={img.imgUrl}
                     alt="Image"
                     placeholder="blur"
-                    className="h-[300px] w-full object-cover"
+                    className="h-[300px] w-full object-cover rounded-md md:rounded-lg"
                   />
                   <div className="text-xl mt-4 mb-2">
                     <i className="fa-solid fa-arrow-up-right-from-square" style={{ color: "#118eee" }}></i>

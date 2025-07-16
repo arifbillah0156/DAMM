@@ -30,7 +30,7 @@ const NavbarWithDropdown = () => {
             {/* Desktop Menu */}
             <div className="hidden lg:flex  font-bold tracking-wider">
               <NavLinksDesktop href="/" text="Home" />
-              <NavLinksDesktop href="/about" text="About" />
+              <NavLinksDesktop href="/About/PrincipalMessage" text="About" />
 
               {/* Dropdown Menu */}
               <div
@@ -108,7 +108,7 @@ const NavbarWithDropdown = () => {
           <div className="lg:hidden mt-2 md:mt-4 font-bold tracking-wider">
             <div className="space-y-2 py-4 px-6 mobileNavMenubar">
               <NavLinksMobile href="/" text="Home" />
-              <NavLinksMobile href="/about" text="About" />
+              <NavLinksMobile href="/About/PrincipalMessage" text="About" />
 
               {/* Mobile Dropdown Menu */}
               <div>
