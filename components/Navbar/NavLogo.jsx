@@ -12,21 +12,19 @@ const NavLogo = () => {
           src={DAMM}
           width={50}
           alt="DAMM"
-          priority
         />
       </Link>
 
       {/* ডেস্কটপের জন্য (Name logo) */}
-      <Link href="/" className="hidden  md:flex justify-center items-center">
+      <Link href="/" className="hidden md:flex justify-center items-center">
         <Image
           src={dammnamelogo}
           alt="Name Logo"
           height={70}
-          priority
         />
       </Link>
-      
     </div>
+
   );
 };
 

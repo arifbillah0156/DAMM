@@ -23,7 +23,7 @@ export default function HomeSection6() {
           <div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-green-600 lg:mt-24 abril-fatface-regular">
               Recognized as a{" "} <br />
-              <span className="text-lc">Premier Model Madrasah</span>
+              <p className="text-lc md:mt-1">Premier Model Madrasah</p>
             </h2>
             <p className="mt-4 text-gray-700 text-justify">
               We are committed to providing quality Islamic education with a modern approach, nurturing students with values, knowledge, and character. Our mission is to build an enlightened generation rooted in faith and ethics.
@@ -38,7 +38,7 @@ export default function HomeSection6() {
                 <i className="fa-solid fa-book-quran mr-3"></i>
                 আধুনিক ও ইসলামী শিক্ষার সমন্বয়
               </h3>
-              <p className="mt-2 text-lg">
+              <p className="mt-2 text-lg text-justify">
                 দারুল আজহার মাদরাসায় ইসলামী আদর্শের সাথে আধুনিক পাঠ্যক্রমের অপূর্ব সমন্বয় ঘটানো হয়েছে, যা একজন শিক্ষার্থীকে যুগোপযোগী করে তোলে।
               </p>
             </div>
@@ -49,7 +49,7 @@ export default function HomeSection6() {
                 <i className="fa-solid fa-user-graduate mr-3"></i>
                 নৈতিক ও আদর্শ চরিত্র গঠনে অঙ্গীকারবদ্ধ
               </h3>
-              <p className="mt-2 text-lg">
+              <p className="mt-2 text-lg text-justify">
                 শুধুমাত্র শিক্ষা নয়, বরং চারিত্রিক গঠন, শৃঙ্খলা, ও আদর্শিক জীবনচর্যায় শিক্ষার্থীদের গড়ে তোলাই আমাদের অন্যতম লক্ষ্য।
               </p>
             </div>
@@ -57,10 +57,10 @@ export default function HomeSection6() {
             {/* Feature Box 3 */}
             <div className="p-6 bg-white shadow-lg rounded-lg bg-gradient-to-r from-[#5416fc] to-[#0088AE] text-white transition-all hover:scale-[1.03]">
               <h3 className="text-xl font-semibold">
-                <i class="fa-solid fa-chalkboard-user mr-3"></i>
+                <i className="fa-solid fa-chalkboard-user mr-3"></i>
                 অভিজ্ঞ শিক্ষক ও প্রযুক্তি-সমৃদ্ধ পরিবেশ
               </h3>
-              <p className="mt-2 text-lg">
+              <p className="mt-2 text-lg text-justify">
                 আমাদের অভিজ্ঞ আলেম ও মডার্ন টিচারগণ যুগোপযোগী প্রযুক্তি ব্যবহার করে শিক্ষাদান করেন, যাতে শিক্ষার্থীরা সময়ের সঙ্গে তাল মিলিয়ে এগিয়ে যেতে পারে।
               </p>
             </div>
