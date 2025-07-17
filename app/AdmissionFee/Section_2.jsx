@@ -4,8 +4,8 @@ export default function Section_2() {
             <h3 className="text-xl w-full font-semibold mb-1 bg-gradient-to-r from-gray-900 to-gray-700 text-white py-3 rounded text-center">
                 মাসিক ফি
             </h3>
-            <div className="w-full overflow-x-auto">
-                <table className="table-auto border border-gray-300 min-w-[400px]">
+            <div className="w-full overflow-x-auto rounded-md">
+                <table className="table-auto border border-gray-300 min-w-[400px]  sm:w-full">
                     <thead>
                         <tr className="bg-gray-200">
                             <th rowSpan="2" className="border p-2 text-center align-middle border-r-gray-300">বিবরণ</th>
