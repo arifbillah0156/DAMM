@@ -21,45 +21,51 @@ export default function HomeSection6() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Left Column */}
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 lg:mt-24">
-              We Are The Best ...........{" "} <br />
-              <span className="text-green-600">Madrasah In Bangladesh</span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-green-600 lg:mt-24 abril-fatface-regular">
+              Recognized as a{" "} <br />
+              <span className="text-lc">Premier Model Madrasah</span>
             </h2>
-            <p className="mt-4 text-gray-600">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut iste quam at rem molestias beatae, accusamus dignissimos natus architecto. Accusamus autem neque rem illo cupiditate mollitia necessitatibus illum ipsum dicta blanditiis. Culpa impedit dignissimos eveniet.
+            <p className="mt-4 text-gray-700 text-justify">
+              We are committed to providing quality Islamic education with a modern approach, nurturing students with values, knowledge, and character. Our mission is to build an enlightened generation rooted in faith and ethics.
             </p>
           </div>
 
           {/* Right Column */}
-          <div className="space-y-6 font-sans">
-            {/* Icon Box 1 */}
-            <div className="p-6 bg-white shadow-lg rounded-lg bg-gradient-to-r from-[#17c9fa] to-[#0088AE] text-white">
+          <div className="space-y-6 noto-sans-bengali-damm">
+            {/* Feature Box 1 */}
+            <div className="p-6 bg-white shadow-lg rounded-lg bg-gradient-to-r from-[#17c9fa] to-[#0088AE] text-white transition-all hover:scale-[1.03]">
               <h3 className="text-xl font-semibold">
-Designs that make you say 'wow'
+                <i className="fa-solid fa-book-quran mr-3"></i>
+                আধুনিক ও ইসলামী শিক্ষার সমন্বয়
               </h3>
               <p className="mt-2 text-lg">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis cum deserunt, quasi officia possimus temporibus voluptatibus! Qui facere aperiam, tempora esse aspernatur quidem obcaecati eaque? Sequi error quae iusto blanditiis.
+                দারুল আজহার মাদরাসায় ইসলামী আদর্শের সাথে আধুনিক পাঠ্যক্রমের অপূর্ব সমন্বয় ঘটানো হয়েছে, যা একজন শিক্ষার্থীকে যুগোপযোগী করে তোলে।
               </p>
             </div>
-            {/* Icon Box 2 */}
-            <div className="p-6 bg-white shadow-lg rounded-lg bg-gradient-to-r from-[#00a24f] to-[#58be66] text-white  lg:ml-12 lg:mr-[-48px]">
+
+            {/* Feature Box 2 */}
+            <div className="p-6 bg-white shadow-lg rounded-lg bg-gradient-to-r from-[#00a24f] to-[#58be66] text-white lg:ml-12 lg:mr-[-48px] transition-all hover:scale-[1.03]">
               <h3 className="text-xl font-semibold">
-                100% Eco-friendly, Sustainable Design
+                <i className="fa-solid fa-user-graduate mr-3"></i>
+                নৈতিক ও আদর্শ চরিত্র গঠনে অঙ্গীকারবদ্ধ
               </h3>
               <p className="mt-2 text-lg">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum tenetur quaerat odit nemo id deserunt dicta molestiae ducimus voluptatibus doloremque, dolorum odio illo? Sit deserunt molestias eos odio, nostrum ipsa.
+                শুধুমাত্র শিক্ষা নয়, বরং চারিত্রিক গঠন, শৃঙ্খলা, ও আদর্শিক জীবনচর্যায় শিক্ষার্থীদের গড়ে তোলাই আমাদের অন্যতম লক্ষ্য।
               </p>
             </div>
-            {/* Icon Box 3 */}
-            <div className="p-6 bg-white shadow-lg rounded-lg bg-gradient-to-r from-[#5416fc] to-[#0088AE] text-white">
+
+            {/* Feature Box 3 */}
+            <div className="p-6 bg-white shadow-lg rounded-lg bg-gradient-to-r from-[#5416fc] to-[#0088AE] text-white transition-all hover:scale-[1.03]">
               <h3 className="text-xl font-semibold">
-                Cost effective, Expert Solutions
+                <i class="fa-solid fa-chalkboard-user mr-3"></i>
+                অভিজ্ঞ শিক্ষক ও প্রযুক্তি-সমৃদ্ধ পরিবেশ
               </h3>
-              <p className="mt-2">
-               Lorem ipsum dolor sit amet consectetur adipisicing elit. Non possimus sed ipsum? Esse beatae eum eaque rem molestias hic tenetur quia, possimus, voluptatum dolor placeat!
+              <p className="mt-2 text-lg">
+                আমাদের অভিজ্ঞ আলেম ও মডার্ন টিচারগণ যুগোপযোগী প্রযুক্তি ব্যবহার করে শিক্ষাদান করেন, যাতে শিক্ষার্থীরা সময়ের সঙ্গে তাল মিলিয়ে এগিয়ে যেতে পারে।
               </p>
             </div>
           </div>
+
         </div>
       </div>
     </section>

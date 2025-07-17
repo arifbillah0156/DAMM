@@ -16,7 +16,7 @@ export default function HomeSection5() {
         <div className="container mx-auto px-6 py-12 relative z-10">
           <div className="text-center">
             {/* Heading */}
-            <h2 className="text-2xl sm:text-4xl font-bold text-lc mb-4 [text-shadow:_3px_3px_3px_rgb(255_255_255_/_100%)]">
+            <h2 className="text-2xl sm:text-4xl font-bold text-lc mb-4 abril-fatface-regular">
               A Unique Model{" "} <p className="block lg:hidden"></p>
               <span className="text-lc">Madrasah In Bangladesh</span>
             </h2>

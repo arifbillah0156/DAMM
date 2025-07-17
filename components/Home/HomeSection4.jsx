@@ -34,7 +34,7 @@ export default function HomeSection4() {
   return (
     <div className="max-w-5xl mx-auto mt-8 p-6 bg-gray-50 rounded-lg shadow-md">
       {/* Heading */}
-      <h2 className="text-3xl font-bold text-lc text-center mb-4">
+      <h2 className="text-3xl font-bold text-lc text-center mb-4 abril-fatface-regular">
         <span className="">Addresses of all</span> <p className="block md:hidden"></p>  Our Campuses
       </h2>
       {/* Divider */}

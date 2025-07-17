@@ -19,7 +19,7 @@ const NavbarWithDropdown = () => {
   // ]
 
   return (
-    <div className="pb-2 merriweather-regular">
+    <div className="pb-1 merriweather-regular">
       <NavHead />
       {/* Nav Links bg-[#0072BC] */}
       <nav className="text-[#0072BC] py-2">
