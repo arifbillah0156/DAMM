@@ -30,7 +30,7 @@ export default function AdmissionFees() {
                         ].map(([title, res, nonres, daycare], idx) => (
                             <tr
                                 key={idx}
-                                className={idx === 4 ? "bg-gray-100 font-semibold" : ""}
+                                className={idx === 3 ? "bg-gray-100 font-semibold" : ""}
                             >
                                 <td className="border p-2">{title}</td>
                                 <td className="border p-2 text-center">{res}</td>
@@ -64,7 +64,48 @@ export default function AdmissionFees() {
                     </thead>
                     <tbody>
                         {[
-                            ["মক্তব বিভাগ/প্লে, নার্সারি", 10500, 10500, 9000, 7500],
+                            ["টিউশন ফি", 10500, 10500, 9000, 7500],
+                            ["হোস্টেল এন্ড ডাইনিং ফি", 10500, 10500, 9000, 7500],
+                            ["একাডেমিক কেয়ার", 11000, 11000, 9500, 8500],
+                            ["মোট", 11000, 11500, 9500, 7500],
+                        ].map(([label, hifz, academic, mealWith, mealWithout], idx) => (
+                            <tr key={idx}
+                                className={idx === 3 ? "bg-gray-100 font-semibold" : ""}>
+                                <td className="border p-2">{label}</td>
+                                <td className="border p-2 text-center">{hifz}</td>
+                                <td className="border p-2 text-center">{academic}</td>
+                                <td className="border p-2 text-center">{mealWith}</td>
+                                <td className="border p-2 text-center">{mealWithout}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                <p className="text-center mt-1">(নোট: ডে-কেয়ার খাট বরাদ্দ মাসে-১৫০০ টাকা)</p>
+            </div>
+
+
+            {/* আবাসন ও খাবার খরচ */}
+            <div className="overflow-x-auto mb-12 rounded-lg">
+                <h3 className="text-xl font-semibold mb-1 bg-gradient-to-r from-gray-900 to-gray-700 text-white py-3 rounded text-center">
+                    মাসিক ফি
+                </h3>
+                <table className="table-auto w-full border border-gray-300">
+                    <thead>
+                        <tr className="bg-gray-200">
+                            <th rowSpan="2" className="border p-2 text-center align-middle border-r-gray-300">বিবরণ</th>
+                            <th colSpan="2" className="border p-2 text-center border-r-gray-300">আবাসিক</th>
+                            <th colSpan="2" className="border p-2 text-center">ডে-কেয়ার</th>
+                        </tr>
+                        <tr className="bg-gray-100">
+                            <th className="border p-2 text-center">হিফজ</th>
+                            <th className="border p-2 text-center">একাডেমিক</th>
+                            <th className="border p-2 text-center">খাবার সহ</th>
+                            <th className="border p-2 text-center">খাবার ছাড়া</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {[
+                            ["টিউশন ফি", 10500, 10500, 9000, 7500],
                             ["১ম থেকে ২য় শ্রেণী", 10500, 10500, 9000, 7500],
                             ["৩য় থেকে ৫ম শ্রেণী", 11000, 11000, 9500, 8500],
                             ["৬ষ্ঠ থেকে ১০ম শ্রেণী", 11000, 11000, 9500, 8500],
