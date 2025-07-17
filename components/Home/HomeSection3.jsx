@@ -12,7 +12,7 @@ const HomeSection3 = () => {
           {/* <p className="text-[25px] md:text-[34px] text-start text-green-600">
             Lorem ipsum dolor sit amet
           </p> */}
-          <h1 className="text-[28px] sm:text-[35px] md:text-[60px] text-center font-extrabold bg-gradient-to-r from-green-700 via-sky-500 to-purple-700 bg-clip-text text-transparent  galada-regular">
+          <h1 className="text-[28px] sm:text-[35px] md:text-[60px] text-center font-extrabold bg-gradient-to-r from-green-700 via-sky-500 to-purple-700 bg-clip-text text-transparent galada-regular">
             দারুল আজহার মডেল মাদরাসা
           </h1>
 
