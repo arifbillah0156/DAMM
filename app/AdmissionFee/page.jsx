@@ -8,11 +8,11 @@ export default function AdmissionFees() {
             </h2> */}
 
             {/* ভর্তি ও বেতন ফি */}
-            <div className="overflow-x-auto mb-12 rounded-lg">
+            <div className="mb-12 rounded-lg">
                 <h3 className="text-xl font-semibold mb-1 bg-gradient-to-r from-gray-900 to-gray-700 text-white py-3 rounded text-center">
                     ভর্তিকালিন ফি
                 </h3>
-                <table className="table-auto w-full border border-gray-300">
+                <table className="overflow-x-auto table-auto w-full border border-gray-300">
                     <thead>
                         <tr className="bg-gray-200">
                             <th className="border p-2">বিবরণ</th>
@@ -44,11 +44,11 @@ export default function AdmissionFees() {
             </div>
 
             {/* আবাসন ও খাবার খরচ */}
-            <div className="overflow-x-auto mb-12 rounded-lg">
+            <div className="mb-12 rounded-lg">
                 <h3 className="text-xl max-w-full font-semibold mb-1 bg-gradient-to-r from-gray-900 to-gray-700 text-white py-3 rounded text-center">
                     মাসিক ফি
                 </h3>
-                <table className="table-auto w-full border border-gray-300">
+                <table className="overflow-x-auto table-auto w-full border border-gray-300">
                     <thead>
                         <tr className="bg-gray-200">
                             <th rowSpan="2" className="border p-2 text-center align-middle border-r-gray-300">বিবরণ</th>
