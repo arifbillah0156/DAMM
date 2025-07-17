@@ -44,7 +44,7 @@ const NavbarWithDropdown = () => {
                 </button>
                 {isDropdownOpen && (
                   <div className="absolute bg-[#0072BC] text-white ring-2 rounded-[6px] shadow-lg">
-                    <NavDropdownDesktop href="/" text="↪ Admission fee" />
+                    <NavDropdownDesktop href="/AdmissionFee" text="↪ Admission fee" />
                     <NavDropdownDesktop href="/" text="↪ Education system" />
                     <NavDropdownDesktop href="/" text="↪ Result method" />
                     <NavDropdownDesktop href="/" text="↪ Rules" />
@@ -121,7 +121,7 @@ const NavbarWithDropdown = () => {
                 </button>
                 {isDropdownOpen && (
                   <div className="pl-4">
-                    <NavDropdownMobile href="/" text="↪ Admission fee" />
+                    <NavDropdownMobile href="/AdmissionFee" text="↪ Admission fee" />
                     <NavDropdownMobile href="/" text="↪ Education system" />
                     <NavDropdownMobile href="/" text="↪ Result method" />
                     <NavDropdownMobile href="/" text="↪ Rules" />
