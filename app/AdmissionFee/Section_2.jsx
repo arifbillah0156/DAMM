@@ -1,6 +1,6 @@
 export default function Section_2() {
     return (
-        <div className="mb-12 rounded-lg">
+        <div className="mb-2 rounded-lg">
             <h3 className="text-xl w-full font-semibold mb-1 bg-gradient-to-r from-gray-900 to-gray-700 text-white py-3 rounded text-center">
                 মাসিক ফি
             </h3>
@@ -21,13 +21,13 @@ export default function Section_2() {
                     </thead>
                     <tbody>
                         {[
-                            ["টিউশন ফি", 10500, 10500, 9000, 7500],
-                            ["হোস্টেল এন্ড ডাইনিং ফি", 10500, 10500, 9000, 7500],
-                            ["একাডেমিক কেয়ার", 11000, 11000, 9500, 8500],
+                            ["টিউশন ফি", 2500, 3000, 3500, 3500],
+                            ["হোস্টেল এন্ড ডাইনিং ফি", 6000, 6000, 3500, 1500],
+                            ["একাডেমিক কেয়ার", 2500, 2500, 2500, 2500],
                             ["মোট", 11000, 11500, 9500, 7500],
                         ].map(([label, hifz, academic, mealWith, mealWithout], idx) => (
                             <tr key={idx}
-                                className={idx === 3 ? "bg-gray-100 font-semibold" : ""}>
+                                className={idx === 3 ? "bg-gray-100 font-semibold text-center" : ""}>
                                 <td className="border p-2">{label}</td>
                                 <td className="border p-2 text-center">{hifz}</td>
                                 <td className="border p-2 text-center">{academic}</td>
