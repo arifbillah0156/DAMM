@@ -52,7 +52,7 @@ export default function HomeSection4() {
                 : "text-gray-600"
                 }`}
             >
-              <i className="fa-solid fa-circle-check mr-2 text-lc"></i>
+              <i className="fa-solid fa-map-location-dot mr-2 text-lc"></i>
               {tab.title}
             </button>
           ))}
@@ -65,7 +65,7 @@ export default function HomeSection4() {
               className={`${activeTab === tab.id ? "block" : "hidden"}`}
             >
               {" "}
-              <p className="text-gray-800 text-lg px-4 py-3 border rounded-lg">
+              <p className="text-lc italic text-lg px-4 py-3 border rounded-lg">
                 "{tab.content}"
               </p>{" "}
               <iframe src={tab.map} className="h-full w-full p-1 rounded-xl border mt-1"></iframe>
