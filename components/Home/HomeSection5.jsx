@@ -17,8 +17,7 @@ export default function HomeSection5() {
           <div className="text-center">
             {/* Heading */}
             <h2 className="text-2xl sm:text-4xl font-bold text-lc mb-4 abril-fatface-regular">
-              A Unique Model{" "} <p className="block lg:hidden"></p>
-              <span className="text-lc">Madrasah In Bangladesh</span>
+              A Unique Model Madrasah In Bangladesh
             </h2>
             {/* Divider */}
             <div className="w-full h-1 bg-lc mx-auto my-6"></div>

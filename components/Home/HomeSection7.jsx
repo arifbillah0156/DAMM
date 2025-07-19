@@ -29,6 +29,8 @@ export default function WhyChooseUs() {
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-lc abril-fatface-regular">
           Why Choose Us
         </h2>
+        {/* Divider */}
+        <div className="w-full h-1 bg-lc mx-auto my-6"></div>
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6">
           {features.map((feature, index) => (
             <div key={index} className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all duration-300 hover:scale-[1.03]">
