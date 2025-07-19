@@ -18,6 +18,7 @@ export default function PrincipalMessage() {
                                 fill
                                 className="object-cover"
                                 quality={100}
+                                placeholder="blur"
                             />
                         </div>
 

@@ -65,7 +65,7 @@ export default function HomeSection4() {
               className={`${activeTab === tab.id ? "block" : "hidden"}`}
             >
               {" "}
-              <p className="text-lc italic text-lg px-3 py-3 border-l-4 border-y border-r-4 border rounded-lg border-x-blue-200">
+              <p className="text-lc italic text-md px-3 py-3 border-l-4 border-y border-r-4 border rounded-lg border-x-blue-200">
                 <i className="fa-solid fa-location-dot mr-1"></i> {tab.content}
               </p>
               <iframe src={tab.map} className="h-full w-full p-1 rounded-xl border mt-1"></iframe>
