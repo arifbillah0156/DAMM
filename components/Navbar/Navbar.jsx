@@ -107,8 +107,12 @@ const NavbarWithDropdown = () => {
         {isMenuOpen && (
           <div className="lg:hidden mt-2 md:mt-4 font-bold tracking-wider">
             <div className="space-y-2 py-4 px-6 mobileNavMenubar">
-              <NavLinksMobile href="/" text="Home" />
-              <NavLinksMobile href="/About/PrincipalMessage" text="About" />
+              <div onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                <NavLinksMobile href="/" text="Home" />
+              </div>
+              <div onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                <NavLinksMobile href="/About/PrincipalMessage" text="About" />
+              </div>
 
               {/* Mobile Dropdown Menu */}
               <div>
@@ -120,7 +124,7 @@ const NavbarWithDropdown = () => {
                   Academic <i className="fa-solid fa-caret-down"></i>
                 </button>
                 {isDropdownOpen && (
-                  <div className="pl-4">
+                  <div className="pl-4" onClick={() => setIsMenuOpen(!isMenuOpen)}>
                     <NavDropdownMobile href="/AdmissionFee" text="↪ Admission fee" />
                     <NavDropdownMobile href="/" text="↪ Education system" />
                     <NavDropdownMobile href="/" text="↪ Result method" />
@@ -141,14 +145,18 @@ const NavbarWithDropdown = () => {
                   Gallery <i className="fa-solid fa-caret-down"></i>
                 </button>
                 {isDropdownOpen2 && (
-                  <div className="pl-4 underline underline-offset-4">
+                  <div className="pl-4 underline underline-offset-4" onClick={() => setIsMenuOpen(!isMenuOpen)}>
                     <NavDropdownMobile2 href="/" text="↪ Photos" />
                     <NavDropdownMobile2 href="/" text="↪ Videos" />
                   </div>
                 )}
               </div>
-              <NavLinksMobile href="/Notices" text="Notices" />
-              <NavLinksMobile href="/contact" text="Contact" />
+              <div onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                <NavLinksMobile href="/Notices" text="Notices" />
+              </div>
+              <div onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                <NavLinksMobile href="/contact" text="Contact" />
+              </div>
             </div>
           </div>
         )}

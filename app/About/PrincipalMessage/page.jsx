@@ -17,6 +17,7 @@ export default function PrincipalMessage() {
                                 alt="Principal"
                                 fill
                                 className="object-cover"
+                                quality={100}
                             />
                         </div>
 

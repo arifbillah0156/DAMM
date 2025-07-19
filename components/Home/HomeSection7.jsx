@@ -1,75 +1,47 @@
-import React from "react";
 
-const HomeSection7 = () => {
+export default function WhyChooseUs() {
+  const features = [
+    {
+      icon: "fa-solid fa-chart-line",
+      title: "সাফল্যের প্রমাণিত ইতিহাস",
+      description: "আমরা আমাদের শিক্ষার্থীদের সর্বোচ্চ সাফল্য নিশ্চিত করতে দৃঢ় প্রতিজ্ঞ।"
+    },
+    {
+      icon: "fa-solid fa-book-open-reader",
+      title: "আধুনিক ও টেকসই পাঠদান ব্যবস্থা",
+      description: "সুপরিকল্পিত কারিকুলাম ও প্রযুক্তিনির্ভর শিক্ষাদান নিশ্চিত করি।"
+    },
+    {
+      icon: "fas fa-circle-check",
+      title: "পরিপূর্ণ ও সুচারু ব্যবস্থাপনা",
+      description: "মাদরাসার প্রতিটি দিকেই রয়েছে সুশৃঙ্খল প্রশাসনিক ও শিক্ষাগত ব্যবস্থাপনা।"
+    },
+    {
+      icon: "fas fa-chalkboard-teacher",
+      title: "প্রতিটি শিক্ষার্থীর জন্য কাস্টমাইজড সমাধান",
+      description: "আলাদা মনোযোগ ও প্রয়োজন অনুযায়ী সবার জন্য আলাদা শিক্ষাপদ্ধতি।"
+    }
+  ];
+
   return (
-    <section className="relative bg-gray-50 px-4 pb-4 md:px-0">
-      {" "}
-      <hr />
-      <div className="container mx-auto py-16">
-        <h2 className="text-center text-4xl font-bold mb-6">
-          Why <span className="text-green-600">Choose Us</span>
+    <section className="py-16 bg-gray-50">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center text-lc abril-fatface-regular">
+          Why Choose Us
         </h2>
-        <div className="w-20 mx-auto mb-8 border-b-2 border-gray-300"></div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Proven Track Record of Success */}
-          <div className="p-6 bg-white shadow-md rounded-lg transform transition-transform hover:scale-105">
-            <div className="flex items-center justify-center w-16 h-16 bg-green-100 text-green-600 rounded-full mb-4">
-              <i className="fas fa-chart-line text-2xl"></i>
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6">
+          {features.map((feature, index) => (
+            <div key={index} className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all duration-300 hover:scale-[1.03]">
+              <div className="flex items-center justify-center w-12 h-12 text-2xl bg-blue-100 rounded-full mb-4 text-lc">
+                <i className={feature.icon}></i>
+              </div>
+              <h3 className="text-lg font-semibold text-lc">{feature.title}</h3>
+              <p className="mt-2 text-gray-800 text-sm">{feature.description}</p>
             </div>
-            <h3 className="text-xl font-semibold mb-2">
-              Proven Track Record of Success
-            </h3>
-            <p className="text-gray-600">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel voluptas itaque, veniam libero praesentium numquam assumenda fugiat delectus eveniet ipsa sunt soluta, cum, dicta tempore illo omnis mollitia deserunt doloribus.
-            </p>
-          </div>
-
-          {/* Expertise in Sustainable Design */}
-          <div className="p-6 bg-white shadow-md rounded-lg transform transition-transform hover:scale-105">
-            <div className="flex items-center justify-center w-16 h-16 bg-green-100 text-green-600 rounded-full mb-4">
-              <i className="fas fa-user-tie text-2xl"></i>
-            </div>
-            <h3 className="text-xl font-semibold mb-2">
-              Expertise in Sustainable Design
-            </h3>
-            <p className="text-gray-600">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt sequi quam, sed rerum alias veniam tempore, fuga quidem explicabo autem officia voluptatibus voluptates harum? Enim, libero vero? Id, beatae quis?
-            </p>
-          </div>
-
-          {/* Complete and Smooth Project Delivery */}
-          <div className="p-6 bg-white shadow-md rounded-lg transform transition-transform hover:scale-105">
-            <div className="flex items-center justify-center w-16 h-16 bg-green-100 text-green-600 rounded-full mb-4">
-              <i className="fas fa-handshake text-2xl"></i>
-            </div>
-            <h3 className="text-xl font-semibold mb-2">
-              Complete and Smooth Project Delivery
-            </h3>
-            <p className="text-gray-600">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos error vitae similique harum iste reiciendis? Cumque provident nostrum ut voluptatum magni, blanditiis asperiores debitis quasi velit explicabo. Ducimus, ipsum! Praesentium!
-            </p>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-          {/* Customized Solutions for Every Project */}
-          <div className="p-6 bg-white shadow-md rounded-lg transform transition-transform hover:scale-105">
-            <div className="flex items-center justify-center w-16 h-16 bg-green-100 text-green-600 rounded-full mb-4">
-              <i className="fas fa-people-carry text-2xl"></i>
-            </div>
-            <h3 className="text-xl font-semibold mb-2">
-              Customized Solutions for Every Project
-            </h3>
-            <p className="text-gray-600">
-             Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae est, cum aliquam quae iusto, corrupti, ut quo error harum repellendus cupiditate placeat consectetur distinctio quod ullam odio aperiam minima! Laboriosam?
-            </p>
-          </div>
+          ))}
         </div>
       </div>
-      <hr />
     </section>
   );
-};
+}
 
-export default HomeSection7;
