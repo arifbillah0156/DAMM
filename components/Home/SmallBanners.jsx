@@ -6,6 +6,7 @@ import img2 from "@/public/smallBanner2.png";
 import img3 from "@/public/smallBanner3.png";
 import img4 from "@/public/smallBanner4.png";
 import Link from "next/link";
+import Loading from "@/app/loading";
 
 const HomeSection2 = () => {
   const [imgData, setImgData] = useState(null);
@@ -43,14 +44,6 @@ const HomeSection2 = () => {
   return (
     <div>
       <div>
-        {/* <div className="mt-8 md:mt-16 mb-2 text-center">
-          <h1 className="text-3xl md:text-5xl  text-green-600 font-bold tracking-wider px-4">
-            আমাদের সম্পর্কে:-
-          </h1>
-          <i className="fa-solid fa-arrows-down-to-line mt-3 p-4 bg-green-200 rounded-full text-4xl text-green-600"></i>
-        </div> */}
-        {/*  */}
-
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4 font-bold tiro-bangla-regular">
           {imgData
             ? imgData.map((img) => {
@@ -79,7 +72,7 @@ const HomeSection2 = () => {
                 </div>
               );
             })
-            : ""}
+            : <Loading />}
         </div>
       </div>
     </div>

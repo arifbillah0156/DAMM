@@ -35,6 +35,7 @@ export default function WhyChooseUs() {
               <div className="flex items-center justify-center w-12 h-12 text-2xl bg-blue-100 rounded-full mb-4 text-lc">
                 <i className={feature.icon}></i>
               </div>
+
               <h3 className="text-lg font-semibold text-lc">{feature.title}</h3>
               <p className="mt-2 text-gray-800 text-sm">{feature.description}</p>
             </div>
