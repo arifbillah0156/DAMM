@@ -14,12 +14,8 @@ const NavbarWithDropdown = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDropdownOpen2, setIsDropdownOpen2] = useState(false);
 
-  // const AcademicDropdown = [
-  //   "Admission fee","Education system","Result method","Rules","Co-curriculum", "Hostel rules", "Information for parents"
-  // ]
-
   return (
-    <div className="pb-1 merriweather-regular">
+    <div className="pb-3 merriweather-regular border-b">
       <NavHead />
       {/* Nav Links bg-[#0072BC] */}
       <nav className="text-[#0072BC] py-2">
@@ -50,7 +46,7 @@ const NavbarWithDropdown = () => {
                     <NavDropdownDesktop href="/Rules" text="↪ Rules" />
                     <NavDropdownDesktop href="/Co-curriculum" text="↪ Co-curriculum" />
                     <NavDropdownDesktop href="/Hostel-rules" text="↪ Hostel rules" />
-                    <NavDropdownDesktop href="/" text="↪ Information for parents" />
+                    <NavDropdownDesktop href="/Information-for-parents" text="↪ Information for parents" />
                   </div>
                 )}
               </div>
@@ -131,7 +127,7 @@ const NavbarWithDropdown = () => {
                     <NavDropdownMobile href="/Rules" text="↪ Rules" />
                     <NavDropdownMobile href="/Co-curriculum" text="↪ Co-curriculum" />
                     <NavDropdownMobile href="/Hostel-rules" text="↪ Hostel rules" />
-                    <NavDropdownMobile href="/" text="↪ Information for parents" />
+                    <NavDropdownMobile href="/Information-for-parents" text="↪ Information for parents" />
                   </div>
                 )}
               </div>

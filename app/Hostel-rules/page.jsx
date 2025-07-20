@@ -167,7 +167,7 @@ const MealScheduleAndRules = () => {
     return (
         <section className="space-y-14 p-6 md:p-10 bg-white text-gray-800">
             {/* Meal Schedule */}
-            <div className="w-full text-center pt-8 mt-[-14px] border-t">
+            <div className="w-full text-center pt-8 mt-[-14px]">
                 <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-900 to-gray-800 text-white px-8 py-3 rounded shadow inline-block galada-regular">
                     থাকা খাওয়ার ব্যবস্থা
                 </h2>

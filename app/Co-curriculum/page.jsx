@@ -2,7 +2,7 @@
 
 export default function CoCurriculum() {
     return (
-        <div className="bg-white text-gray-900 mt-5 border-t py-10 px-4 md:px-10 max-w-6xl mx-auto">
+        <div className="bg-white text-gray-900 mt-5 py-10 px-4 md:px-10 max-w-6xl mx-auto">
             <div className="mb-8 text-center">
                 <h2 className="text-3xl md:text-4xl text-lc galada-regular underline underline-offset-4">
                     কো-কারিকুলাম

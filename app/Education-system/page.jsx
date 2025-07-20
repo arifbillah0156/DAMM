@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function EducationSystem() {
     return (
-        <div className="container mx-auto px-4 mt-2 py-6 border-t">
+        <div className="container mx-auto px-4 mt-2 py-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-6 text-justify">
                     <h2 className="text-2xl font-bold text-white bg-gradient-to-r from-blue-900 to-gray-800 p-3 rounded-md">

@@ -4,9 +4,7 @@ import Principal from "@/public/DAMM-Principal.jpeg";
 export default function PrincipalMessage() {
     return (
         <div>
-            <hr />
-            <p className="w-full h-2"></p>
-            <section className="bg-gradient-to-br from-cyan-100 via-blue-100 to-cyan-50 py-12 px-4 md:px-8 tiro-bangla-regular rounded-xl">
+            <section className="mt-2 bg-gradient-to-br from-cyan-100 via-blue-100 to-cyan-50 py-12 px-4 md:px-8 tiro-bangla-regular rounded-xl">
                 <div className="container mx-auto max-w-6xl">
                     <div className="flex flex-col md:flex-row items-center md:items-start gap-8 bg-white/90 rounded-2xl shadow-xl p-6 md:p-10">
 

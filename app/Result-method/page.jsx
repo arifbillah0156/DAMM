@@ -1,6 +1,6 @@
 export default function ResultSystem() {
     return (
-        <div className="max-w-4xl mx-auto px-4 mt-4 py-6 border-t">
+        <div className="max-w-4xl mx-auto px-4 mt-4 py-6">
             <div className="space-y-6">
 
                 {/* Header */}
