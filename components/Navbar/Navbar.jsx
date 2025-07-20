@@ -47,7 +47,7 @@ const NavbarWithDropdown = () => {
                     <NavDropdownDesktop href="/AdmissionFee" text="↪ Admission fee" />
                     <NavDropdownDesktop href="/Education-system" text="↪ Education system" />
                     <NavDropdownDesktop href="/Result-method" text="↪ Result method" />
-                    <NavDropdownDesktop href="/" text="↪ Rules" />
+                    <NavDropdownDesktop href="/Rules" text="↪ Rules" />
                     <NavDropdownDesktop href="/" text="↪ Co-curriculum" />
                     <NavDropdownDesktop href="/" text="↪ Hostel rules" />
                     <NavDropdownDesktop href="/" text="↪ Information for parents" />
@@ -128,7 +128,7 @@ const NavbarWithDropdown = () => {
                     <NavDropdownMobile href="/AdmissionFee" text="↪ Admission fee" />
                     <NavDropdownMobile href="/Education-system" text="↪ Education system" />
                     <NavDropdownMobile href="/Result-method" text="↪ Result method" />
-                    <NavDropdownMobile href="/" text="↪ Rules" />
+                    <NavDropdownMobile href="/Rules" text="↪ Rules" />
                     <NavDropdownMobile href="/" text="↪ Co-curriculum" />
                     <NavDropdownMobile href="/" text="↪ Hostel rules" />
                     <NavDropdownMobile href="/" text="↪ Information for parents" />
