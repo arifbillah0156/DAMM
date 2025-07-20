@@ -25,7 +25,7 @@ export default function NoticeBoard() {
                 </h2>
 
                 <div className="overflow-x-auto rounded-lg text-md md:text-lg">
-                    <table className="w-full min-w-[340px] bg-white border border-gray-200 shadow-sm rounded-md">
+                    <table className="w-full min-w-[450px] bg-white border border-gray-200 shadow-sm rounded-md">
                         <thead>
                             <tr className="bg-blue-100 text-left">
                                 <th className="py-3 px-2 md:px-4 border-b">তারিখ</th>
