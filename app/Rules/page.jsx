@@ -4,7 +4,7 @@ export default function RulesPage() {
     return (
         <div className="max-w-5xl mx-auto px-4 py-12 mt-4 border-t text-gray-900 text-justify">
             <div className="mb-8 text-center">
-                <h1 className="text-3xl md:text-5xl text-lc galada-regular">
+                <h1 className="text-3xl md:text-4xl text-lc galada-regular underline underline-offset-8">
                     ছাত্রাবাসের নিয়মাবলী
                 </h1>
             </div>
