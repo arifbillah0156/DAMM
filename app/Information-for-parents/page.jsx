@@ -15,10 +15,10 @@ export default function GuardianInfo() {
     return (
         <section className="max-w-4xl mx-auto px-4 py-8">
             <div className="bg-gradient-to-r from-blue-900 to-gray-800 text-white text-center py-4 rounded-t-xl shadow-md">
-                <h2 className="text-2xl font-bold">অভিভাবকের জ্ঞাতব্য</h2>
+                <h2 className="text-2xl md:text-3xl font-bold galada-regular">অভিভাবকের জ্ঞাতব্য</h2>
             </div>
             <div className="bg-white border border-t-0 shadow-md rounded-b-xl">
-                <ul className="space-y-4 p-6 list-decimal list-inside text-gray-800 text-justify leading-relaxed">
+                <ul className="space-y-4 p-6 list-decimal list-inside text-gray-900 text-justify leading-relaxed lg:text-lg">
                     {points.map((point, index) => (
                         <li key={index} className="relative pl-2">
                             {point}
