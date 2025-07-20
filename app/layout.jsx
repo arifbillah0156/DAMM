@@ -1,6 +1,8 @@
 import Navbar from "@/components/Navbar/Navbar";
 import "./globals.css";
 import Footer from "@/components/Footer/Footer";
+import 'swiper/css';          // Required for Swiper default styles
+import 'swiper/css/navigation'; // If using navigation buttons
 
 export const metadata = {
   title: "DAMM",

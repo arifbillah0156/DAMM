@@ -103,8 +103,9 @@ const Footer = () => {
 
             >
 
-              <span className="underline underline-offset-2">Arif Billah</span> <span>|</span> <span className="">IT Officer, DAMM</span>
+              <span className="underline underline-offset-2">Arif Billah</span> <span>|</span>
             </Link>
+            <span className=""> IT Officer, DAMM</span>
           </div>
         </div>
         <div className="mt-2 text-center">

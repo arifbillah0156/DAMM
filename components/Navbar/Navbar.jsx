@@ -45,7 +45,7 @@ const NavbarWithDropdown = () => {
                 {isDropdownOpen && (
                   <div className="absolute bg-[#0072BC] text-white ring-2 rounded-[6px] shadow-lg">
                     <NavDropdownDesktop href="/AdmissionFee" text="↪ Admission fee" />
-                    <NavDropdownDesktop href="/" text="↪ Education system" />
+                    <NavDropdownDesktop href="/Education-system" text="↪ Education system" />
                     <NavDropdownDesktop href="/" text="↪ Result method" />
                     <NavDropdownDesktop href="/" text="↪ Rules" />
                     <NavDropdownDesktop href="/" text="↪ Co-curriculum" />
@@ -126,7 +126,7 @@ const NavbarWithDropdown = () => {
                 {isDropdownOpen && (
                   <div className="pl-4" onClick={() => setIsMenuOpen(!isMenuOpen)}>
                     <NavDropdownMobile href="/AdmissionFee" text="↪ Admission fee" />
-                    <NavDropdownMobile href="/" text="↪ Education system" />
+                    <NavDropdownMobile href="/Education-system" text="↪ Education system" />
                     <NavDropdownMobile href="/" text="↪ Result method" />
                     <NavDropdownMobile href="/" text="↪ Rules" />
                     <NavDropdownMobile href="/" text="↪ Co-curriculum" />
