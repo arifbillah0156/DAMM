@@ -101,13 +101,13 @@ const ResponsiveTable = ({ columns, rows, rowKey }) => {
         <div className="w-full">
             {/* Standard table for sm and up */}
             <div className="hidden sm:block overflow-x-auto rounded-md">
-                <table className="w-full text-md  border border-gray-300">
+                <table className="w-full text-md xl:text-lg  border border-gray-300">
                     <thead className="bg-gray-100 text-gray-900 font-semibold">
                         <tr>
                             {columns.map(col => (
                                 <th
                                     key={col.accessor}
-                                    className="border border-gray-300 px-3 py-2 text-left"
+                                    className="border border-gray-300 px-3 py-2 text-center"
                                 >
                                     {col.header}
                                 </th>
@@ -123,7 +123,7 @@ const ResponsiveTable = ({ columns, rows, rowKey }) => {
                                 {columns.map(col => (
                                     <td
                                         key={col.accessor}
-                                        className="border border-gray-200 px-3 py-2 align-top"
+                                        className="border border-gray-200 px-3 py-2 align-top text-start"
                                     >
                                         {row[col.accessor]}
                                     </td>
@@ -141,18 +141,18 @@ const ResponsiveTable = ({ columns, rows, rowKey }) => {
                         key={row[rowKey] || idx}
                         className="rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden"
                     >
-                        <div className="px-4 py-2 font-bold text-orange-600 bg-orange-50">
+                        <div className="px-4 py-2 font-bold text-blue-600 bg-blue-50">
                             {row.day || `#${idx + 1}`}
                         </div>
                         <dl className="divide-y divide-gray-200">
                             {columns
                                 .filter(c => c.accessor !== "day")
                                 .map(col => (
-                                    <div key={col.accessor} className="flex px-4 py-2">
-                                        <dt className="w-32 shrink-0 text-xs font-semibold text-gray-500">
+                                    <div key={col.accessor} className="flex px-2 md:px-4 py-2">
+                                        <dt className="w-32 shrink-0 text-sm text-start font-semibold text-gray-600">
                                             {col.header}
                                         </dt>
-                                        <dd className="text-md text-gray-800">{row[col.accessor]}</dd>
+                                        <dd className="text-md text-gray-900 text-start">{row[col.accessor]}</dd>
                                     </div>
                                 ))}
                         </dl>
@@ -168,11 +168,11 @@ const MealScheduleAndRules = () => {
         <section className="space-y-14 p-6 md:p-10 bg-white text-gray-800">
             {/* Meal Schedule */}
             <div className="w-full text-center pt-8 mt-[-14px] border-t">
-                <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-900 to-gray-800 text-white px-5 py-2 rounded shadow inline-block">
+                <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-900 to-gray-800 text-white px-8 py-3 rounded shadow inline-block galada-regular">
                     থাকা খাওয়ার ব্যবস্থা
                 </h2>
 
-                <div className="mt-8" aria-label="সাপ্তাহিক খাবার সূচি">
+                <div className="mt-4" aria-label="সাপ্তাহিক খাবার সূচি">
                     <ResponsiveTable
                         rowKey="day"
                         columns={[
@@ -191,7 +191,7 @@ const MealScheduleAndRules = () => {
 
             {/* Supplies */}
             <div>
-                <h3 className="text-xl md:text-3xl font-bold mb-6 text-center text-lc galada-regular">আবাসিক আসবাবপত্র তালিকা</h3>
+                <h3 className="text-xl md:text-3xl font-bold mb-3 text-center text-lc galada-regular">আবাসিক আসবাবপত্র তালিকা</h3>
                 <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 list-none p-0 md:mx-[10%]" aria-label="আসবাবপত্র তালিকা">
                     {supplies.map(item => (
                         <li
@@ -207,7 +207,7 @@ const MealScheduleAndRules = () => {
 
             {/* Rules */}
             <div>
-                <h3 className="text-2xl md:text-3xl font-bold mb-6 text-center text-lc galada-regular">ছাত্রাবাসের নিয়মাবলিঃ</h3>
+                <h3 className="text-2xl md:text-3xl font-bold mb-3 text-center text-lc galada-regular">ছাত্রাবাসের নিয়মাবলিঃ</h3>
                 <ol className="space-y-3 list-decimal pl-6 text-md md:text-base md:mx-[10%]" aria-label="নিয়মাবলি">
                     {rules.map((rule, i) => (
                         <li
