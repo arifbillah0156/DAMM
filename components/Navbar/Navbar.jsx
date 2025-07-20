@@ -27,6 +27,7 @@ const NavbarWithDropdown = () => {
             <div className="hidden lg:flex  font-bold tracking-wider">
               <NavLinksDesktop href="/" text="Home" />
               <NavLinksDesktop href="/About/PrincipalMessage" text="About" />
+              <NavLinksDesktop href="/Notices" text="Notices" />
 
               {/* Dropdown Menu */}
               <div
@@ -67,7 +68,7 @@ const NavbarWithDropdown = () => {
                   </div>
                 )}
               </div>
-              <NavLinksDesktop href="/Notices" text="Notices" />
+
               <NavLinksDesktop href="/contact" text="Contact" />
             </div>
             {/* Mobile Menu Button */}
@@ -109,6 +110,9 @@ const NavbarWithDropdown = () => {
               <div onClick={() => setIsMenuOpen(!isMenuOpen)}>
                 <NavLinksMobile href="/About/PrincipalMessage" text="About" />
               </div>
+              <div onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                <NavLinksMobile href="/Notices" text="Notices" />
+              </div>
 
               {/* Mobile Dropdown Menu */}
               <div>
@@ -147,9 +151,7 @@ const NavbarWithDropdown = () => {
                   </div>
                 )}
               </div>
-              <div onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                <NavLinksMobile href="/Notices" text="Notices" />
-              </div>
+
               <div onClick={() => setIsMenuOpen(!isMenuOpen)}>
                 <NavLinksMobile href="/contact" text="Contact" />
               </div>
