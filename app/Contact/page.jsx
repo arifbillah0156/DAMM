@@ -24,7 +24,7 @@ export default function ContactPage() {
                 <ContactCard
                     title="IT Officer"
                     phone="01844-838723"
-                    whatsapp="01844838723"
+                    whatsapp="+8801844838723"
                     email="arifbillah0156@gmail.com"
                 />
             </div>
