@@ -68,7 +68,7 @@ const NavbarWithDropdown = () => {
                 )}
               </div>
               <NavLinksDesktop href="/About/PrincipalMessage" text="About" />
-              <NavLinksDesktop href="/contact" text="Contact" />
+              <NavLinksDesktop href="/Contact" text="Contact" />
             </div>
             {/* Mobile Menu Button */}
             <div className="lg:hidden">
@@ -151,7 +151,7 @@ const NavbarWithDropdown = () => {
                 <NavLinksMobile href="/About/PrincipalMessage" text="About" />
               </div>
               <div onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                <NavLinksMobile href="/contact" text="Contact" />
+                <NavLinksMobile href="/Contact" text="Contact" />
               </div>
             </div>
           </div>
