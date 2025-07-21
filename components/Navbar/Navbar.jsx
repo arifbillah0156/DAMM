@@ -62,8 +62,8 @@ const NavbarWithDropdown = () => {
                 </button>
                 {isDropdownOpen2 && (
                   <div className="absolute bg-[#0072BC] text-white ring-2 rounded-[6px] shadow-lg w-max">
-                    <NavDropdownDesktop2 href="/" text="↪ Photos" />
-                    <NavDropdownDesktop2 href="/" text="↪ Videos" />
+                    <NavDropdownDesktop2 href="/Photos" text="↪ Photos" />
+                    <NavDropdownDesktop2 href="/Videos" text="↪ Videos" />
                   </div>
                 )}
               </div>
