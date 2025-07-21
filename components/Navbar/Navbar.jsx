@@ -142,8 +142,8 @@ const NavbarWithDropdown = () => {
                 </button>
                 {isDropdownOpen2 && (
                   <div className="pl-4 underline underline-offset-4" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                    <NavDropdownMobile2 href="/" text="↪ Photos" />
-                    <NavDropdownMobile2 href="/" text="↪ Videos" />
+                    <NavDropdownMobile2 href="/Photos" text="↪ Photos" />
+                    <NavDropdownMobile2 href="/Videos" text="↪ Videos" />
                   </div>
                 )}
               </div>
