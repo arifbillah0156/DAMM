@@ -12,13 +12,13 @@ export default function ContactPage() {
                 <ContactCard
                     title="Principal Sir"
                     phone="01919-916222"
-                    whatsapp="01919916222"
+                    whatsapp="+8801919916222"
                     email="ksua1980@gmail.com"
                 />
                 <ContactCard
                     title="Admin Sir"
                     phone="01627-449269"
-                    whatsapp="01627449269"
+                    whatsapp="+8801627449269"
                     email="azharmedia14@gmail.com"
                 />
                 <ContactCard
