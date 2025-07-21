@@ -16,7 +16,8 @@
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.60.0",
     "react-simple-typewriter": "^5.0.1",
-    "swiper": "^11.2.10"
+    "swiper": "^11.2.10",
+    "uid": "^2.0.2"
   },
   "devDependencies": {
     "postcss": "^8",

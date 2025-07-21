@@ -40,19 +40,21 @@ export default function AdminLogin() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Submitted Data:', formData);
 
-        if (formData.email === "arifbillah0156@gmail.com" && formData.password === "arif") {
-            alert()
+        if (formData.email === "azharmedia14@gmail.com" && formData.password === "saif1980") {
+            router.push("/Admin/Dashboard")
+        } else {
+            alert("Email or Password is Wrong!!!")
+            setFormData({
+                email: '',
+                password: '',
+            })
         }
 
         setCookie('email', formData.email, 1);
         setCookie('password', formData.password, 6);
 
-        // setFormData({
-        //     email: '',
-        //     password: '',
-        // })
+
     };
 
 
@@ -60,11 +62,9 @@ export default function AdminLogin() {
     useEffect(() => {
 
         const cookieEmail = getCookie('email');
-        if (cookieEmail) console.log(cookieEmail);
         const cookiePass = getCookie('password');
-        if (cookiePass) console.log(cookiePass);
 
-        if (cookieEmail === "arifbillah0156@gmail.com" && cookiePass === "arif") {
+        if (cookieEmail === "azharmedia14@gmail.com" && cookiePass === "saif1980") {
             router.push('/Admin/Dashboard');
         }
 
