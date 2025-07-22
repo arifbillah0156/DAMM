@@ -22,19 +22,19 @@ const HomeSection2 = () => {
       {
         imgUrl: img2,
         imgTxt: "কেন এ আয়োজন",
-        fullImgUrl: "/2.jpg",
+        fullImgUrl: "/smallBanner2.png",
         src: "/#why-this-event"
       },
       {
         imgUrl: img3,
         imgTxt: "আমাদের স্বাতন্ত্র্য",
-        fullImgUrl: "/3.jpg",
+        fullImgUrl: "/smallBanner3.png",
         src: "/#our-uniqueness"
       },
       {
         imgUrl: img4,
         imgTxt: "আমাদের বৈশিষ্ট্য",
-        fullImgUrl: "/4.jpg",
+        fullImgUrl: "/smallBanner4.png",
         src: "/#our-specialty"
       }
     ];
