@@ -2,27 +2,8 @@
 import { get, ref } from "firebase/database";
 import { database } from "@/lib/firebase";
 import { useEffect, useState } from "react";
-import { uid } from 'uid';
 
 
-
-const notices = [
-    {
-        title: "২০২৫ সালের ভর্তি বিজ্ঞপ্তি",
-        date: "২০ জুলাই ২০২৫",
-        link: "/notices/admission-2025.pdf",
-    },
-    {
-        title: "বার্ষিক পরীক্ষা সময়সূচি",
-        date: "১৮ আগস্ট ২০২৫",
-        link: "/notices/exam-schedule.pdf",
-    },
-    {
-        title: "শিক্ষকদের মিটিং",
-        date: "১৫ আগস্ট ২০২৫",
-        link: "/notices/teachers-meeting.pdf",
-    },
-];
 
 export default function NoticeBoard() {
     const [Notices, setNotices] = useState(null);
@@ -33,7 +14,7 @@ export default function NoticeBoard() {
             .then((snapshot) => {
                 if (snapshot.exists()) {
                     const snapData = Object.entries(snapshot.val());
-                    setNotices(snapData);
+                    setNotices(snapData.reverse());
                 } else {
                     alert("Somthing wrong! No data found!!");
                 }
