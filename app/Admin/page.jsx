@@ -51,8 +51,8 @@ export default function AdminLogin() {
             })
         }
 
-        setCookie('email', formData.email, 1);
-        setCookie('password', formData.password, 6);
+        setCookie('email', formData.email, 3);
+        setCookie('password', formData.password, 3);
 
 
     };

@@ -17,7 +17,7 @@ export default function Section_4() {
             {
                 OthersFee.map((item) => {
                     return (
-                        <div key={item} className="px-3 md:px-8 py-1  text-lg list-disc list-inside space-y-1">
+                        <div key={item} className="px-3 md:px-8 py-1  text-lg list-disc list-inside space-y-1 text-justify">
                             <p>
                                 <i className="fa-solid fa-arrows-to-eye mr-3"></i>
                                 {item}
@@ -28,7 +28,7 @@ export default function Section_4() {
             }
 
 
-            <p className="mt-4 p-3 text-justify italic text-md text-red-600">
+            <p className="mt-4 p-3 text-center italic text-md text-red-600 md:px-[10%]">
                 বি: দ্র: সেশন চার্জ প্রত্যেক শিক্ষা বর্ষের প্রথমে এককালীন দিতে হবে। উল্লেখিত ফিস পরিবর্তন পরিবর্ধন করার এখতিয়ার কর্তৃপক্ষ কর্তৃক সংরক্ষিত।
             </p>
         </div>

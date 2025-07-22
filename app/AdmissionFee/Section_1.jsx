@@ -5,7 +5,7 @@ export default function Section_1() {
                 ভর্তিকালিন ফি
             </h3>
             <div className="w-full overflow-x-auto rounded-md">
-                <table className="table-auto min-w-[380px] sm:w-full border border-gray-300">
+                <table className="table-auto w-full min-w-[380px]  border border-gray-300">
                     <thead>
                         <tr className="bg-gray-200">
                             <th className="border p-2">বিবরণ</th>
