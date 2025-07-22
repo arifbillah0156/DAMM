@@ -65,7 +65,13 @@ export default function NoticeBoard() {
                                         {Notices.map((Notice) => (
                                             <tr key={Notice[0]} className="hover:bg-gray-50">
                                                 <td className="py-2 px-2 lg:px-4 border-b">{Notice[1].date}</td>
-                                                <td className="py-2 px-2 lg:px-4 border-b underline underline-offset-4 text-black"><i className="fa-solid fa-file mr-2 text-lc"></i>{Notice[1].title}</td>
+                                                <td className="py-2 px-2 lg:px-4 border-b underline decoration-dotted underline-offset-4 text-black">
+                                                    <a href={Notice[1].link}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer">
+                                                        <i className="fa-solid fa-file mr-2 text-lc"></i>{Notice[1].title}
+                                                    </a>
+                                                </td>
 
                                                 <td className="py-2 px-2 border-b text-center">
                                                     <a
@@ -82,6 +88,7 @@ export default function NoticeBoard() {
                                                 </td>
                                             </tr>
                                         ))}
+                                        <tr className="w-full h-2"></tr>
                                     </tbody>
                                 </table>
                             </div>
