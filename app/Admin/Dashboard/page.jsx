@@ -45,7 +45,7 @@ export default function DashboardPage() {
         const cookieEmail = getCookie('email');
         const cookiePass = getCookie('password');
 
-        if (cookieEmail !== "azharmedia14@gmail.com" && cookiePass !== "saif1980") {
+        if (cookieEmail !== process.env.NEXT_PUBLIC_ADMIN_EMAIL && cookiePass !== process.env.NEXT_PUBLIC_ADMIN_PASSWORD) {
             router.push('/Admin');
         } else {
             setShowForm(true)

@@ -41,7 +41,7 @@ export default function AdminLogin() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (formData.email === "azharmedia14@gmail.com" && formData.password === "saif1980") {
+        if (formData.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL && formData.password === process.env.NEXT_PUBLIC_ADMIN_PASSWORD) {
             router.push("/Admin/Dashboard")
         } else {
             alert("Email or Password is Wrong!!!")
@@ -64,7 +64,7 @@ export default function AdminLogin() {
         const cookieEmail = getCookie('email');
         const cookiePass = getCookie('password');
 
-        if (cookieEmail === "azharmedia14@gmail.com" && cookiePass === "saif1980") {
+        if (cookieEmail === process.env.NEXT_PUBLIC_ADMIN_EMAIL && cookiePass === process.env.NEXT_PUBLIC_ADMIN_PASSWORD) {
             router.push('/Admin/Dashboard');
         }
 
