@@ -29,14 +29,14 @@ export default function NoticeBoard() {
                 Notices ? (
                     <section className="min-h-[80vh] py-10 px-4 md:px-10 bg-white">
                         <div className="max-w-5xl mx-auto">
-                            <h2 className="text-2xl md:text-3xl font-semibold text-blue-700 mb-6 border-b pb-2">
+                            <h2 className="text-3xl md:text-4xl font-semibold text-lc galada-regular mb-6 border-b pb-2 text-center mt-4">
                                 📝 নোটিশ বোর্ড
                             </h2>
 
                             <div className="overflow-x-auto rounded-lg text-md md:text-lg">
                                 <table className="w-full min-w-[450px] bg-white border border-gray-200 shadow-sm rounded-md">
                                     <thead>
-                                        <tr className="bg-blue-100 text-left">
+                                        <tr className="bg-lc text-white text-left">
                                             <th className="py-3 px-2 md:px-4 border-b">তারিখ</th>
                                             <th className="py-3 px-2 md:px-4 border-b">নোটিশ শিরোনাম</th>
                                             <th className="py-3 px-2 md:px-4 border-b text-center">ডাউনলোড</th>
@@ -44,7 +44,7 @@ export default function NoticeBoard() {
                                     </thead>
                                     <tbody>
                                         {Notices.map((Notice) => (
-                                            <tr key={Notice[0]} className="hover:bg-gray-50">
+                                            <tr key={Notice[0]} className="hover:bg-blue-50">
                                                 <td className="py-2 px-2 lg:px-4 border-b">{Notice[1].date}</td>
                                                 <td className="py-2 px-2 lg:px-4 border-b underline decoration-dotted underline-offset-4 text-black">
                                                     <a href={Notice[1].link}
@@ -54,22 +54,22 @@ export default function NoticeBoard() {
                                                     </a>
                                                 </td>
 
-                                                <td className="py-2 px-2 border-b text-center">
+                                                <td className="py-2 px-2 border-b text-right md:text-center">
                                                     <a
                                                         href={Notice[1].link}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className="text-blue-600 hover:text-blue-800 inline-flex items-center"
+                                                        className="text-blue-600 hover:text-white hover:bg-blue-500 hover:rounded-lg  inline-flex items-center  transition-all duration-300 "
                                                         download
                                                     >
 
-                                                        <i className="fa-solid fa-cloud-arrow-down text-xl border p-4 rounded-lg"></i>
+                                                        <i className="fa-solid fa-cloud-arrow-down text-xl border p-4 rounded-lg md:hover:scale-105 border-blue-400"></i>
 
                                                     </a>
                                                 </td>
                                             </tr>
                                         ))}
-                                        <tr className="w-full h-2"></tr>
+                                        <tr className="w-full h-2 md:hidden"></tr>
                                     </tbody>
                                 </table>
                             </div>
