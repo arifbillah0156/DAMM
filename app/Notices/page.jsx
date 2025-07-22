@@ -8,6 +8,13 @@ import { useEffect, useState } from "react";
 export default function NoticeBoard() {
     const [Notices, setNotices] = useState(null);
 
+    function convertDateYYYYMMDDtoDDMMYYYY(dateStr) {
+        if (!dateStr) return '';
+
+        const [yyyy, mm, dd] = dateStr.split('-');
+        return `${dd}/${mm}/${yyyy}`;
+    }
+
     useEffect(() => {
         const usersRef = ref(database, "Notices");
         get(usersRef)
@@ -45,7 +52,11 @@ export default function NoticeBoard() {
                                     <tbody>
                                         {Notices.map((Notice) => (
                                             <tr key={Notice[0]} className="hover:bg-blue-50">
-                                                <td className="py-2 px-2 lg:px-4 border-b">{Notice[1].date}</td>
+
+                                                <td className="py-2 px-2 lg:px-4 border-b text-sm">
+                                                    {convertDateYYYYMMDDtoDDMMYYYY(Notice[1]?.date)}
+                                                </td>
+
                                                 <td className="py-2 px-2 lg:px-4 border-b underline decoration-dotted underline-offset-4 text-black">
                                                     <a href={Notice[1].link}
                                                         target="_blank"
