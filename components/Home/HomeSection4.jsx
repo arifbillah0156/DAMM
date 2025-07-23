@@ -9,19 +9,19 @@ export default function HomeSection4() {
       id: 1,
       title: "Main Campus",
       content: `House: 17, Road: 20, Sector: 04, Uttara, Dhaka.`,
-      map: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d456.07899642205876!2d90.405565!3d23.867199!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c42e544cf359%3A0xde8af1e80b435980!2sDarul%20Azhar%20Model%20Madrasah%20Main%20Campus!5e0!3m2!1sen!2sbd!4v1752671746934!5m2!1sen!2sbd"
+      map: "https://www.google.com/maps/embed?pb=!4v1753253995258!6m8!1m7!1sv4aACXISfI_Dx-dBdj9saQ!2m2!1d23.86711272736647!2d90.40567584269962!3f261.3601894874574!4f13.864318632667505!5f0.7820865974627469"
     },
     {
       id: 2,
-      title: "Boys Campus",
+      title: "Boys & Hifz",
       content: `House: 07 Road: 20, Sector: 04, Uttara, Dhaka.`,
       map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d228.03859062740966!2d90.40506921708584!3d23.867714378619564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c56cfafd9c43%3A0xc50e40004ff57400!2sDarul%20Azhar%20model%20Madrasah%20(Boys%20campus)!5e0!3m2!1sen!2sbd!4v1752671894213!5m2!1sen!2sbd"
     },
     {
       id: 3,
-      title: "Boys & Hifz",
-      content: `House: 07, Road: 16, Sector: 04, Uttara, Dhaka.`,
-      map: "https://www.google.com/maps/embed?pb=!4v1752896682548!6m8!1m7!1sW18lGfbkNZDGfrCUSGQPOA!2m2!1d23.86539957085124!2d90.40312743219269!3f275.1772805919527!4f4.247606037381601!5f0.4000000000000002"
+      title: "VIP Campus",
+      content: `House: 04, Road: 02/B, Sector: 04, Uttara, Dhaka.`,
+      map: "https://www.google.com/maps/embed?pb=!4v1753253769298!6m8!1m7!1sfRBVNjtq1vCHBmwN_9DTmg!2m2!1d23.86020471218407!2d90.4053826524267!3f158.6016478296432!4f21.155883245793504!5f0.7820865974627469"
     },
     {
       id: 4,
