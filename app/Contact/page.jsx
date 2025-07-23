@@ -22,6 +22,12 @@ export default function ContactPage() {
                     email="azharmedia14@gmail.com"
                 />
                 <ContactCard
+                    title="Sr. Teacher (Asst. Coordinator)"
+                    phone="01997-049300"
+                    whatsapp="+8801997049300"
+                    email="mdabusaleh9996@gmail.com"
+                />
+                <ContactCard
                     title="IT Officer"
                     phone="01844-838723"
                     whatsapp="+8801844838723"
