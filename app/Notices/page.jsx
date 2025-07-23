@@ -43,7 +43,7 @@ export default function NoticeBoard() {
                             <div className="overflow-x-auto rounded-lg text-md md:text-lg">
                                 <table className="w-full min-w-[450px] bg-white border border-gray-200 shadow-sm rounded-md">
                                     <thead>
-                                        <tr className="bg-lc text-white text-left">
+                                        <tr className="bg-lc text-white text-left border border-lc">
                                             <th className="py-3 px-2 md:px-4 border-b">তারিখ</th>
                                             <th className="py-3 px-2 md:px-4 border-b">নোটিশ শিরোনাম</th>
                                             <th className="py-3 px-2 md:px-4 border-b text-center">ডাউনলোড</th>

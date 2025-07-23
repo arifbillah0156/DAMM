@@ -47,6 +47,7 @@ export default function RootLayout({ children }) {
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="google-adsense-account" content="ca-pub-9013512537152543"></meta>
         <link
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
           rel="stylesheet"
