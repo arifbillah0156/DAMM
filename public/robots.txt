@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Disallow unnecessary Next.js files/folders
+Disallow: /_next/
+Disallow: /api/
+
+# Disallow private or sensitive pages
+Disallow: /Admin/
+
+# Allow sitemap and robots.txt (Essential for SEO)
+Allow: /sitemap.xml
+Allow: /robots.txt
+
+# Sitemap Declaration (Important for SEO)
+Sitemap: https://www.darulazharbd.com/sitemap.xml
