@@ -52,6 +52,9 @@ export default function RootLayout({ children }) {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
           rel="stylesheet"
         />
+        {/* Google AdSense Script */}
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9013512537152543"
+          crossorigin="anonymous"></script>
       </head>
       <body className="bg-white text-gray-900 merriweather-regular noto-sans-bengali-damm">
         <Navbar />
