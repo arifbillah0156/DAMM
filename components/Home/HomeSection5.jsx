@@ -1,11 +1,14 @@
+import HomeS5Bg from "@/public/Images/HomeS5Bg.jpg"
+
 export default function HomeSection5() {
   return (
     <div className="h-max w-[100%] relative mt-12">
       {/* Background Image */}
+      {console.log(HomeS5Bg)}
       <div
         className="absolute inset-0 bg-cover bg-center opacity-10"
         style={{
-          backgroundImage: `url(/Images/HomeS5Bg.jpg)`,
+          backgroundImage: `url(${HomeS5Bg.src})`,
         }}
       ></div>
 

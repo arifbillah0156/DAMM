@@ -9,12 +9,12 @@ export default function PrincipalMessage() {
                     <div className="flex flex-col md:flex-row items-center md:items-start gap-8 bg-white/90 rounded-2xl shadow-xl p-6 md:p-10">
 
                         {/* Image Section */}
-                        <div className="flex-shrink-0 w-40 h-40 md:w-64 md:h-64 relative overflow-hidden rounded-lg shadow-lg border-4 border-cyan-500">
+                        <div className="flex-shrink-0 w-40 h-40 md:w-64 md:h-64 relative overflow-hidden">
                             <Image
                                 src={Principal}
                                 alt="Principal"
                                 fill
-                                className="object-cover"
+                                className="object-cover rounded-lg shadow-lg border md:border-lc p-2"
                                 quality={100}
                                 placeholder="blur"
                             />
