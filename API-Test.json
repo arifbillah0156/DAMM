@@ -1,0 +1,42 @@
+{
+    "student": {
+        "uid": "STU123456",
+        "name": "Abdullah Al Mamun",
+        "class": "Class 8",
+        "section": "Boys",
+        "roll": "12"
+    },
+    "exam": {
+        "type": "Midterm",
+        "year": 2025,
+        "date": "2025-06-20"
+    },
+    "subjects": [
+        {
+            "name": "Quran",
+            "full_marks": 100,
+            "obtained_marks": 90,
+            "grade": "A+"
+        },
+        {
+            "name": "Hadith",
+            "full_marks": 100,
+            "obtained_marks": 85,
+            "grade": "A"
+        },
+        {
+            "name": "Fiqh",
+            "full_marks": 100,
+            "obtained_marks": 78,
+            "grade": "A"
+        }
+    ],
+    "total": {
+        "total_marks": 300,
+        "obtained": 253,
+        "percentage": 84.33,
+        "gpa": "4.75",
+        "result": "Passed"
+    },
+    "remarks": "Good performance overall."
+}

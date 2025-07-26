@@ -42,6 +42,8 @@ export default function AdminLogin() {
         e.preventDefault();
 
         if (formData.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL && formData.password === process.env.NEXT_PUBLIC_ADMIN_PASSWORD) {
+            setCookie('email', formData.email, 3);
+            setCookie('password', formData.password, 3);
             router.push("/Admin/Dashboard")
         } else {
             alert("Email or Password is Wrong!!!")
@@ -50,11 +52,6 @@ export default function AdminLogin() {
                 password: '',
             })
         }
-
-        setCookie('email', formData.email, 3);
-        setCookie('password', formData.password, 3);
-
-
     };
 
 

@@ -5,6 +5,8 @@ export default {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  // Dark mode disabled
+  darkMode: false,
   theme: {
     extend: {
       colors: {
