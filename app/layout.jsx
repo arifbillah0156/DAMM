@@ -4,6 +4,7 @@ import Footer from "@/components/Footer/Footer";
 import 'swiper/css';
 import 'swiper/css/navigation';
 
+
 export const metadata = {
   title: "Darul Azhar Model Madrasah (DAMM)",
   description: "An ideal Islamic educational institution focused on modern and religious education.",
