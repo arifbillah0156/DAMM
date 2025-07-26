@@ -1,20 +1,7 @@
-"use client"
 import Image from "next/image";
 import Principal from "@/public/DAMM-Principal.jpeg";
-import { useEffect } from 'react';
 
 export default function PrincipalMessage() {
-    useEffect(() => {
-        const adElem = document.querySelector(".adsbygoogle");
-        if (adElem && !adElem.getAttribute("data-adsbygoogle-status")) {
-            try {
-                (window.adsbygoogle = window.adsbygoogle || []).push({});
-            } catch (error) {
-                console.error(error);
-            }
-        }
-    }, []);
-
     return (
         <div>
             <section className="mt-2 bg-gradient-to-br from-cyan-100 via-blue-100 to-cyan-50 py-12 px-4 md:px-8 tiro-bangla-regular rounded-xl">
@@ -62,18 +49,6 @@ export default function PrincipalMessage() {
                     </div>
                 </div>
             </section>
-
-            {/* --- AdSense Ad Unit --- */}
-            <ins
-                className="adsbygoogle"
-                style={{ display: 'block', textAlign: 'center' }}
-                data-ad-client="ca-pub-9013512537152543"
-                data-ad-slot="1589754501"
-                data-ad-format="auto"
-                data-full-width-responsive="true"
-            ></ins>
-            {/* The push command is now handled by the useEffect above */}
-
         </div>
     );
 }
