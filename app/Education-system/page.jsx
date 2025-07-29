@@ -80,7 +80,7 @@ export default function EducationSystem() {
                 </div>
                 <div>
                     <div
-                        className="bg-white text-lc underline underline-offset-4 rounded-lg shadow p-2 text-center textGradient relative hover:shadow-lg border"
+                        className="bg-white text-lc underline underline-offset-4 rounded-lg shadow p-2 text-center textGradient relative hover:shadow-lg border "
                     >
                         <Image
                             src={prospectus16}
