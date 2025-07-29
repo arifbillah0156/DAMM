@@ -2,7 +2,7 @@ export default function HomeSection6() {
   return (
     <section className="relative bg-gray-50 py-16">
       {/* Shape Divider */}
-      <div className="absolute inset-x-0 bottom-0">
+      {/* <div className="absolute inset-x-0 bottom-0">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1000 100"
@@ -14,7 +14,7 @@ export default function HomeSection6() {
             d="M0,6V0h1000v100L0,6z"
           />
         </svg>
-      </div>
+      </div> */}
 
       {/* Content */}
       <div className="container mx-auto px-6 lg:px-16">
