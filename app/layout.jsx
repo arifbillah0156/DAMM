@@ -6,15 +6,16 @@ import 'swiper/css/navigation';
 
 
 export const metadata = {
-  title: "Darul Azhar Model Madrasah (DAMM)",
-  description: "An ideal Islamic educational institution focused on modern and religious education.",
+  title: "Darul Azhar Model Madrasah (Main Campus)",
+  description: "Darul Azhar Model Madrasah (DAMM), An ideal Islamic educational institution focused on modern and religious education.",
   keywords: [
     "Darul Azhar",
     "Model Madrasah",
     "Islamic School",
     "Bangladesh Madrasah",
     "DAMM",
-    "Education"
+    "Education",
+    "Main Campus"
   ],
   authors: [{ name: "Darul Azhar", url: "https://www.darulazharbd.com/" }],
   creator: "Darul Azhar",
