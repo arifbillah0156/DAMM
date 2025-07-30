@@ -1,27 +1,51 @@
 'use client';
-import { Phone, Mail, MessageSquareText } from 'lucide-react';
+import { Phone, Mail, MessageSquareText, BadgeInfo } from 'lucide-react';
 
-export default function ContactCard({ title, phone, whatsapp, email }) {
+export default function ContactCard({ title, phone, whatsapp, name, email }) {
     return (
-        <div className="bg-white shadow-xl rounded-2xl p-6 space-y-3 border border-gray-200 hover:shadow-2xl transition duration-300">
-            <h3 className="text-xl font-semibold text-lc abril-fatface-regular">{title}</h3>
-            <div className="text-gray-700 space-y-1 text-md">
-                <a href={`tel:${whatsapp}`} className="flex items-center gap-2"><Phone className="w-4 h-4 text-green-600" /> {phone}</a>
+        <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 border border-gray-200 overflow-hidden">
+            {/* Header with Name */}
+            <div className="bg-gradient-to-r from-blue-500 to-cyan-500 p-5 text-white text-center">
+                <h2 className="text-xl md:text-2xl font-bold ">{name}</h2>
+                {title && (
+                    <div className="flex justify-center items-center gap-2 text-md md:text-lg mt-1 text-cyan-50">
+                        <BadgeInfo className="w-4 h-4" />
+                        <span>{title}</span>
+                    </div>
+                )}
+            </div>
+
+            {/* Contact Details */}
+            <div className="p-6 space-y-4 text-gray-700 text-center">
+                {/* Phone */}
+                {phone && (
+                    <div className="flex items-center justify-start gap-2 text-lg">
+                        <Phone className="w-4 h-4 text-green-600" />
+                        <a href={`tel:${phone}`} className="underline hover:text-green-600">{phone}</a>
+                    </div>
+                )}
+
+                {/* WhatsApp */}
                 {whatsapp && (
-                    <p className="flex items-center gap-2">
+                    <div className="flex items-center justify-start gap-2 text-lg">
                         <MessageSquareText className="w-4 h-4 text-green-500" />
-                        <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noopener noreferrer" className="underline hover:text-green-700">
+                        <a
+                            href={`https://wa.me/${whatsapp}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline hover:text-green-600"
+                        >
                             WhatsApp
                         </a>
-                    </p>
+                    </div>
                 )}
+
+                {/* Email */}
                 {email && (
-                    <p className="flex items-center gap-2">
+                    <div className="flex items-center justify-start gap-2 text-lg overflow-auto">
                         <Mail className="w-4 h-4 text-blue-600" />
-                        <a href={`mailto:${email}`} className="underline hover:text-blue-800">
-                            {email}
-                        </a>
-                    </p>
+                        <a href={`mailto:${email}`} className="underline hover:text-blue-800">{email}</a>
+                    </div>
                 )}
             </div>
         </div>
