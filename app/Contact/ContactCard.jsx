@@ -43,7 +43,7 @@ export default function ContactCard({ title, phone, whatsapp, name, email }) {
                 {/* Email */}
                 {email && (
                     <div className="flex items-center justify-start gap-2 text-lg overflow-auto">
-                        <Mail className="min-w-4 min-h-4 text-blue-600" />
+                        <Mail className="min-w-4 min-h-4 max-w-4 max-h-4 text-blue-600" />
                         <a href={`mailto:${email}`} className="underline hover:text-blue-800">{email}</a>
                     </div>
                 )}
