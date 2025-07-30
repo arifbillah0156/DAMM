@@ -33,6 +33,12 @@ export default function ContactPage() {
                     whatsapp="+8801844838723"
                     email="arifbillah0156@gmail.com"
                 />
+                <ContactCard
+                    title="Sci. Teacher & Asst. Co-ord"
+                    phone="01770-823945"
+                    whatsapp="+8801770823945"
+                    email="tanzilalom02@gmail.com"
+                />
             </div>
         </div>
     );
