@@ -10,7 +10,7 @@ export default function ContactCard({ title, phone, whatsapp, name, email }) {
                 {title && (
                     <div className="flex justify-center items-center gap-2 text-md md:text-lg mt-1 text-cyan-50">
                         <BadgeInfo className="w-4 h-4" />
-                        <span className='mb-[-3px]'>{title}</span>
+                        <span className='mb-[-4px]'>{title}</span>
                     </div>
                 )}
             </div>
