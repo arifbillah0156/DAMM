@@ -149,3 +149,35 @@ body {
   font-style: normal;
   letter-spacing: 2px;
 }
+
+/* Custom scrollbar for better aesthetics */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #06b6d4;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0891b2;
+}
+
+/* Ensure text renders beautifully */
+.tiro-bangla-regular {
+  font-family: "Tiro Bangla", serif;
+}
+
+.galada-regular {
+  font-family: "Galada", cursive;
+}
+
+/* Add smooth scrolling behavior */
+html {
+  scroll-behavior: smooth;
+}
