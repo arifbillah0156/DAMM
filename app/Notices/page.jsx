@@ -71,6 +71,7 @@ export default function NoticeBoard() {
                     const snapData = Object.entries(snapshot.val());
                     setNotices(snapData.reverse());
                     setFilteredNotices(snapData.reverse());
+                    console.log(snapData.reverse());
                 } else {
                     // Instead of alert, show a beautiful empty state
                     setNotices([]);
