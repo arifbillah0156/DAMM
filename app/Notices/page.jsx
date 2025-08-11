@@ -155,7 +155,7 @@ export default function NoticeBoard() {
                                             >
                                                 <td className="py-4 px-6">
                                                     <div className="flex items-center">
-                                                        <FiCalendar className="text-blue-500 mr-2" />
+                                                        <FiCalendar className="text-blue-500 mr-2 mt-[-5px]" />
                                                         <span className="font-medium text-gray-700">
                                                             {formatDateWithBengaliMonth(notice[1]?.date)}
                                                         </span>
@@ -208,7 +208,7 @@ export default function NoticeBoard() {
                                     <div className="p-5">
                                         <div className="flex justify-between items-start mb-3">
                                             <div className="flex items-center text-sm text-gray-500">
-                                                <FiCalendar className="mr-1 text-lc" />
+                                                <FiCalendar className="mr-1 text-lc mt-[-5px]" />
                                                 <span>{convertDateYYYYMMDDtoDDMMYYYY(notice[1]?.date)}</span>
                                             </div>
                                             <a
@@ -225,9 +225,13 @@ export default function NoticeBoard() {
                                             href={notice[1].link}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-lg font-medium text-lc underline decoration-dotted underline-offset-4 hover:text-blue-600 transition-colors"
+                                            className="text-md font-medium text-lc underline decoration-dotted underline-offset-4 hover:text-blue-600 transition-colors"
                                         >
-                                            {notice[1].title}
+                                            <span className="flex">
+                                                <FiFileText className="mr-2 mt-1 text-blue-500 group-hover:scale-110 transition-transform" />
+                                                {notice[1].title}
+                                            </span>
+
                                         </a>
                                     </div>
                                 </motion.div>
