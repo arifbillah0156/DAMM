@@ -2,6 +2,7 @@
 import { get, ref } from "firebase/database";
 import { database } from "@/lib/firebase";
 import { useEffect, useState } from "react";
+import Loading from "../loading";
 
 
 
@@ -86,9 +87,7 @@ export default function NoticeBoard() {
                             </div>
                         </div>
                     </section>
-                ) : (<div className="fixed inset-0 flex items-center justify-center bg-lc text-white z-50">
-                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-white"></div>
-                </div>)
+                ) : (<Loading />)
             }
 
         </div>
