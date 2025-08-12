@@ -114,8 +114,8 @@ const MobileNotices = ({ notices = [], isLoading = false }) => {
             animate={{ opacity: 1 }}
             className="bg-white rounded-2xl shadow-lg p-8 text-center"
         >
-            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <FiFileText className="text-gray-400 text-2xl" />
+            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <FiFileText className="text-blue-500 text-4xl" />
             </div>
             <h3 className="text-lg font-medium text-gray-700 mb-1">কোনো নোটিশ পাওয়া যায়নি</h3>
             <p className="text-gray-500 mb-4">অন্য ফিল্টার ব্যবহার করে দেখুন</p>
@@ -129,7 +129,7 @@ const MobileNotices = ({ notices = [], isLoading = false }) => {
                         category: 'all'
                     });
                 }}
-                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                className="px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-full hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 shadow-md hover:shadow-lg"
             >
                 ফিল্টার রিসেট করুন
             </button>

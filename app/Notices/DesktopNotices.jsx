@@ -113,8 +113,8 @@ const DesktopNotices = ({ notices, isLoading = false }) => {
         >
             <td colSpan="3" className="py-12 px-6 text-center">
                 <div className="flex flex-col items-center justify-center">
-                    <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                        <FiFileText className="text-gray-400 text-2xl" />
+                    <div className="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <FiFileText className="text-blue-500 text-4xl" />
                     </div>
                     <h3 className="text-lg font-medium text-gray-700 mb-1">কোনো নোটিশ পাওয়া যায়নি</h3>
                     <p className="text-gray-500">অন্য ফিল্টার ব্যবহার করে দেখুন</p>
