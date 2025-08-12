@@ -352,7 +352,7 @@ const MobileNotices = ({ notices = [], isLoading = false }) => {
 
                     {/* Results count */}
                     <div className="text-sm text-gray-600 mt-3">
-                        {convertBengaliToEnglish(filteredNotices.length)} টি নোটিশ পাওয়া গেছে
+                        মোট {convertBengaliToEnglish(filteredNotices.length)} টি নোটিশ
                     </div>
                 </div>
 
