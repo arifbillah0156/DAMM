@@ -6,6 +6,8 @@ import Loading from "./loading";
 import { motion } from "framer-motion";
 import { FiCalendar, FiDownload, FiFileText, FiSearch, FiChevronUp } from "react-icons/fi";
 import AnimatedNoticeHeader from "./AnimatedNoticeHeader";
+import DesktopNotices from "./DesktopNotices";
+import MobileNotices from "./MobileNotices";
 
 export default function NoticeBoard() {
     const [notices, setNotices] = useState(null);
@@ -19,16 +21,6 @@ export default function NoticeBoard() {
         const [yyyy, mm, dd] = dateStr.split('-');
         return `${dd}/${mm}/${yyyy}`;
     }
-
-    // Function to format date with Bengali month names
-    function formatDateWithBengaliMonth(dateStr) {
-        if (!dateStr) return '';
-        const [yyyy, mm, dd] = dateStr.split('-');
-        const months = ['জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন',
-            'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'];
-        return `${dd} ${months[parseInt(mm) - 1]}, ${yyyy}`;
-    }
-
     // Filter notices based on search term
     useEffect(() => {
         if (notices && searchTerm) {
@@ -69,11 +61,9 @@ export default function NoticeBoard() {
             .then((snapshot) => {
                 if (snapshot.exists()) {
                     const snapData = Object.entries(snapshot.val());
-                    setNotices(snapData.reverse());
-                    setFilteredNotices(snapData.reverse());
-                    console.log(snapData.reverse());
+                    setNotices([...snapData].reverse());
+                    setFilteredNotices([...snapData].reverse());
                 } else {
-                    // Instead of alert, show a beautiful empty state
                     setNotices([]);
                     setFilteredNotices([]);
                 }
@@ -93,23 +83,23 @@ export default function NoticeBoard() {
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="text-center mb-10"
+                    className="text-center"
                 >
-                    <div className="text-center mb-10">
+                    <div className="text-center mb-2">
                         <AnimatedNoticeHeader />
-                        <p className="text-gray-600 max-w-2xl mx-auto mt-4">
+                        {/* <p className="text-gray-600 max-w-2xl mx-auto mt-2">
                             সর্বশেষ তথ্য ও নোটিশ সমূহ এখানে প্রকাশ করা হয়েছে। নোটিশ ডাউনলোড করতে ডাউনলোড বাটনে ক্লিক করুন।
-                        </p>
+                        </p> */}
                     </div>
                 </motion.div>
 
                 {/* Search Bar */}
-                {notices && notices.length > 0 && (
+                {/* {notices && notices.length > 0 && (
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        className="mb-8 max-w-2xl mx-auto"
+                        className="mb-2 max-w-2xl mx-auto"
                     >
                         <div className="relative">
                             <input
@@ -122,7 +112,7 @@ export default function NoticeBoard() {
                             <FiSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl" />
                         </div>
                     </motion.div>
-                )}
+                )} */}
 
                 {/* Content Section */}
                 {isLoading ? (
@@ -130,7 +120,11 @@ export default function NoticeBoard() {
                 ) : filteredNotices && filteredNotices.length > 0 ? (
                     <>
                         {/* Desktop View - Table */}
-                        <motion.div
+                        <div className="hidden md:block">
+                            <DesktopNotices notices={notices} isLoading={isLoading} />
+                        </div>
+
+                        {/* <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.5, delay: 0.3 }}
@@ -189,10 +183,13 @@ export default function NoticeBoard() {
                                     </tbody>
                                 </table>
                             </div>
-                        </motion.div>
+                        </motion.div> */}
 
                         {/* Mobile View - Cards */}
-                        <motion.div
+                        <div className="block md:hidden">
+                            <MobileNotices notices={notices} isLoading={isLoading} />
+                        </div>
+                        {/* <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.5, delay: 0.3 }}
@@ -237,7 +234,7 @@ export default function NoticeBoard() {
                                     </div>
                                 </motion.div>
                             ))}
-                        </motion.div>
+                        </motion.div> */}
                     </>
                 ) : (
                     // Empty State
