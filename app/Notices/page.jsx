@@ -263,7 +263,7 @@ export default function NoticeBoard() {
                 )}
 
                 {/* Scroll to Top Button */}
-                {showScrollTop && (
+                {/* {showScrollTop && (
                     <motion.button
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -274,7 +274,7 @@ export default function NoticeBoard() {
                     >
                         <FiChevronUp className="text-xl" />
                     </motion.button>
-                )}
+                )} */}
             </div>
         </div>
     );
