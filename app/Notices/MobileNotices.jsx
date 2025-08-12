@@ -414,7 +414,7 @@ const MobileNotices = ({ notices = [], isLoading = false }) => {
                                         className="text-left w-full"
                                     >
                                         <a href={notice[1].link} target='__blank' className="text-lg font-medium text-gray-800 mb-1 hover:text-blue-600 transition-colors flex">
-                                            <span className="w-8 h-8 rounded-full bg-blue-100  mr-3 group-hover:bg-blue-200 transition-colors flex justify-center items-center">
+                                            <span className="min-w-8 max-w-8 min-h-8 max-h-8 rounded-full bg-blue-100  mr-3 group-hover:bg-blue-200 transition-colors flex justify-center items-center">
                                                 <FiFileText className="text-blue-500" />
                                             </span>
                                             <span className='hover:underline decoration-dotted underline-offset-4 mt-[3px]'>{notice[1].title}</span>
