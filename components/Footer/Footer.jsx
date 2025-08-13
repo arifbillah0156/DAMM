@@ -70,11 +70,11 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="mailto:azharmedia14@gmail.com"
+                  href="mailto:ksua1980@gmail.com"
                   className="flex items-center space-x-2 hover:text-gray-300"
                 >
                   <i className="fas fa-envelope"></i>
-                  <span>azharmedia14@gmail.com</span>
+                  <span>ksua1980@gmail.com</span>
                 </a>
               </li>
               <li>

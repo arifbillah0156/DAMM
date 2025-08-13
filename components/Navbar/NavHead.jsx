@@ -15,11 +15,11 @@ const NavHead = () => {
       </div>
       <div className="md:py-2">
         <Link
-          href={"mailto:azharmedia14@gmail.com"}
+          href={"mailto:ksua1980@gmail.com"}
           className="font-mono tracking-normal flex justify-center items-center gap-2"
         >
           <i className="fa-solid fa-envelope"></i>{" "}
-          <span>azharmedia14@gmail.com</span>
+          <span>ksua1980@gmail.com</span>
         </Link>
       </div>
 
