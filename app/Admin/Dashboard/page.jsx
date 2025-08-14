@@ -86,7 +86,7 @@ export default function DashboardPage() {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5, delay: 0.4 }}
-                        className="bg-white rounded-2xl shadow-lg overflow-hidden"
+                        className="bg-white max-h-full rounded-2xl shadow-lg overflow-hidden"
                     >
                         <div className="bg-gradient-to-r from-indigo-600 to-purple-600 p-4 text-center">
                             <h2 className="text-xl font-bold text-white">প্রাতিষ্ঠানিক নোটিশ আপলোড করুন</h2>
