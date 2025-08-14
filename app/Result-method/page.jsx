@@ -376,10 +376,7 @@ export default function ResultSystem() {
                     </div>
                 </div>
 
-                {/* Footer */}
-                <div className={`mt-12 text-center text-sm ${darkMode ? 'text-gray-500' : 'text-gray-600'}`}>
-                    <p>© {new Date().getFullYear()} শিক্ষা প্রতিষ্ঠানের ফলাফল পদ্ধতি | সর্বস্বত্ব সংরক্ষিত</p>
-                </div>
+
             </div>
         </div>
     );

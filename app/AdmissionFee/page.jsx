@@ -7,7 +7,7 @@
 // export default function AdmissionFees() {
 //     return (
 //         <div className="px-4 py-8 max-w-5xl lg:text-lg mx-auto text-gray-900 mt-4">
-//             {/* <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center text-white bg-gradient-to-r from-gray-900 to-gray-700 py-3 rounded">
+//             {/* <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center text-white bg-gradient-to-r from-blue-900 to-indigo-800 py-3 rounded">
 //                 Addmission Fee
 //             </h2> */}
 
@@ -154,7 +154,7 @@ const FeeStructure = () => {
                         {activeTab === 'admission' && (
                             <motion.div variants={itemVariants} className="p-6">
                                 <div className="mb-8">
-                                    <h2 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-gray-900 to-gray-700 text-white py-4 rounded-xl shadow-lg">
+                                    <h2 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-blue-900 to-indigo-800 text-white py-4 rounded-xl shadow-lg">
                                         ভর্তিকালিন ফি
                                     </h2>
                                     <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
@@ -192,7 +192,7 @@ const FeeStructure = () => {
                         {activeTab === 'monthly' && (
                             <motion.div variants={itemVariants} className="p-6">
                                 <div className="mb-8">
-                                    <h2 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-gray-900 to-gray-700 text-white py-4 rounded-xl shadow-lg">
+                                    <h2 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-blue-900 to-indigo-800 text-white py-4 rounded-xl shadow-lg">
                                         মাসিক ফি
                                     </h2>
                                     <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
@@ -237,7 +237,7 @@ const FeeStructure = () => {
                         {activeTab === 'nonResidential' && (
                             <motion.div variants={itemVariants} className="p-6">
                                 <div className="mb-8">
-                                    <h2 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-gray-900 to-gray-700 text-white py-4 rounded-xl shadow-lg">
+                                    <h2 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-blue-900 to-indigo-800 text-white py-4 rounded-xl shadow-lg">
                                         অনাবাসিক ফি
                                     </h2>
                                     <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
@@ -282,7 +282,7 @@ const FeeStructure = () => {
                         {activeTab === 'other' && (
                             <motion.div variants={itemVariants} className="p-6">
                                 <div className="mb-8">
-                                    <h2 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-gray-900 to-gray-700 text-white py-4 rounded-xl shadow-lg">
+                                    <h2 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-blue-900 to-indigo-800 text-white py-4 rounded-xl shadow-lg">
                                         অন্যান্য ফি সমূহ
                                     </h2>
                                     <div className="space-y-3">
@@ -318,7 +318,7 @@ const FeeStructure = () => {
                         <p>ফি সংক্রান্ত যেকোনো প্রশ্নের জন্য অফিসে যোগাযোগ করুন</p>
                         <div className="mt-2 flex justify-center space-x-4">
                             <Link href={"tel:+8801627449269"} className="px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-lg hover:opacity-90 transition-opacity shadow-md">
-                                <i className="fas fa-phone mr-2"></i> যোগাযোগ করুন
+                                <i className="fas fa-phone mr-2"></i> ফোন করুন
                             </Link>
                             <Link href={"mailto:ksua1980@gmail.com"} className="px-4 py-2 bg-gradient-to-r from-green-500 to-teal-600 text-white rounded-lg hover:opacity-90 transition-opacity shadow-md">
                                 <i className="fas fa-envelope mr-2"></i> ইমেল করুন

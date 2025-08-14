@@ -90,7 +90,7 @@ const CoCurriculum = () => {
         { id: 1, name: "হিফযুল করআন", icon: <FiBookOpen className="text-xl" />, category: "islamic" },
         { id: 2, name: "স্পোকেন ইংলিশ", icon: <FiGlobe className="text-xl" />, category: "language" },
         { id: 3, name: "ডিবেটিং ক্লাব", icon: <FiMessageSquare className="text-xl" />, category: "academic" },
-        { id: 4, name: "স্পোর্টস এন্ড হেলথ ক্লাব", icon: <FiActivity className="text-xl" />, category: "physical" },
+        { id: 4, name: "কারাতে", icon: <FiAward className="text-xl" />, category: "physical" },
         { id: 5, name: "কম্পিউটার প্রশিক্ষণ", icon: <FiCode className="text-xl" />, category: "technical" },
         { id: 6, name: "দেয়ালিকা ও সময়িকী প্রকাশ", icon: <FiEdit className="text-xl" />, category: "creative" },
         { id: 7, name: "ইসলামী গান ও কবিতা পাঠের আসর", icon: <FiMusic className="text-xl" />, category: "islamic" },
@@ -104,7 +104,8 @@ const CoCurriculum = () => {
         { id: 15, name: "ক্বিরাত প্রশিক্ষণ", icon: <FiMic className="text-xl" />, category: "islamic" },
         { id: 16, name: "ইসলামী ক্যালিগ্রাফি", icon: <FiPenTool className="text-xl" />, category: "creative" },
         { id: 17, name: "গল্প ও অভিনয়", icon: <FiHeart className="text-xl" />, category: "creative" },
-        { id: 18, name: "কারাতে", icon: <FiAward className="text-xl" />, category: "physical" },
+        { id: 18, name: "স্পোর্টস এন্ড হেলথ ক্লাব", icon: <FiActivity className="text-xl" />, category: "physical" },
+
     ];
 
     const syllabus = [
@@ -337,14 +338,14 @@ const CoCurriculum = () => {
                         whileTap={{ scale: 0.95 }}
                     >
                         <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full blur-lg opacity-70"></div>
-                        <motion.button
+                        {/* <motion.button
                             className="relative bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-8 py-4 rounded-full font-medium text-lg flex items-center mx-auto shadow-lg"
                             whileHover={{ boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.5)" }}
                         >
                             <FiTrendingUp className="mr-3 text-xl" />
                             সম্পূর্ণ শিক্ষার অভিজ্ঞতা অর্জন করুন
                             <FiChevronRight className="ml-3 text-xl" />
-                        </motion.button>
+                        </motion.button> */}
                     </motion.div>
                 </motion.div>
 
