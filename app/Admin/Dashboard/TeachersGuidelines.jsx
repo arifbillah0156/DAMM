@@ -124,7 +124,7 @@ const TeacherPostForm = () => {
             id: 'teacherName',
             label: "Teacher's Name",
             type: 'text',
-            icon: <FiUser className="text-indigo-500" />,
+            icon: <FiUser className="text-indigo-500 mt-[-4px]" />,
             placeholder: "Enter your full name",
             required: true,
             animationDelay: 0.1
@@ -133,7 +133,7 @@ const TeacherPostForm = () => {
             id: 'postTitle',
             label: "Post Title",
             type: 'text',
-            icon: <FiFileText className="text-indigo-500" />,
+            icon: <FiFileText className="text-indigo-500 mt-[-4px]" />,
             placeholder: "Enter an engaging title for your post",
             required: true,
             animationDelay: 0.2
@@ -142,10 +142,10 @@ const TeacherPostForm = () => {
             id: 'targetAudience',
             label: "Target Audience",
             type: 'select',
-            icon: <FiUsers className="text-indigo-500" />,
+            icon: <FiUsers className="text-indigo-500 mt-[-4px]" />,
             options: [
-                { value: 'students', label: 'Students' },
-                { value: 'parents', label: 'Parents' },
+                { value: 'Students', label: 'Students' },
+                { value: 'Parents', label: 'Parents' },
                 { value: 'Students & Parents', label: 'Students & Parents' }
             ],
             animationDelay: 0.3
@@ -161,7 +161,7 @@ const TeacherPostForm = () => {
             id: 'postContent',
             label: "Post Content",
             type: 'textarea',
-            icon: <FiMessageSquare className="text-indigo-500" />,
+            icon: <FiMessageSquare className="text-indigo-500 mt-[-4px]" />,
             placeholder: "Share your thoughts, lessons, or announcements...",
             required: true,
             rows: 6,
@@ -173,16 +173,16 @@ const TeacherPostForm = () => {
     const today = new Date().toISOString().split('T')[0];
 
     return (
-        <div className="min-h-screen rounded-lg bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-4">
+        <div className="rounded-lg bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-start justify-center p-0 lg:p-4 ">
 
 
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="w-full max-w-2xl bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl overflow-hidden z-0 border border-white/50"
+                className="w-full bg-white/90 backdrop-blur-lg rounded-lg shadow-xl overflow-hidden z-0 border border-white/50"
             >
-                <div className="bg-gradient-to-r from-indigo-600 to-purple-600 p-6 text-white relative overflow-hidden">
+                {/* <div className="bg-gradient-to-r from-teal-600 to-emerald-600 p-6 text-white relative overflow-hidden">
                     <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-y-12 -translate-y-full animate-shimmer"></div>
                     <motion.h1
                         initial={{ opacity: 0 }}
@@ -196,7 +196,7 @@ const TeacherPostForm = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.3 }}
-                        className="text-center text-indigo-100 mt-2 relative z-0"
+                        className="text-center text-teal-100 mt-2 relative z-0"
                     >
                         Create guidelines for students and guardians.
                     </motion.p>
@@ -204,12 +204,12 @@ const TeacherPostForm = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.3 }}
-                        className="text-center text-indigo-200 mt-2 relative z-0 flex items-center justify-center gap-2"
+                        className="hidden text-center text-teal-200 mt-2 relative z-0 md:flex items-center justify-center gap-2"
                     >
                         <FiClock />
                         <span>Today: {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span>
                     </motion.p>
-                </div>
+                </div> */}
 
                 <motion.div
                     initial={{ opacity: 0 }}
