@@ -254,7 +254,7 @@ const TeacherPostForm = () => {
                                         <div className="relative">
                                             <motion.textarea
                                                 whileFocus={{ scale: 1.01 }}
-                                                minLength={50}
+                                                minLength={20}
                                                 maxLength={500}
                                                 id={field.id}
                                                 name={field.id}

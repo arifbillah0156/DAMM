@@ -209,7 +209,7 @@ export default function AdminLogin() {
                         <div className="bg-gray-900/90 rounded-xl p-8">
                             <div className="text-center mb-8">
                                 <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 mb-4 shadow-lg relative overflow-hidden">
-                                    <div className="absolute inset-0 bg-white/20 animate-ping rounded-full"></div>
+                                    <div className="absolute inset-0 bg-white/20 animate-pulse rounded-full"></div>
                                     <Shield className="h-12 w-12 text-white relative z-0" />
                                 </div>
                                 <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-2">Admin Portal</h1>
