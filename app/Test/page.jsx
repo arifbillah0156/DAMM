@@ -1,513 +1,515 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
-import DAMM from "@/public/Images/DAMM Logo SVG.svg";
-import dammnamelogo from "@/public/Images/DAMM Name_Logo.jpg";
-import Image from "next/image";
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ref, onValue } from 'firebase/database';
+import { database } from '@/lib/firebase';
 import {
-    Home,
-    ChevronDown,
-    Menu,
-    X,
-    Phone,
-    Mail,
-    Bell,
-    GraduationCap,
-    BarChart3,
-    FileText,
-    Trophy,
-    Building,
-    Users,
-    Image as ImageIcon,
-    Video,
-    Info,
-    MessageSquare
-} from "lucide-react";
-import Link from "next/link";
+    FiUser,
+    FiFileText,
+    FiMessageSquare,
+    FiUsers,
+    FiCalendar,
+    FiClock,
+    FiBookOpen,
+    FiFilter,
+    FiSearch,
+    FiArrowUp,
+    FiX,
+    FiChevronDown,
+    FiStar,
+    FiLoader,
+    FiChevronLeft,
+    FiChevronRight
+} from 'react-icons/fi';
+import AnimatedTeachersGuidelines from '../Notices/TeachersGuidelines/AnimatedTeachersGuidelines';
 
-const NavbarWithDropdown = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [isDropdownOpen2, setIsDropdownOpen2] = useState(false);
-    const [isDropdownOpen3, setIsDropdownOpen3] = useState(false);
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [activeDropdown, setActiveDropdown] = useState(null);
-    const timeoutRef = useRef(null);
+const TeacherGuidelinesPage = () => {
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
+    const [filter, setFilter] = useState('all');
+    const [searchTerm, setSearchTerm] = useState('');
+    const [showScrollTop, setShowScrollTop] = useState(false);
+    const [isSearchFocused, setIsSearchFocused] = useState(false);
+    const [expandedPost, setExpandedPost] = useState(null);
+    const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
+    // Pagination state
+    const [currentPage, setCurrentPage] = useState(1);
+    const postsPerPage = 5;
 
-    // Handle scroll effect for navbar
+    // Improved search with debouncing
+    useEffect(() => {
+        const timerId = setTimeout(() => {
+            setDebouncedSearchTerm(searchTerm);
+        }, 300); // 300ms debounce delay
+        return () => {
+            clearTimeout(timerId);
+        };
+    }, [searchTerm]);
+
+    // Reset to first page when filter or search changes
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [filter, debouncedSearchTerm]);
+
+    // Memoized filtered posts for better performance
+    const filteredPosts = useMemo(() => {
+        return posts.filter(post => {
+            let audienceFilter = true;
+            if (filter === 'students') audienceFilter = post.targetAudience === 'Students';
+            if (filter === 'parents') audienceFilter = post.targetAudience === 'Parents';
+            if (filter === 'both') audienceFilter = post.targetAudience === 'Students & Parents';
+            const searchFilter = debouncedSearchTerm === '' ||
+                post.postTitle.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
+                post.postContent.toLowerCase().includes(debouncedSearchTerm.toLowerCase());
+            return audienceFilter && searchFilter;
+        });
+    }, [posts, filter, debouncedSearchTerm]);
+
+    // Calculate current posts to display
+    const currentPosts = useMemo(() => {
+        const indexOfLastPost = currentPage * postsPerPage;
+        const indexOfFirstPost = indexOfLastPost - postsPerPage;
+        return filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
+    }, [filteredPosts, currentPage, postsPerPage]);
+
+    // Calculate total pages
+    const totalPages = useMemo(() => {
+        return Math.ceil(filteredPosts.length / postsPerPage);
+    }, [filteredPosts.length, postsPerPage]);
+
+    useEffect(() => {
+        const fetchPosts = () => {
+            const postsRef = ref(database, "TeachersGuidelines");
+            onValue(postsRef, (snapshot) => {
+                const data = snapshot.val();
+                if (data) {
+                    const postsArray = Object.keys(data).map(key => ({
+                        id: key,
+                        ...data[key]
+                    }));
+                    postsArray.sort((a, b) => new Date(b.postDate) - new Date(a.postDate));
+                    setPosts(postsArray.reverse());
+                } else {
+                    setPosts([]);
+                }
+                setLoading(false);
+            }, (error) => {
+                console.error("Error fetching posts:", error);
+                setError("Failed to load guidelines. Please try again later.");
+                setLoading(false);
+            });
+        };
+        fetchPosts();
+    }, []);
+
     useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 10);
+            setShowScrollTop(window.scrollY > 300);
         };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Handle dropdown timeouts for better UX
-    useEffect(() => {
-        return () => {
-            if (timeoutRef.current) {
-                clearTimeout(timeoutRef.current);
-            }
-        };
-    }, []);
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
-    const handleDropdownHover = (dropdown) => {
-        if (timeoutRef.current) {
-            clearTimeout(timeoutRef.current);
+    const formatDate = (dateString) => {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString('bn-BD', options);
+    };
+
+    const formatTime = (dateString) => {
+        const options = { hour: '2-digit', minute: '2-digit' };
+        return new Date(dateString).toLocaleTimeString('bn-BD', options);
+    };
+
+    const getAudienceLabel = (audience) => {
+        switch (audience) {
+            case 'Students': return 'লক্ষ্য: শিক্ষার্থী';
+            case 'Parents': return 'লক্ষ্য: অভিভাবক';
+            case 'Students & Parents': return 'লক্ষ্য: শিক্ষার্থী ও অভিভাবক';
+            default: return audience;
         }
-        setActiveDropdown(dropdown);
     };
 
-    const handleDropdownLeave = () => {
-        timeoutRef.current = setTimeout(() => {
-            setActiveDropdown(null);
-        }, 150);
+    const getAudienceColor = (audience) => {
+        switch (audience) {
+            case 'Students': return 'bg-blue-100 text-blue-800';
+            case 'Parents': return 'bg-green-100 text-green-800';
+            case 'Students & Parents': return 'bg-purple-100 text-purple-800';
+            default: return 'bg-gray-100 text-gray-800';
+        }
     };
 
-    // Close mobile menu when resizing to desktop
-    useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth >= 1024) {
-                setIsMenuOpen(false);
-            }
-        };
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
+    const clearSearch = () => {
+        setSearchTerm('');
+    };
+
+    const togglePostExpansion = useCallback((id) => {
+        setExpandedPost(expandedPost === id ? null : id);
+    }, [expandedPost]);
+
+    const handleFilterChange = useCallback((newFilter) => {
+        setFilter(newFilter);
     }, []);
 
-    // NavHead component
-    const NavHead = () => (
-        <div className="bg-[#0072BC] text-white text-md md:text-lg p-1 md:p-2 md:py-0 tracking-wider text-center md:flex md:justify-center md:gap-8">
-            <div className="md:py-2">
-                <Link
-                    href={"tel:+8801627449269"}
-                    className="font-mono tracking-normal flex justify-center items-center gap-2"
-                >
-                    <Phone className="h-4 w-4" />
-                    <span>+88 01627-449269</span>
-                </Link>
-            </div>
-            <div className="md:py-2">
-                <Link
-                    href={"mailto:ksua1980@gmail.com"}
-                    className="font-mono tracking-normal flex justify-center items-center gap-2"
-                >
-                    <Mail className="h-4 w-4" />
-                    <span>ksua1980@gmail.com</span>
-                </Link>
-            </div>
-        </div>
-    );
+    const handlePageChange = useCallback((newPage) => {
+        setCurrentPage(newPage);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, []);
 
-    // NavLogo component
-    const NavLogo = () => (
-        <div className="flex items-center gap-2">
-            {/* Mobile logo (DAMM logo) */}
-            <Link href="/" className="block md:hidden">
-                <Image
-                    src={DAMM}
-                    width={50}
-                    height={50}
-                    alt="DAMM"
-                    className="w-12 h-12"
-                />
-            </Link>
-            {/* Desktop logo (Name logo) */}
-            <Link href="/" className="hidden md:flex justify-center items-center">
-                <Image
-                    src={dammnamelogo}
-                    alt="Name Logo"
-                    className="h-12 w-auto max-w-[300px]"
-                    priority
-                />
-            </Link>
-        </div>
-    );
+    const goToNextPage = useCallback(() => {
+        if (currentPage < totalPages) {
+            handlePageChange(currentPage + 1);
+        }
+    }, [currentPage, totalPages, handlePageChange]);
 
-    // NavLinksDesktop component
-    const NavLinksDesktop = ({ href, text, icon }) => (
-        <Link
-            href={href}
-            className="flex items-center px-4 py-2 rounded-lg text-sm font-medium text-[#0072BC] hover:bg-blue-50 transition-all duration-200 group"
-        >
-            {icon && <span className="mr-2 text-[#0072BC] group-hover:text-blue-800">{icon}</span>}
-            {text}
-        </Link>
-    );
-
-    // NavLinksMobile component
-    const NavLinksMobile = ({ href, text, icon }) => (
-        <Link
-            href={href}
-            className="flex items-center px-3 py-3 rounded-lg text-base font-medium text-[#0072BC] hover:bg-blue-50 transition-colors duration-200"
-        >
-            {icon && <span className="mr-2 text-[#0072BC]">{icon}</span>}
-            {text}
-        </Link>
-    );
-
-    // NavDropdownDesktop component
-    const NavDropdownDesktop = ({ href, text, icon }) => (
-        <Link
-            href={href}
-            className="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-[#0072BC] transition-colors duration-200 group"
-        >
-            <span className="mr-3 text-[#0072BC] group-hover:text-blue-800">{icon}</span>
-            <span className="font-medium">{text}</span>
-        </Link>
-    );
-
-    // NavDropdownMobile component
-    const NavDropdownMobile = ({ href, text, icon }) => (
-        <Link
-            href={href}
-            className="flex items-center px-3 py-3 rounded-lg text-base font-medium text-[#0072BC] hover:bg-blue-50 transition-colors duration-200"
-        >
-            <span className="mr-3 text-[#0072BC]">{icon}</span>
-            {text}
-        </Link>
-    );
+    const goToPrevPage = useCallback(() => {
+        if (currentPage > 1) {
+            handlePageChange(currentPage - 1);
+        }
+    }, [currentPage, handlePageChange]);
 
     return (
-        <div
-            className={`relative z-50 transition-all duration-300 ${isScrolled
-                ? "bg-white/95 backdrop-blur-md shadow-lg"
-                : "bg-white"
-                }`}
-        >
-            <div className="border-b border-blue-100">
-                <NavHead />
-                {/* Nav Links with gradient background */}
-                <nav className="bg-gradient-to-r from-white to-blue-50 text-[#0072BC] py-4 shadow-sm">
-                    <div className="container mx-auto px-2 sm:px-2 lg:px-8">
-                        <div className="flex items-center justify-between h-16">
-                            {/* Logo */}
-                            <div className="hover:scale-105 transition-transform duration-200">
-                                <NavLogo />
-                            </div>
-                            {/* Desktop Menu */}
-                            <div className="hidden lg:flex font-medium tracking-wide space-x-1">
-                                <div className="hover:scale-105 transition-transform duration-200">
-                                    <NavLinksDesktop href="/" text="Home" icon={<Home className="h-4 w-4" />} />
-                                </div>
-                                {/* Dropdown Menu - Notices */}
-                                <div
-                                    className="relative z-10"
-                                    onMouseEnter={() => handleDropdownHover("notices")}
-                                    onMouseLeave={handleDropdownLeave}
-                                >
-                                    <button
-                                        className={`flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${activeDropdown === "notices"
-                                            ? "bg-blue-100 text-[#0072BC]"
-                                            : "text-[#0072BC] hover:bg-blue-50"
-                                            }`}
-                                    >
-                                        <Bell className="h-4 w-4 mr-2" />
-                                        Notices
-                                        <div
-                                            className={`transition-transform duration-300 ${activeDropdown === "notices" ? "rotate-180" : ""}`}
-                                        >
-                                            <ChevronDown className="ml-1 h-4 w-4" />
-                                        </div>
-                                    </button>
-                                    {activeDropdown === "notices" && (
-                                        <div
-                                            className="absolute left-0 mt-2 w-56 rounded-xl shadow-xl bg-white ring-1 ring-blue-100 overflow-hidden transition-all duration-200 opacity-100"
-                                        >
-                                            <div className="py-1">
-                                                <NavDropdownDesktop
-                                                    href="/Notices"
-                                                    text="Official Notices"
-                                                    icon={<Bell className="h-5 w-5" />}
-                                                />
-                                                <NavDropdownDesktop
-                                                    href="/Notices/TeachersGuidelines"
-                                                    text="Teachers' Guidelines"
-                                                    icon={<FileText className="h-5 w-5" />}
-                                                />
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-                                {/* Dropdown Menu - Academic */}
-                                <div
-                                    className="relative z-10"
-                                    onMouseEnter={() => handleDropdownHover("academic")}
-                                    onMouseLeave={handleDropdownLeave}
-                                >
-                                    <button
-                                        className={`flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${activeDropdown === "academic"
-                                            ? "bg-blue-100 text-[#0072BC]"
-                                            : "text-[#0072BC] hover:bg-blue-50"
-                                            }`}
-                                    >
-                                        <GraduationCap className="h-4 w-4 mr-2" />
-                                        Academic
-                                        <div
-                                            className={`transition-transform duration-300 ${activeDropdown === "academic" ? "rotate-180" : ""}`}
-                                        >
-                                            <ChevronDown className="ml-1 h-4 w-4" />
-                                        </div>
-                                    </button>
-                                    {activeDropdown === "academic" && (
-                                        <div
-                                            className="absolute left-0 mt-2 w-56 rounded-xl shadow-xl bg-white ring-1 ring-blue-100 overflow-hidden transition-all duration-200 opacity-100"
-                                        >
-                                            <div className="py-1">
-                                                <NavDropdownDesktop
-                                                    href="/AdmissionFee"
-                                                    text="Admission Fee"
-                                                    icon={<Users className="h-5 w-5" />}
-                                                />
-                                                <NavDropdownDesktop
-                                                    href="/Education-system"
-                                                    text="Education System"
-                                                    icon={<GraduationCap className="h-5 w-5" />}
-                                                />
-                                                <NavDropdownDesktop
-                                                    href="/Result-method"
-                                                    text="Result Method"
-                                                    icon={<BarChart3 className="h-5 w-5" />}
-                                                />
-                                                <NavDropdownDesktop
-                                                    href="/Rules"
-                                                    text="Rules"
-                                                    icon={<FileText className="h-5 w-5" />}
-                                                />
-                                                <NavDropdownDesktop
-                                                    href="/Co-curriculum"
-                                                    text="Co-curriculum"
-                                                    icon={<Trophy className="h-5 w-5" />}
-                                                />
-                                                <NavDropdownDesktop
-                                                    href="/Hostel-rules"
-                                                    text="Hostel Rules"
-                                                    icon={<Building className="h-5 w-5" />}
-                                                />
-                                                <NavDropdownDesktop
-                                                    href="/Information-for-parents"
-                                                    text="Information for Parents"
-                                                    icon={<Users className="h-5 w-5" />}
-                                                />
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-                                {/* Dropdown Menu - Gallery */}
-                                <div
-                                    className="relative z-10"
-                                    onMouseEnter={() => handleDropdownHover("gallery")}
-                                    onMouseLeave={handleDropdownLeave}
-                                >
-                                    <button
-                                        className={`flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${activeDropdown === "gallery"
-                                            ? "bg-blue-100 text-[#0072BC]"
-                                            : "text-[#0072BC] hover:bg-blue-50"
-                                            }`}
-                                    >
-                                        <ImageIcon className="h-4 w-4 mr-2" />
-                                        Gallery
-                                        <div
-                                            className={`transition-transform duration-300 ${activeDropdown === "gallery" ? "rotate-180" : ""}`}
-                                        >
-                                            <ChevronDown className="ml-1 h-4 w-4" />
-                                        </div>
-                                    </button>
-                                    {activeDropdown === "gallery" && (
-                                        <div
-                                            className="absolute left-0 mt-2 w-48 rounded-xl shadow-xl bg-white ring-1 ring-blue-100 overflow-hidden transition-all duration-200 opacity-100"
-                                        >
-                                            <div className="py-1">
-                                                <NavDropdownDesktop
-                                                    href="/Photos"
-                                                    text="Photos"
-                                                    icon={<ImageIcon className="h-5 w-5" />}
-                                                />
-                                                <NavDropdownDesktop
-                                                    href="/Videos"
-                                                    text="Videos"
-                                                    icon={<Video className="h-5 w-5" />}
-                                                />
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-                                <div className="hover:scale-105 transition-transform duration-200">
-                                    <NavLinksDesktop href="/About/PrincipalMessage" text="About" icon={<Info className="h-4 w-4" />} />
-                                </div>
-                                <div className="hover:scale-105 transition-transform duration-200">
-                                    <NavLinksDesktop href="/Contact" text="Contact" icon={<MessageSquare className="h-4 w-4" />} />
-                                </div>
-                            </div>
-                            {/* Mobile Menu Button */}
-                            <div className="lg:hidden">
-                                <button
-                                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                                    className="text-[#0072BC] p-2 rounded-lg hover:bg-blue-50 transition-colors duration-200 hover:scale-110"
-                                >
-                                    {isMenuOpen ? (
-                                        <X className="h-6 w-6" />
-                                    ) : (
-                                        <Menu className="h-6 w-6" />
-                                    )}
-                                </button>
-                            </div>
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-6 px-4 lg:px-8 relative overflow-hidden">
+            {/* Decorative background elements */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                <div className="absolute top-20 left-10 w-64 h-64 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
+                <div className="absolute top-40 right-20 w-72 h-72 bg-indigo-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
+                <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
+            </div>
+            <div className="max-w-4xl mx-auto relative z-0">
+                {/* Header */}
+                <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="text-center mb-4 pt-2"
+                >
+                    <AnimatedTeachersGuidelines />
+                    <p className="text-gray-600 text-lg max-w-2xl mx-auto mt-4">
+                        শিক্ষকদের দেওয়া সর্বশেষ নির্দেশনা ও ঘোষণাসমূহ
+                    </p>
+                </motion.div>
+                {/* Search Bar - Improved */}
+                <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1, duration: 0.5 }}
+                    className={`mb-8 transition-all duration-300 ${isSearchFocused ? 'scale-[1.02]' : ''}`}
+                >
+                    <div className="relative">
+                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <FiSearch className="text-gray-400 text-xl z-10 mt-[-4px]" />
                         </div>
-                    </div>
-                    {/* Mobile Menu */}
-                    {isMenuOpen && (
-                        <div className="lg:hidden bg-white border-t border-blue-100 transition-all duration-300">
-                            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                                <div className="hover:translate-x-1 transition-transform duration-200">
-                                    <NavLinksMobile href="/" text="Home" icon={<Home className="h-5 w-5" />} />
-                                </div>
-                                {/* Mobile Dropdown Menu - Notices */}
-                                <div>
-                                    <button
-                                        onClick={() => setIsDropdownOpen3(!isDropdownOpen3)}
-                                        className="flex items-center w-full px-3 py-3 rounded-lg text-base font-medium text-[#0072BC] hover:bg-blue-50 transition-colors duration-200 hover:translate-x-1"
-                                    >
-                                        <Bell className="h-5 w-5 mr-2" />
-                                        <span>Notices</span>
-                                        <div
-                                            className={`transition-transform duration-300 ml-auto ${isDropdownOpen3 ? "rotate-180" : ""}`}
-                                        >
-                                            <ChevronDown className="h-4 w-4" />
-                                        </div>
-                                    </button>
-                                    {isDropdownOpen3 && (
-                                        <div className="pl-4 space-y-1 overflow-hidden transition-all duration-300">
-                                            <div className="hover:translate-x-1 transition-transform duration-200">
-                                                <NavDropdownMobile
-                                                    href="/Notices"
-                                                    text="Official Notices"
-                                                    icon={<Bell className="h-5 w-5" />}
-                                                />
-                                            </div>
-                                            <div className="hover:translate-x-1 transition-transform duration-200">
-                                                <NavDropdownMobile
-                                                    href="/Notices/TeachersGuidelines"
-                                                    text="Teachers' Guidelines"
-                                                    icon={<FileText className="h-5 w-5" />}
-                                                />
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-                                {/* Mobile Dropdown Menu - Academic */}
-                                <div>
-                                    <button
-                                        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                                        className="flex items-center w-full px-3 py-3 rounded-lg text-base font-medium text-[#0072BC] hover:bg-blue-50 transition-colors duration-200 hover:translate-x-1"
-                                    >
-                                        <GraduationCap className="h-5 w-5 mr-2" />
-                                        <span>Academic</span>
-                                        <div
-                                            className={`transition-transform duration-300 ml-auto ${isDropdownOpen ? "rotate-180" : ""}`}
-                                        >
-                                            <ChevronDown className="h-4 w-4" />
-                                        </div>
-                                    </button>
-                                    {isDropdownOpen && (
-                                        <div className="pl-4 space-y-1 overflow-hidden transition-all duration-300">
-                                            <div className="hover:translate-x-1 transition-transform duration-200">
-                                                <NavDropdownMobile
-                                                    href="/AdmissionFee"
-                                                    text="Admission Fee"
-                                                    icon={<Users className="h-5 w-5" />}
-                                                />
-                                            </div>
-                                            <div className="hover:translate-x-1 transition-transform duration-200">
-                                                <NavDropdownMobile
-                                                    href="/Education-system"
-                                                    text="Education System"
-                                                    icon={<GraduationCap className="h-5 w-5" />}
-                                                />
-                                            </div>
-                                            <div className="hover:translate-x-1 transition-transform duration-200">
-                                                <NavDropdownMobile
-                                                    href="/Result-method"
-                                                    text="Result Method"
-                                                    icon={<BarChart3 className="h-5 w-5" />}
-                                                />
-                                            </div>
-                                            <div className="hover:translate-x-1 transition-transform duration-200">
-                                                <NavDropdownMobile
-                                                    href="/Rules"
-                                                    text="Rules"
-                                                    icon={<FileText className="h-5 w-5" />}
-                                                />
-                                            </div>
-                                            <div className="hover:translate-x-1 transition-transform duration-200">
-                                                <NavDropdownMobile
-                                                    href="/Co-curriculum"
-                                                    text="Co-curriculum"
-                                                    icon={<Trophy className="h-5 w-5" />}
-                                                />
-                                            </div>
-                                            <div className="hover:translate-x-1 transition-transform duration-200">
-                                                <NavDropdownMobile
-                                                    href="/Hostel-rules"
-                                                    text="Hostel Rules"
-                                                    icon={<Building className="h-5 w-5" />}
-                                                />
-                                            </div>
-                                            <div className="hover:translate-x-1 transition-transform duration-200">
-                                                <NavDropdownMobile
-                                                    href="/Information-for-parents"
-                                                    text="Information for Parents"
-                                                    icon={<Users className="h-5 w-5" />}
-                                                />
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-                                {/* Mobile Dropdown Menu - Gallery */}
-                                <div>
-                                    <button
-                                        onClick={() => setIsDropdownOpen2(!isDropdownOpen2)}
-                                        className="flex items-center w-full px-3 py-3 rounded-lg text-base font-medium text-[#0072BC] hover:bg-blue-50 transition-colors duration-200 hover:translate-x-1"
-                                    >
-                                        <ImageIcon className="h-5 w-5 mr-2" />
-                                        <span>Gallery</span>
-                                        <div
-                                            className={`transition-transform duration-300 ml-auto ${isDropdownOpen2 ? "rotate-180" : ""}`}
-                                        >
-                                            <ChevronDown className="h-4 w-4" />
-                                        </div>
-                                    </button>
-                                    {isDropdownOpen2 && (
-                                        <div className="pl-4 space-y-1 overflow-hidden transition-all duration-300">
-                                            <div className="hover:translate-x-1 transition-transform duration-200">
-                                                <NavDropdownMobile
-                                                    href="/Photos"
-                                                    text="Photos"
-                                                    icon={<ImageIcon className="h-5 w-5" />}
-                                                />
-                                            </div>
-                                            <div className="hover:translate-x-1 transition-transform duration-200">
-                                                <NavDropdownMobile
-                                                    href="/Videos"
-                                                    text="Videos"
-                                                    icon={<Video className="h-5 w-5" />}
-                                                />
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-                                <div className="hover:translate-x-1 transition-transform duration-200">
-                                    <NavLinksMobile href="/About/PrincipalMessage" text="About" icon={<Info className="h-5 w-5" />} />
-                                </div>
-                                <div className="hover:translate-x-1 transition-transform duration-200">
-                                    <NavLinksMobile href="/Contact" text="Contact" icon={<MessageSquare className="h-5 w-5" />} />
-                                </div>
+                        <input
+                            type="text"
+                            placeholder="নির্দেশনা খুজুন..."
+                            className="w-full pl-12 pr-12 py-4 rounded-xl border border-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-lg transition-all duration-300 bg-white/90 backdrop-blur-sm outline-none focus:rounded-lg"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            onFocus={() => setIsSearchFocused(true)}
+                            onBlur={() => setIsSearchFocused(false)}
+                        />
+                        {searchTerm && (
+                            <button
+                                onClick={clearSearch}
+                                className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 transition-colors"
+                            >
+                                <FiX className="text-xl" />
+                            </button>
+                        )}
+                        {/* Search indicator */}
+                        {searchTerm && (
+                            <div className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-b-xl transition-all duration-300"
+                                style={{ width: `${Math.min(100, searchTerm.length * 10)}%` }}>
                             </div>
+                        )}
+                    </div>
+                    {/* Active search term display */}
+                    {searchTerm && (
+                        <div className="mt-2 text-sm text-gray-600 flex items-center">
+                            <span className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">
+                                অনুসন্ধান: "{searchTerm}"
+                            </span>
+                            {debouncedSearchTerm !== searchTerm && (
+                                <span className="ml-2 text-gray-500 flex items-center">
+                                    <FiLoader className="animate-spin mr-1" size={14} />
+                                    অনুসন্ধান করা হচ্ছে...
+                                </span>
+                            )}
                         </div>
                     )}
-                </nav>
+                </motion.div>
+                {/* Filter Controls - Improved */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                    className="mb-10"
+                >
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4">
+                        <h2 className="text-xl font-semibold text-gray-700 flex items-center gap-2 mb-3 sm:mb-0">
+                            <FiFilter className="text-indigo-600 mt-[-4px] " />
+                            ফিল্টার করুন
+                        </h2>
+                        <span className="text-sm text-gray-500 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-gray-200">
+                            {filteredPosts.length} টি নির্দেশনা {posts.length > 0 && `(মোট ${posts.length})`}
+                        </span>
+                    </div>
+                    <div className="flex flex-wrap justify-center gap-3">
+                        <button
+                            onClick={() => handleFilterChange('all')}
+                            className={`px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-1.5 transition-all duration-300 ${filter === 'all'
+                                ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg transform -translate-y-0.5'
+                                : 'bg-white/90 backdrop-blur-sm text-gray-700 hover:bg-gray-100 border border-gray-200 shadow-sm hover:shadow-md'
+                                }`}
+                        >
+                            সব
+                        </button>
+                        <button
+                            onClick={() => handleFilterChange('students')}
+                            className={`px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-1.5 transition-all duration-300 ${filter === 'students'
+                                ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg transform -translate-y-0.5'
+                                : 'bg-white/90 backdrop-blur-sm text-gray-700 hover:bg-gray-100 border border-gray-200 shadow-sm hover:shadow-md'
+                                }`}
+                        >
+                            শিক্ষার্থী
+                        </button>
+                        <button
+                            onClick={() => handleFilterChange('parents')}
+                            className={`px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-1.5 transition-all duration-300 ${filter === 'parents'
+                                ? 'bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg transform -translate-y-0.5'
+                                : 'bg-white/90 backdrop-blur-sm text-gray-700 hover:bg-gray-100 border border-gray-200 shadow-sm hover:shadow-md'
+                                }`}
+                        >
+                            অভিভাবক
+                        </button>
+                        <button
+                            onClick={() => handleFilterChange('both')}
+                            className={`px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-1.5 transition-all duration-300 ${filter === 'both'
+                                ? 'bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white shadow-lg transform -translate-y-0.5'
+                                : 'bg-white/90 backdrop-blur-sm text-gray-700 hover:bg-gray-100 border border-gray-200 shadow-sm hover:shadow-md'
+                                }`}
+                        >
+                            শিক্ষার্থী ও অভিভাবক
+                        </button>
+                    </div>
+                </motion.div>
+                {/* Content */}
+                {loading ? (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="flex flex-col justify-center items-center h-64"
+                    >
+                        <div className="relative mb-6">
+                            <div className="animate-spin rounded-full h-20 w-20 border-t-2 border-b-2 border-indigo-600"></div>
+                            <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
+                                <FiBookOpen className="text-indigo-600 text-2xl" />
+                            </div>
+                        </div>
+                        <p className="text-gray-600 font-medium">নির্দেশনা লোড হচ্ছে...</p>
+                        <p className="text-gray-500 text-sm mt-2">অনুগ্রহপূর্বক অপেক্ষা করুন</p>
+                    </motion.div>
+                ) : error ? (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="bg-red-50 border-l-4 border-red-500 p-6 rounded-xl shadow-lg backdrop-blur-sm"
+                    >
+                        <div className="flex items-center">
+                            <div className="flex-shrink-0">
+                                <svg className="h-6 w-6 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                                </svg>
+                            </div>
+                            <div className="ml-4">
+                                <p className="text-lg font-medium text-red-700">{error}</p>
+                            </div>
+                        </div>
+                    </motion.div>
+                ) : filteredPosts.length === 0 ? (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-10 text-center border border-gray-100"
+                    >
+                        <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-indigo-100 to-purple-100 mb-6">
+                            <FiFileText className="text-indigo-600 text-3xl" />
+                        </div>
+                        <h3 className="text-2xl font-bold text-gray-800 mb-3">
+                            {posts.length === 0 ? 'কোনো নির্দেশনা পাওয়া যায়নি' : 'এই ফিল্টারে কোনো নির্দেশনা নেই'}
+                        </h3>
+                        <p className="text-gray-600 mb-6 max-w-md mx-auto">
+                            {posts.length === 0
+                                ? 'এখনো কোনো নির্দেশনা পোস্ট করা হয়নি। অনুগ্রহপূর্বক পরে আবার চেক করুন।'
+                                : 'অন্য ফিল্টার নির্বাচন করে দেখুন।'
+                            }
+                        </p>
+                        {(searchTerm || filter !== 'all') && (
+                            <button
+                                onClick={() => {
+                                    setSearchTerm('');
+                                    setFilter('all');
+                                }}
+                                className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                            >
+                                সব ফিল্টার মুছুন
+                            </button>
+                        )}
+                    </motion.div>
+                ) : (
+                    <>
+                        <div className="space-y-6">
+                            <AnimatePresence>
+                                {currentPosts.map((post, index) => (
+                                    <motion.div
+                                        key={post.id}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -20 }}
+                                        transition={{ duration: 0.5, delay: index * 0.05 }}
+                                        className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100"
+                                        whileHover={{ y: -5 }}
+                                    >
+                                        <div className="p-6">
+                                            <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+                                                <div className="mb-4 md:mb-0">
+                                                    <h2 className="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2">
+                                                        <FiStar className="text-indigo-500 mt-[-4px] " />
+                                                        {post.postTitle}
+                                                    </h2>
+                                                    <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
+                                                        <div className="flex items-center bg-indigo-50 px-3 py-1.5 rounded-full">
+                                                            <FiUser className="mr-1.5 mt-[-4px] text-indigo-500" />
+                                                            <span className="font-medium">{post.teacherName}</span>
+                                                        </div>
+                                                        <div className="flex items-center bg-purple-50 px-3 py-1.5 rounded-full">
+                                                            <span>{post.teacherPosition}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="flex flex-col items-end">
+                                                    <div className="flex items-center text-sm text-gray-500 mb-1.5 bg-blue-50 px-3 py-1.5 rounded-full">
+                                                        <FiCalendar className="mr-1.5 mt-[-4px]" />
+                                                        <span>{formatDate(post.postDate)}</span>
+                                                    </div>
+                                                    {/* <div className="flex items-center text-sm text-gray-500 bg-green-50 px-3 py-1.5 rounded-full">
+                                                        <FiClock className="mr-1.5" />
+                                                        <span>{formatTime(post.postDate)}</span>
+                                                    </div> */}
+                                                </div>
+                                            </div>
+                                            <div className="mb-4">
+                                                <div className="flex items-center mb-3">
+                                                    <span className={`text-sm px-3 py-1 rounded-full ${getAudienceColor(post.targetAudience)}`}>
+                                                        {getAudienceLabel(post.targetAudience)}
+                                                    </span>
+                                                </div>
+                                                <div className="border-l-4 border-indigo-500 pl-4 py-2 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-r-lg">
+                                                    <p className="text-gray-700 whitespace-pre-line">
+                                                        {expandedPost === post.id || post.postContent.length < 200
+                                                            ? post.postContent
+                                                            : `${post.postContent.substring(0, 200)}...`}
+                                                    </p>
+                                                    {post.postContent.length > 200 && (
+                                                        <button
+                                                            onClick={() => togglePostExpansion(post.id)}
+                                                            className="mt-3 text-indigo-600 hover:text-indigo-800 flex items-center gap-1 text-sm font-medium transition-colors"
+                                                        >
+                                                            {expandedPost === post.id ? 'কম দেখান' : 'আরও পড়ুন'}
+                                                            <FiChevronDown className={`transition-transform ${expandedPost === post.id ? 'rotate-180' : ''}`} />
+                                                        </button>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </AnimatePresence>
+                        </div>
+
+                        {/* Pagination Controls */}
+                        {totalPages > 1 && (
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                className="mt-10 flex justify-center items-center gap-4"
+                            >
+                                <button
+                                    onClick={goToPrevPage}
+                                    disabled={currentPage === 1}
+                                    className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${currentPage === 1
+                                        ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                                        : 'bg-white/90 backdrop-blur-sm text-gray-700 hover:bg-gray-100 border border-gray-200 shadow-sm hover:shadow-md'
+                                        }`}
+                                >
+                                    <FiChevronLeft />
+                                    পূর্ববর্তী
+                                </button>
+
+                                <div className="flex items-center gap-2">
+                                    <span className="text-sm font-medium text-gray-700 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-gray-200">
+                                        পৃষ্ঠা {currentPage} / {totalPages}
+                                    </span>
+                                </div>
+
+                                <button
+                                    onClick={goToNextPage}
+                                    disabled={currentPage === totalPages}
+                                    className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${currentPage === totalPages
+                                        ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                                        : 'bg-white/90 backdrop-blur-sm text-gray-700 hover:bg-gray-100 border border-gray-200 shadow-sm hover:shadow-md'
+                                        }`}
+                                >
+                                    পরবর্তী
+                                    <FiChevronRight />
+                                </button>
+                            </motion.div>
+                        )}
+                    </>
+                )}
+                {/* Scroll to top button - Improved */}
+                <AnimatePresence>
+                    {showScrollTop && (
+                        <motion.button
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.8 }}
+                            onClick={scrollToTop}
+                            className="fixed bottom-1 right-1 p-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-full shadow-xl hover:from-indigo-700 hover:to-purple-700 transition-all z-0"
+                            aria-label="Scroll to top"
+                            whileHover={{ y: -5 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            <FiArrowUp className="text-xl" />
+                        </motion.button>
+                    )}
+                </AnimatePresence>
+                <br />
             </div>
+            <style jsx global>{`
+                @keyframes blob {
+                    0% { transform: translate(0px, 0px) scale(1); }
+                    33% { transform: translate(30px, -50px) scale(1.1); }
+                    66% { transform: translate(-20px, 20px) scale(0.9); }
+                    100% { transform: translate(0px, 0px) scale(1); }
+                }
+                .animate-blob {
+                    animation: blob 7s infinite;
+                }
+                .animation-delay-2000 {
+                    animation-delay: 2s;
+                }
+                .animation-delay-4000 {
+                    animation-delay: 4s;
+                }
+            `}</style>
         </div>
     );
 };
 
-export default NavbarWithDropdown;
+export default TeacherGuidelinesPage;

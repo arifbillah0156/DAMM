@@ -17,8 +17,11 @@ import {
     FiX,
     FiChevronDown,
     FiStar,
-    FiLoader
+    FiLoader,
+    FiChevronLeft,
+    FiChevronRight
 } from 'react-icons/fi';
+import AnimatedTeachersGuidelines from './AnimatedTeachersGuidelines';
 
 const TeacherGuidelinesPage = () => {
     const [posts, setPosts] = useState([]);
@@ -30,13 +33,14 @@ const TeacherGuidelinesPage = () => {
     const [isSearchFocused, setIsSearchFocused] = useState(false);
     const [expandedPost, setExpandedPost] = useState(null);
     const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const postsPerPage = 5;
 
     // Improved search with debouncing
     useEffect(() => {
         const timerId = setTimeout(() => {
             setDebouncedSearchTerm(searchTerm);
         }, 300); // 300ms debounce delay
-
         return () => {
             clearTimeout(timerId);
         };
@@ -49,14 +53,29 @@ const TeacherGuidelinesPage = () => {
             if (filter === 'students') audienceFilter = post.targetAudience === 'Students';
             if (filter === 'parents') audienceFilter = post.targetAudience === 'Parents';
             if (filter === 'both') audienceFilter = post.targetAudience === 'Students & Parents';
-
             const searchFilter = debouncedSearchTerm === '' ||
                 post.postTitle.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
                 post.postContent.toLowerCase().includes(debouncedSearchTerm.toLowerCase());
-
             return audienceFilter && searchFilter;
         });
     }, [posts, filter, debouncedSearchTerm]);
+
+    // Calculate paginated posts
+    const paginatedPosts = useMemo(() => {
+        const indexOfLastPost = currentPage * postsPerPage;
+        const indexOfFirstPost = indexOfLastPost - postsPerPage;
+        return filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
+    }, [filteredPosts, currentPage]);
+
+    // Calculate total pages
+    const totalPages = useMemo(() => {
+        return Math.ceil(filteredPosts.length / postsPerPage);
+    }, [filteredPosts]);
+
+    // Reset to page 1 when filters change
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [filter, debouncedSearchTerm]);
 
     useEffect(() => {
         const fetchPosts = () => {
@@ -69,7 +88,7 @@ const TeacherGuidelinesPage = () => {
                         ...data[key]
                     }));
                     postsArray.sort((a, b) => new Date(b.postDate) - new Date(a.postDate));
-                    setPosts(postsArray);
+                    setPosts(postsArray.reverse());
                 } else {
                     setPosts([]);
                 }
@@ -135,6 +154,20 @@ const TeacherGuidelinesPage = () => {
         setFilter(newFilter);
     }, []);
 
+    const goToNextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+            scrollToTop();
+        }
+    };
+
+    const goToPrevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+            scrollToTop();
+        }
+    };
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-6 px-4 lg:px-8 relative overflow-hidden">
             {/* Decorative background elements */}
@@ -143,7 +176,6 @@ const TeacherGuidelinesPage = () => {
                 <div className="absolute top-40 right-20 w-72 h-72 bg-indigo-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
                 <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
             </div>
-
             <div className="max-w-4xl mx-auto relative z-0">
                 {/* Header */}
                 <motion.div
@@ -152,17 +184,11 @@ const TeacherGuidelinesPage = () => {
                     transition={{ duration: 0.5 }}
                     className="text-center mb-4 pt-2"
                 >
-                    <div className="inline-flex items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full p-4 shadow-xl mb-6">
-                        <FiBookOpen className="text-white text-3xl" />
-                    </div>
-                    <h1 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-indigo-700 to-purple-700 bg-clip-text text-transparent mb-1">
-                        Teachers' Guidelines
-                    </h1>
-                    <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                    <AnimatedTeachersGuidelines />
+                    <p className="text-gray-600 text-lg max-w-2xl mx-auto mt-4">
                         শিক্ষকদের দেওয়া সর্বশেষ নির্দেশনা ও ঘোষণাসমূহ
                     </p>
                 </motion.div>
-
                 {/* Search Bar - Improved */}
                 <motion.div
                     initial={{ opacity: 0, y: -10 }}
@@ -172,11 +198,11 @@ const TeacherGuidelinesPage = () => {
                 >
                     <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <FiSearch className="text-gray-400 text-xl" />
+                            <FiSearch className="text-gray-400 text-xl z-10 mt-[-4px]" />
                         </div>
                         <input
                             type="text"
-                            placeholder="শিরোনাম বা বিষয়বস্তু অনুসন্ধান করুন..."
+                            placeholder="নির্দেশনা খুজুন..."
                             className="w-full pl-12 pr-12 py-4 rounded-xl border border-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-lg transition-all duration-300 bg-white/90 backdrop-blur-sm outline-none focus:rounded-lg"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
@@ -213,7 +239,6 @@ const TeacherGuidelinesPage = () => {
                         </div>
                     )}
                 </motion.div>
-
                 {/* Filter Controls - Improved */}
                 <motion.div
                     initial={{ opacity: 0 }}
@@ -223,14 +248,14 @@ const TeacherGuidelinesPage = () => {
                 >
                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4">
                         <h2 className="text-xl font-semibold text-gray-700 flex items-center gap-2 mb-3 sm:mb-0">
-                            <FiFilter className="text-indigo-600" />
+                            <FiFilter className="text-indigo-600 mt-[-4px] " />
                             ফিল্টার করুন
                         </h2>
                         <span className="text-sm text-gray-500 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-gray-200">
                             {filteredPosts.length} টি নির্দেশনা {posts.length > 0 && `(মোট ${posts.length})`}
                         </span>
                     </div>
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-wrap justify-center gap-3">
                         <button
                             onClick={() => handleFilterChange('all')}
                             className={`px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-1.5 transition-all duration-300 ${filter === 'all'
@@ -269,7 +294,6 @@ const TeacherGuidelinesPage = () => {
                         </button>
                     </div>
                 </motion.div>
-
                 {/* Content */}
                 {loading ? (
                     <motion.div
@@ -336,7 +360,7 @@ const TeacherGuidelinesPage = () => {
                 ) : (
                     <div className="space-y-6">
                         <AnimatePresence>
-                            {filteredPosts.map((post, index) => (
+                            {paginatedPosts.map((post, index) => (
                                 <motion.div
                                     key={post.id}
                                     initial={{ opacity: 0, y: 20 }}
@@ -401,9 +425,47 @@ const TeacherGuidelinesPage = () => {
                                 </motion.div>
                             ))}
                         </AnimatePresence>
+
+                        {/* Pagination Controls */}
+                        {totalPages > 1 && (
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                className="flex justify-center items-center mt-10 space-x-4"
+                            >
+                                <button
+                                    onClick={goToPrevPage}
+                                    disabled={currentPage === 1}
+                                    className={`flex items-center px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${currentPage === 1
+                                        ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                        : 'bg-white/90 backdrop-blur-sm text-gray-700 hover:bg-gray-100 border border-gray-200 shadow-sm hover:shadow-md'
+                                        }`}
+                                >
+                                    <FiChevronLeft className="mr-1" />
+                                    পূর্ববর্তী
+                                </button>
+
+                                <div className="flex items-center">
+                                    <span className="text-sm font-medium text-gray-700 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-gray-200">
+                                        পৃষ্ঠা {currentPage} / {totalPages}
+                                    </span>
+                                </div>
+
+                                <button
+                                    onClick={goToNextPage}
+                                    disabled={currentPage === totalPages}
+                                    className={`flex items-center px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${currentPage === totalPages
+                                        ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                        : 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg hover:from-indigo-700 hover:to-purple-700 transform hover:-translate-y-0.5'
+                                        }`}
+                                >
+                                    পরবর্তী
+                                    <FiChevronRight className="ml-1" />
+                                </button>
+                            </motion.div>
+                        )}
                     </div>
                 )}
-
                 {/* Scroll to top button - Improved */}
                 <AnimatePresence>
                     {showScrollTop && (
@@ -423,7 +485,6 @@ const TeacherGuidelinesPage = () => {
                 </AnimatePresence>
                 <br />
             </div>
-
             <style jsx global>{`
                 @keyframes blob {
                     0% { transform: translate(0px, 0px) scale(1); }

@@ -75,12 +75,12 @@ const AnimatedNoticeHeader = () => {
 
                 {/* Animated text */}
                 <motion.h1
-                    className="text-2xl md:text-3xl font-bold text-white"
+                    className="text-xl md:text-2xl font-medium text-white"
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.3, duration: 0.5 }}
                 >
-                    নোটিশ বোর্ড
+                    Official Notices
                 </motion.h1>
 
                 {/* Notification badge */}

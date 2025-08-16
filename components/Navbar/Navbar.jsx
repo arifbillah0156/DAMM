@@ -40,10 +40,12 @@ const NavbarWithDropdown = () => {
                   Notices <i className="fa-solid fa-caret-down"></i>
                 </button>
                 {isDropdownOpen3 && (
-                  <div className="absolute bg-[#0072BC] text-white ring-2 rounded-[6px] shadow-lg">
-                    <NavDropdownDesktop3 href="/Notices" text="↪ Official Notices" />
-                    <NavDropdownDesktop3 href="/Notices/TeachersGuidelines" text="↪ Teachers' Guidelines" />
+                  <div className="pt-2 absolute">
+                    <div className=" bg-white text-lc ring-2 ring-lc ring-offset-2 rounded-[3px] shadow-lg">
+                      <NavDropdownDesktop3 href="/Notices" text="↪ Official Notices" />
+                      <NavDropdownDesktop3 href="/Notices/TeachersGuidelines" text="↪ Teachers' Guidelines" />
 
+                    </div>
                   </div>
                 )}
               </div>
@@ -59,14 +61,16 @@ const NavbarWithDropdown = () => {
                   Academic <i className="fa-solid fa-caret-down"></i>
                 </button>
                 {isDropdownOpen && (
-                  <div className="absolute bg-[#0072BC] text-white ring-2 rounded-[6px] shadow-lg">
-                    <NavDropdownDesktop href="/AdmissionFee" text="↪ Admission fee" />
-                    <NavDropdownDesktop href="/Education-system" text="↪ Education system" />
-                    <NavDropdownDesktop href="/Result-method" text="↪ Result method" />
-                    <NavDropdownDesktop href="/Rules" text="↪ Rules" />
-                    <NavDropdownDesktop href="/Co-curriculum" text="↪ Co-curriculum" />
-                    <NavDropdownDesktop href="/Hostel-rules" text="↪ Hostel rules" />
-                    <NavDropdownDesktop href="/Information-for-parents" text="↪ Information for parents" />
+                  <div className="absolute pt-2">
+                    <div className=" bg-white text-lc ring-2 ring-lc ring-offset-2 rounded-[3px] shadow-lg">
+                      <NavDropdownDesktop href="/AdmissionFee" text="↪ Admission fee" />
+                      <NavDropdownDesktop href="/Education-system" text="↪ Education system" />
+                      <NavDropdownDesktop href="/Result-method" text="↪ Result method" />
+                      <NavDropdownDesktop href="/Rules" text="↪ Rules" />
+                      <NavDropdownDesktop href="/Co-curriculum" text="↪ Co-curriculum" />
+                      <NavDropdownDesktop href="/Hostel-rules" text="↪ Hostel rules" />
+                      <NavDropdownDesktop href="/Information-for-parents" text="↪ Information for parents" />
+                    </div>
                   </div>
                 )}
               </div>
@@ -81,9 +85,11 @@ const NavbarWithDropdown = () => {
                   Gallery <i className="fa-solid fa-caret-down"></i>
                 </button>
                 {isDropdownOpen2 && (
-                  <div className="absolute bg-[#0072BC] text-white ring-2 rounded-[6px] shadow-lg w-max">
-                    <NavDropdownDesktop2 href="/Photos" text="↪ Photos" />
-                    <NavDropdownDesktop2 href="/Videos" text="↪ Videos" />
+                  <div className="absolute pt-2">
+                    <div className=" bg-white text-lc ring-2 ring-lc ring-offset-2 rounded-[3px] shadow-lg w-max">
+                      <NavDropdownDesktop2 href="/Photos" text="↪ Photos" />
+                      <NavDropdownDesktop2 href="/Videos" text="↪ Videos" />
+                    </div>
                   </div>
                 )}
               </div>
@@ -199,5 +205,3 @@ const NavbarWithDropdown = () => {
 };
 
 export default NavbarWithDropdown;
-
-

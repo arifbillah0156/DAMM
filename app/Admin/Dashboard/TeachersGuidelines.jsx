@@ -11,7 +11,7 @@ const TeacherPostForm = () => {
         teacherPosition: '', // Added last name field
         postTitle: '',
         postContent: '',
-        targetAudience: 'students',
+        targetAudience: 'Students',
         // dueDate: ''
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -63,7 +63,7 @@ const TeacherPostForm = () => {
             teacherPosition: '', // Added last name field
             postTitle: '',
             postContent: '',
-            targetAudience: 'students',
+            targetAudience: 'Students',
             // dueDate: ''
         });
         setCharacterCount(0);
