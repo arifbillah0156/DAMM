@@ -5,23 +5,21 @@ import { motion } from 'framer-motion';
 import { database } from '@/lib/firebase'; // Assuming you have firebase config in this path
 import { FiUser, FiFileText, FiMessageSquare, FiUsers, FiCalendar, FiSave, FiSend, FiCheckCircle, FiX, FiClock } from 'react-icons/fi';
 import { push, ref, set } from 'firebase/database';
-
 const TeacherPostForm = () => {
     const [formData, setFormData] = useState({
         teacherName: '',
+        teacherPosition: '', // Added last name field
         postTitle: '',
         postContent: '',
         targetAudience: 'students',
         // dueDate: ''
     });
-
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitSuccess, setSubmitSuccess] = useState(false);
     const [submitError, setSubmitError] = useState('');
     const [draftSaved, setDraftSaved] = useState(false);
     const [characterCount, setCharacterCount] = useState(0);
     const [activeField, setActiveField] = useState('');
-
     // Load draft from localStorage on component mount
     useEffect(() => {
         const savedDraft = localStorage.getItem('teacherPostDraft');
@@ -30,47 +28,39 @@ const TeacherPostForm = () => {
             setCharacterCount(JSON.parse(savedDraft).postContent.length);
         }
     }, []);
-
     // Auto-save draft to localStorage when form data changes
     useEffect(() => {
         if (Object.values(formData).some(value => value !== '')) {
             localStorage.setItem('teacherPostDraft', JSON.stringify(formData));
             setDraftSaved(true);
-
             const timer = setTimeout(() => {
                 setDraftSaved(false);
             }, 2000);
-
             return () => clearTimeout(timer);
         }
     }, [formData]);
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
-
         if (name === 'postContent') {
             setCharacterCount(value.length);
         }
     };
-
     const handleFocus = (fieldName) => {
         setActiveField(fieldName);
     };
-
     const handleBlur = () => {
         setActiveField('');
     };
-
     const saveDraft = () => {
         localStorage.setItem('teacherPostDraft', JSON.stringify(formData));
         setDraftSaved(true);
         setTimeout(() => setDraftSaved(false), 2000);
     };
-
     const clearForm = () => {
         setFormData({
             teacherName: '',
+            teacherPosition: '', // Added last name field
             postTitle: '',
             postContent: '',
             targetAudience: 'students',
@@ -79,16 +69,13 @@ const TeacherPostForm = () => {
         setCharacterCount(0);
         localStorage.removeItem('teacherPostDraft');
     };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
         setSubmitError('');
-
         try {
             // Get current date
             const currentDate = new Date().toISOString().split('T')[0];
-
             // Save to Firebase with current date
             const usersRef = ref(database, "TeachersGuidelines");
             const newDataRef = await push(usersRef);
@@ -96,17 +83,13 @@ const TeacherPostForm = () => {
                 ...formData,
                 postDate: currentDate,
             });
-
-
             // Save to localStorage as backup
             localStorage.setItem(`teacherPost_${Date.now()}`, JSON.stringify({
                 ...formData,
                 postDate: currentDate
             }));
-
             setIsSubmitting(false);
             setSubmitSuccess(true);
-
             // Reset form after success
             setTimeout(() => {
                 setSubmitSuccess(false);
@@ -118,29 +101,37 @@ const TeacherPostForm = () => {
             setSubmitError('Failed to submit post. Please try again.');
         }
     };
-
     const formFields = [
         {
             id: 'teacherName',
-            label: "Teacher's Name",
+            label: "শিক্ষকের নাম",
             type: 'text',
             icon: <FiUser className="text-indigo-500 mt-[-4px]" />,
-            placeholder: "Enter your full name",
+            placeholder: "আপনার নাম লিখুন...",
             required: true,
             animationDelay: 0.1
         },
         {
+            id: 'teacherPosition',
+            label: "শিক্ষকের পদবী",
+            type: 'text',
+            icon: <FiUser className="text-indigo-500 mt-[-4px]" />,
+            placeholder: "যেমন: Lecturer, Assistant Teacher",
+            required: true,
+            animationDelay: 0.15
+        },
+        {
             id: 'postTitle',
-            label: "Post Title",
+            label: "নির্দেশনার বিষয়",
             type: 'text',
             icon: <FiFileText className="text-indigo-500 mt-[-4px]" />,
-            placeholder: "Enter an engaging title for your post",
+            placeholder: "যেই বিষয়ে নির্দেশনা দিতে চাচ্ছেন...",
             required: true,
-            animationDelay: 0.2
+            animationDelay: 0.25
         },
         {
             id: 'targetAudience',
-            label: "Target Audience",
+            label: "টার্গেট অডিয়েন্স",
             type: 'select',
             icon: <FiUsers className="text-indigo-500 mt-[-4px]" />,
             options: [
@@ -148,7 +139,8 @@ const TeacherPostForm = () => {
                 { value: 'Parents', label: 'Parents' },
                 { value: 'Students & Parents', label: 'Students & Parents' }
             ],
-            animationDelay: 0.3
+            required: true,
+            animationDelay: 0.35
         },
         // {
         //     id: 'dueDate',
@@ -159,23 +151,19 @@ const TeacherPostForm = () => {
         // },
         {
             id: 'postContent',
-            label: "Post Content",
+            label: "পোস্ট লিখুন",
             type: 'textarea',
             icon: <FiMessageSquare className="text-indigo-500 mt-[-4px]" />,
-            placeholder: "Share your thoughts, lessons, or announcements...",
+            placeholder: "আপনার নির্দেশনা/ঘোষণাটি লিখুন। সর্বোচ্চ ১০০০ শব্দ...",
             required: true,
             rows: 6,
-            animationDelay: 0.5
+            animationDelay: 0.55
         }
     ];
-
     // Get today's date in YYYY-MM-DD format for the min attribute of due date
     const today = new Date().toISOString().split('T')[0];
-
     return (
         <div className="rounded-lg bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-start justify-center p-0 lg:p-4 ">
-
-
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -190,7 +178,7 @@ const TeacherPostForm = () => {
                         transition={{ delay: 0.2 }}
                         className="text-3xl font-bold text-center relative z-0"
                     >
-                        Teacher’s Guidelines
+                        Teacher's Guidelines
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0 }}
@@ -210,7 +198,6 @@ const TeacherPostForm = () => {
                         <span>Today: {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span>
                     </motion.p>
                 </div> */}
-
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -249,13 +236,12 @@ const TeacherPostForm = () => {
                                         <span className="ml-2">{field.label}</span>
                                         {field.required && <span className="text-red-500 ml-1">*</span>}
                                     </label>
-
                                     {field.type === 'textarea' ? (
                                         <div className="relative">
                                             <motion.textarea
                                                 whileFocus={{ scale: 1.01 }}
-                                                minLength={20}
-                                                maxLength={500}
+                                                minLength={10}
+                                                maxLength={1000}
                                                 id={field.id}
                                                 name={field.id}
                                                 value={formData[field.id]}
@@ -268,7 +254,7 @@ const TeacherPostForm = () => {
                                                 placeholder={field.placeholder}
                                             />
                                             <div className="absolute bottom-2 right-2 text-xs text-gray-400">
-                                                {characterCount}/500
+                                                {characterCount}/1000
                                             </div>
                                         </div>
                                     ) : field.type === 'select' ? (
@@ -306,7 +292,6 @@ const TeacherPostForm = () => {
                                     )}
                                 </motion.div>
                             ))}
-
                             {submitError && (
                                 <motion.div
                                     initial={{ opacity: 0, y: -10 }}
@@ -325,7 +310,6 @@ const TeacherPostForm = () => {
                                     </div>
                                 </motion.div>
                             )}
-
                             <motion.div
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -343,7 +327,6 @@ const TeacherPostForm = () => {
                                     <FiSave className='mt-[-4px]' />
                                     {draftSaved ? 'Draft Saved!' : 'Save Draft'}
                                 </motion.button>
-
                                 <motion.button
                                     whileHover={{ scale: 1.03 }}
                                     whileTap={{ scale: 0.98 }}
@@ -370,7 +353,6 @@ const TeacherPostForm = () => {
                                     )}
                                 </motion.button>
                             </motion.div>
-
                             <motion.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
@@ -389,7 +371,6 @@ const TeacherPostForm = () => {
                     )}
                 </motion.div>
             </motion.div>
-
             <style jsx global>{`
                 @keyframes blob {
                     0% { transform: translate(0px, 0px) scale(1); }
@@ -417,5 +398,4 @@ const TeacherPostForm = () => {
         </div>
     );
 };
-
 export default TeacherPostForm;

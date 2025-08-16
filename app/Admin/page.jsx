@@ -176,8 +176,8 @@ export default function AdminLogin() {
         await new Promise(resolve => setTimeout(resolve, 800));
 
         if (formData.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL && formData.password === process.env.NEXT_PUBLIC_ADMIN_PASSWORD) {
-            setCookie('email', formData.email, 3);
-            setCookie('password', formData.password, 3);
+            setCookie('email', formData.email, 1);
+            setCookie('password', formData.password, 1);
             router.push("/Admin/Dashboard");
         } else {
             setError("Invalid email or password");
@@ -199,7 +199,7 @@ export default function AdminLogin() {
     }, []);
 
     return (
-        <div className="h-full m-0 md:m-2 lg:py-28 rounded-lg flex items-center justify-center p-4 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800 overflow-hidden">
+        <div className="min-h-screen m-0 lg:m-1 lg:rounded-md lg:pb-28 lg:pt-12 flex items-center justify-center p-4 bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 overflow-hidden">
 
 
             {/* Login card */}
@@ -230,7 +230,7 @@ export default function AdminLogin() {
                                     <label className="block text-sm font-medium text-gray-300">Email Address</label>
                                     <div className="relative group">
                                         <div className={`absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none transition-colors duration-300 ${focusedInput === 'email' ? 'text-cyan-400' : 'text-gray-500'}`}>
-                                            <Mail className="h-5 w-5" />
+                                            <Mail className="h-5 w-5 mt-[-4px]" />
                                         </div>
                                         <input
                                             type="email"
@@ -253,7 +253,7 @@ export default function AdminLogin() {
                                     </div> */}
                                     <div className="relative group">
                                         <div className={`absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none transition-colors duration-300 ${focusedInput === 'password' ? 'text-cyan-400' : 'text-gray-500'}`}>
-                                            <Lock className="h-5 w-5" />
+                                            <Lock className="h-5 w-5 mt-[-4px]" />
                                         </div>
                                         <input
                                             type={showPassword ? 'text' : 'password'}

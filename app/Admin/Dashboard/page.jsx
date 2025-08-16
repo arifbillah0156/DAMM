@@ -76,8 +76,8 @@ export default function DashboardPage() {
                             transition={{ duration: 0.5, delay: 0.2 }}
                             className="bg-white rounded-2xl shadow-lg overflow-hidden"
                         >
-                            <div className="bg-gradient-to-r from-indigo-600 to-purple-600 p-4 text-center">
-                                <h2 className="text-xl font-bold text-white">শিক্ষকদের নির্দেশিকা পোস্ট করুন</h2>
+                            <div className="bg-gradient-to-r from-blue-600 to-cyan-500 p-4 text-center">
+                                <h2 className="text-xl font-bold text-white">"Teachers' Guidelines" পোস্ট করুন</h2>
                             </div>
                             <div className="md:p-6">
                                 <TeacherPostForm />
@@ -89,14 +89,14 @@ export default function DashboardPage() {
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.5, delay: 0.4 }}
-                            className="bg-white max-h-full rounded-2xl shadow-lg overflow-hidden"
+                            className="rounded-2xl overflow-hidden"
                         >
-                            <div className="bg-gradient-to-r from-indigo-600 to-purple-600 p-4 text-center">
-                                <h2 className="text-xl font-bold text-white">প্রাতিষ্ঠানিক নোটিশ আপলোড করুন</h2>
+                            <div className="bg-gradient-to-r from-blue-600 to-cyan-500 p-4 text-center">
+                                <h2 className="text-xl font-bold text-white">"Official Announcements" আপলোড করুন</h2>
                             </div>
 
                             {showForm ? (
-                                <div className="p-4 md:p-6">
+                                <div className="p-4 md:p-6 bg-white shadow-lg rounded-b-2xl">
                                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                                         <motion.div
                                             initial={{ opacity: 0, y: 10 }}
@@ -107,7 +107,7 @@ export default function DashboardPage() {
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-indigo-600 mt-[-4px]" viewBox="0 0 20 20" fill="currentColor">
                                                     <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
                                                 </svg>
-                                                Date
+                                                তারিখ
                                             </label>
                                             <input
                                                 type="date"
@@ -125,7 +125,7 @@ export default function DashboardPage() {
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-indigo-600 mt-[-4px]" viewBox="0 0 20 20" fill="currentColor">
                                                     <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                                                 </svg>
-                                                Subject of the notice
+                                                নোটিশের বিষয়
                                             </label>
                                             <input
                                                 type="text"
@@ -144,7 +144,7 @@ export default function DashboardPage() {
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-indigo-600 mt-[-4px]" viewBox="0 0 20 20" fill="currentColor">
                                                     <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
                                                 </svg>
-                                                Download link
+                                                ডাউনলোড লিংক
                                             </label>
                                             <input
                                                 type="url"
@@ -158,12 +158,12 @@ export default function DashboardPage() {
                                             initial={{ opacity: 0, y: 10 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ delay: 0.4 }}
-                                            className="pt-4"
+                                            className="w-full pt-4 flex justify-center"
                                         >
                                             <button
                                                 type="submit"
                                                 disabled={isSubmitting}
-                                                className={`w-full py-3 px-6 rounded-lg font-semibold transition duration-300 flex items-center justify-center ${isSubmitting
+                                                className={`w-max py-3 px-8  lg:px-12 rounded-lg font-semibold transition duration-300 flex items-center justify-center ${isSubmitting
                                                     ? 'bg-indigo-400 cursor-not-allowed'
                                                     : 'bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transform hover:scale-[1.02]'
                                                     }`}

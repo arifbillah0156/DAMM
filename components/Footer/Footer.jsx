@@ -5,7 +5,7 @@ import DAMM from "@/public/Images/DAMM Logo SVG.svg";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-8 mt-4">
+    <footer className="bg-gray-900 text-white py-8">
       <div className="container mx-auto px-6">
         {/* Footer Top Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pb-4 border-b border-gray-700">
