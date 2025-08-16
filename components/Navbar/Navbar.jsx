@@ -8,11 +8,13 @@ import NavDropdownMobile from "./NavDropdownMobile";
 import NavDropdownMobile2 from "./NavDropdownMobile2";
 import NavLinksDesktop from "./NavLinksDesktop";
 import NavLinksMobile from "./NavLinksMobile";
+import NavDropdownDesktop3 from "./NavDropdownDesktop3";
 
 const NavbarWithDropdown = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDropdownOpen2, setIsDropdownOpen2] = useState(false);
+  const [isDropdownOpen3, setIsDropdownOpen3] = useState(false);
 
   return (
     <div className="pb-3 merriweather-regular border-b">
@@ -26,7 +28,25 @@ const NavbarWithDropdown = () => {
             {/* Desktop Menu */}
             <div className="hidden lg:flex  font-bold tracking-wider">
               <NavLinksDesktop href="/" text="Home" />
-              <NavLinksDesktop href="/Notices" text="Notices" />
+              {/* <NavLinksDesktop href="/Notices" text="Notices" /> */}
+              {/* Dropdown Menu */}
+              <div
+                className="relative z-10"
+                onMouseEnter={() => setIsDropdownOpen3(true)}
+                onMouseLeave={() => setIsDropdownOpen3(false)}
+                onClick={() => setIsDropdownOpen3(!isDropdownOpen3)}
+              >
+                <button className="linkDropdownMainText mt-[-6px]  mb-1" id="NavAcademic">
+                  Notices <i className="fa-solid fa-caret-down"></i>
+                </button>
+                {isDropdownOpen3 && (
+                  <div className="absolute bg-[#0072BC] text-white ring-2 rounded-[6px] shadow-lg">
+                    <NavDropdownDesktop3 href="/Notices" text="↪ Official Notices" />
+                    <NavDropdownDesktop3 href="/Notices/TeachersGuidelines" text="↪ Teachers' Guidelines" />
+
+                  </div>
+                )}
+              </div>
 
               {/* Dropdown Menu */}
               <div
@@ -106,8 +126,25 @@ const NavbarWithDropdown = () => {
               <div onClick={() => setIsMenuOpen(!isMenuOpen)}>
                 <NavLinksMobile href="/" text="Home" />
               </div>
-              <div onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              {/* <div onClick={() => setIsMenuOpen(!isMenuOpen)}>
                 <NavLinksMobile href="/Notices" text="Notices" />
+              </div> */}
+
+              {/* Mobile Dropdown Menu Gallery */}
+              <div>
+                <button
+                  onClick={() => setIsDropdownOpen3(!isDropdownOpen3)}
+                  className="block w-full text-left px-4 py-2 text-sm linkDropdownText underline underline-offset-4"
+                  id="Gallery"
+                >
+                  Notices <i className="fa-solid fa-caret-down"></i>
+                </button>
+                {isDropdownOpen3 && (
+                  <div className="pl-4 underline underline-offset-4" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                    <NavDropdownMobile2 href="/Notices" text="↪ Official Notices" />
+                    <NavDropdownMobile2 href="/Notices/TeachersGuidelines" text="↪ Teachers' Guidelines" />
+                  </div>
+                )}
               </div>
 
               {/* Mobile Dropdown Menu */}
