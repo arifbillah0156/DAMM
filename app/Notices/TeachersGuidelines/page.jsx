@@ -1,6 +1,5 @@
 "use client";
-import { useState, useEffect, useMemo, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { ref, onValue } from 'firebase/database';
 import { database } from '@/lib/firebase';
 import {
@@ -19,10 +18,11 @@ import {
     FiStar,
     FiLoader,
     FiChevronLeft,
-    FiChevronRight
+    FiChevronRight,
+    FiMaximize2,
+    FiMinimize2
 } from 'react-icons/fi';
 import AnimatedTeachersGuidelines from './AnimatedTeachersGuidelines';
-
 const TeacherGuidelinesPage = () => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -34,18 +34,17 @@ const TeacherGuidelinesPage = () => {
     const [expandedPost, setExpandedPost] = useState(null);
     const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-    const postsPerPage = 5;
-
+    const [selectedPost, setSelectedPost] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const postsPerPage = 9; // Changed to show 9 posts per page (3 rows of 3 columns)
+    const topPostRef = useRef(null);
     // Improved search with debouncing
     useEffect(() => {
         const timerId = setTimeout(() => {
             setDebouncedSearchTerm(searchTerm);
-        }, 300); // 300ms debounce delay
-        return () => {
-            clearTimeout(timerId);
-        };
+        }, 300);
+        return () => clearTimeout(timerId);
     }, [searchTerm]);
-
     // Memoized filtered posts for better performance
     const filteredPosts = useMemo(() => {
         return posts.filter(post => {
@@ -53,30 +52,28 @@ const TeacherGuidelinesPage = () => {
             if (filter === 'students') audienceFilter = post.targetAudience === 'Students';
             if (filter === 'parents') audienceFilter = post.targetAudience === 'Parents';
             if (filter === 'both') audienceFilter = post.targetAudience === 'Students & Parents';
+
             const searchFilter = debouncedSearchTerm === '' ||
                 post.postTitle.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
                 post.postContent.toLowerCase().includes(debouncedSearchTerm.toLowerCase());
+
             return audienceFilter && searchFilter;
         });
     }, [posts, filter, debouncedSearchTerm]);
-
     // Calculate paginated posts
     const paginatedPosts = useMemo(() => {
         const indexOfLastPost = currentPage * postsPerPage;
         const indexOfFirstPost = indexOfLastPost - postsPerPage;
         return filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
     }, [filteredPosts, currentPage]);
-
     // Calculate total pages
     const totalPages = useMemo(() => {
         return Math.ceil(filteredPosts.length / postsPerPage);
     }, [filteredPosts]);
-
     // Reset to page 1 when filters change
     useEffect(() => {
         setCurrentPage(1);
     }, [filter, debouncedSearchTerm]);
-
     useEffect(() => {
         const fetchPosts = () => {
             const postsRef = ref(database, "TeachersGuidelines");
@@ -101,7 +98,6 @@ const TeacherGuidelinesPage = () => {
         };
         fetchPosts();
     }, []);
-
     useEffect(() => {
         const handleScroll = () => {
             setShowScrollTop(window.scrollY > 300);
@@ -109,21 +105,17 @@ const TeacherGuidelinesPage = () => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
-
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
-
     const formatDate = (dateString) => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return new Date(dateString).toLocaleDateString('bn-BD', options);
     };
-
     const formatTime = (dateString) => {
         const options = { hour: '2-digit', minute: '2-digit' };
         return new Date(dateString).toLocaleTimeString('bn-BD', options);
     };
-
     const getAudienceLabel = (audience) => {
         switch (audience) {
             case 'Students': return 'লক্ষ্য: শিক্ষার্থী';
@@ -132,7 +124,6 @@ const TeacherGuidelinesPage = () => {
             default: return audience;
         }
     };
-
     const getAudienceColor = (audience) => {
         switch (audience) {
             case 'Students': return 'bg-blue-100 text-blue-800';
@@ -141,33 +132,76 @@ const TeacherGuidelinesPage = () => {
             default: return 'bg-gray-100 text-gray-800';
         }
     };
-
     const clearSearch = () => {
         setSearchTerm('');
     };
-
     const togglePostExpansion = useCallback((id) => {
         setExpandedPost(expandedPost === id ? null : id);
     }, [expandedPost]);
-
     const handleFilterChange = useCallback((newFilter) => {
         setFilter(newFilter);
     }, []);
-
     const goToNextPage = () => {
         if (currentPage < totalPages) {
             setCurrentPage(currentPage + 1);
-            scrollToTop();
+            setTimeout(() => {
+                scrollToTop();
+                if (topPostRef.current) {
+                    topPostRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    topPostRef.current.classList.add('ring-4', 'ring-indigo-300', 'rounded-xl');
+                    setTimeout(() => {
+                        if (topPostRef.current) {
+                            topPostRef.current.classList.remove('ring-4', 'ring-indigo-300', 'rounded-xl');
+                        }
+                    }, 2000);
+                }
+            }, 100);
         }
     };
-
     const goToPrevPage = () => {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
-            scrollToTop();
+            setTimeout(() => {
+                scrollToTop();
+                if (topPostRef.current) {
+                    topPostRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    topPostRef.current.classList.add('ring-4', 'ring-indigo-300', 'rounded-xl');
+                    setTimeout(() => {
+                        if (topPostRef.current) {
+                            topPostRef.current.classList.remove('ring-4', 'ring-indigo-300', 'rounded-xl');
+                        }
+                    }, 2000);
+                }
+            }, 100);
         }
     };
-
+    const goToPage = (pageNum) => {
+        setCurrentPage(pageNum);
+        setTimeout(() => {
+            scrollToTop();
+            if (topPostRef.current) {
+                topPostRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                topPostRef.current.classList.add('ring-4', 'ring-indigo-300', 'rounded-xl');
+                setTimeout(() => {
+                    if (topPostRef.current) {
+                        topPostRef.current.classList.remove('ring-4', 'ring-indigo-300', 'rounded-xl');
+                    }
+                }, 2000);
+            }
+        }, 100);
+    };
+    const openPostModal = (post) => {
+        setSelectedPost(post);
+        setIsModalOpen(true);
+        document.body.style.overflow = 'hidden';
+    };
+    const closePostModal = () => {
+        setIsModalOpen(false);
+        setTimeout(() => {
+            setSelectedPost(null);
+            document.body.style.overflow = 'auto';
+        }, 300);
+    };
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-6 px-4 lg:px-8 relative overflow-hidden">
             {/* Decorative background elements */}
@@ -176,26 +210,16 @@ const TeacherGuidelinesPage = () => {
                 <div className="absolute top-40 right-20 w-72 h-72 bg-indigo-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
                 <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
             </div>
-            <div className="max-w-4xl mx-auto relative z-0">
+            <div className="max-w-7xl mx-auto relative z-0">
                 {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="text-center mb-4 pt-2"
-                >
+                <div className="text-center mb-4 pt-2">
                     <AnimatedTeachersGuidelines />
                     <p className="text-gray-600 text-lg max-w-2xl mx-auto mt-4">
                         শিক্ষকদের দেওয়া সর্বশেষ নির্দেশনা ও ঘোষণাসমূহ
                     </p>
-                </motion.div>
-                {/* Search Bar - Improved */}
-                <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1, duration: 0.5 }}
-                    className={`mb-8 transition-all duration-300 ${isSearchFocused ? 'scale-[1.02]' : ''}`}
-                >
+                </div>
+                {/* Search Bar */}
+                <div className={`mb-8 transition-all duration-300 ${isSearchFocused ? 'scale-[1.02]' : ''}`}>
                     <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                             <FiSearch className="text-gray-400 text-xl z-10 mt-[-4px]" />
@@ -217,14 +241,12 @@ const TeacherGuidelinesPage = () => {
                                 <FiX className="text-xl" />
                             </button>
                         )}
-                        {/* Search indicator */}
                         {searchTerm && (
                             <div className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-b-xl transition-all duration-300"
                                 style={{ width: `${Math.min(100, searchTerm.length * 10)}%` }}>
                             </div>
                         )}
                     </div>
-                    {/* Active search term display */}
                     {searchTerm && (
                         <div className="mt-2 text-sm text-gray-600 flex items-center">
                             <span className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">
@@ -238,14 +260,9 @@ const TeacherGuidelinesPage = () => {
                             )}
                         </div>
                     )}
-                </motion.div>
-                {/* Filter Controls - Improved */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                    className="mb-10"
-                >
+                </div>
+                {/* Filter Controls */}
+                <div className="mb-10">
                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4">
                         <h2 className="text-xl font-semibold text-gray-700 flex items-center gap-2 mb-3 sm:mb-0">
                             <FiFilter className="text-indigo-600 mt-[-4px] " />
@@ -293,14 +310,10 @@ const TeacherGuidelinesPage = () => {
                             শিক্ষার্থী ও অভিভাবক
                         </button>
                     </div>
-                </motion.div>
+                </div>
                 {/* Content */}
                 {loading ? (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="flex flex-col justify-center items-center h-64"
-                    >
+                    <div className="flex flex-col justify-center items-center h-64">
                         <div className="relative mb-6">
                             <div className="animate-spin rounded-full h-20 w-20 border-t-2 border-b-2 border-indigo-600"></div>
                             <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
@@ -309,13 +322,9 @@ const TeacherGuidelinesPage = () => {
                         </div>
                         <p className="text-gray-600 font-medium">নির্দেশনা লোড হচ্ছে...</p>
                         <p className="text-gray-500 text-sm mt-2">অনুগ্রহপূর্বক অপেক্ষা করুন</p>
-                    </motion.div>
+                    </div>
                 ) : error ? (
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="bg-red-50 border-l-4 border-red-500 p-6 rounded-xl shadow-lg backdrop-blur-sm"
-                    >
+                    <div className="bg-red-50 border-l-4 border-red-500 p-6 rounded-xl shadow-lg backdrop-blur-sm">
                         <div className="flex items-center">
                             <div className="flex-shrink-0">
                                 <svg className="h-6 w-6 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -326,13 +335,9 @@ const TeacherGuidelinesPage = () => {
                                 <p className="text-lg font-medium text-red-700">{error}</p>
                             </div>
                         </div>
-                    </motion.div>
+                    </div>
                 ) : filteredPosts.length === 0 ? (
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-10 text-center border border-gray-100"
-                    >
+                    <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-10 text-center border border-gray-100">
                         <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-indigo-100 to-purple-100 mb-6">
                             <FiFileText className="text-indigo-600 text-3xl" />
                         </div>
@@ -356,133 +361,243 @@ const TeacherGuidelinesPage = () => {
                                 সব ফিল্টার মুছুন
                             </button>
                         )}
-                    </motion.div>
+                    </div>
                 ) : (
-                    <div className="space-y-6">
-                        <AnimatePresence>
+                    <>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {paginatedPosts.map((post, index) => (
-                                <motion.div
+                                <div
                                     key={post.id}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -20 }}
-                                    transition={{ duration: 0.5, delay: index * 0.05 }}
-                                    className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100"
-                                    whileHover={{ y: -5 }}
+                                    ref={index === 0 ? topPostRef : null}
+                                    className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100 hover:transform hover:-translate-y-1"
                                 >
-                                    <div className="p-6">
-                                        <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
-                                            <div className="mb-4 md:mb-0">
-                                                <h2 className="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2">
-                                                    <FiStar className="text-indigo-500 mt-[-4px] " />
-                                                    {post.postTitle}
-                                                </h2>
-                                                <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
-                                                    <div className="flex items-center bg-indigo-50 px-3 py-1.5 rounded-full">
-                                                        <FiUser className="mr-1.5 mt-[-4px] text-indigo-500" />
-                                                        <span className="font-medium">{post.teacherName}</span>
-                                                    </div>
-                                                    <div className="flex items-center bg-purple-50 px-3 py-1.5 rounded-full">
-                                                        <span>{post.teacherPosition}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="flex flex-col items-end">
-                                                <div className="flex items-center text-sm text-gray-500 mb-1.5 bg-blue-50 px-3 py-1.5 rounded-full">
+                                    <div className="p-6 h-full flex flex-col">
+                                        <div className="flex-grow">
+                                            {/* Date moved to top */}
+                                            <div className="mb-3">
+                                                <div className="flex justify-center items-center text-sm text-gray-500 bg-blue-50 px-3 py-1.5 rounded-full">
                                                     <FiCalendar className="mr-1.5 mt-[-4px]" />
                                                     <span>{formatDate(post.postDate)}</span>
                                                 </div>
-                                                {/* <div className="flex items-center text-sm text-gray-500 bg-green-50 px-3 py-1.5 rounded-full">
-                                                    <FiClock className="mr-1.5" />
-                                                    <span>{formatTime(post.postDate)}</span>
-                                                </div> */}
                                             </div>
-                                        </div>
-                                        <div className="mb-4">
-                                            <div className="flex items-center mb-3">
-                                                <span className={`text-sm px-3 py-1 rounded-full ${getAudienceColor(post.targetAudience)}`}>
+                                            {/*  */}
+                                            <div className="flex justify-center flex-wrap items-center gap-4 text-sm text-gray-600 mb-2">
+                                                <div className="flex items-center bg-green-50 px-3 py-1.5 rounded-full">
+                                                    <FiUser className="mr-1.5 mt-[-4px] text-indigo-500" />
+                                                    <span className="font-medium">{post.teacherName}</span>
+                                                </div>
+                                                <div className="flex items-center bg-purple-50 px-3 py-1.5 rounded-full">
+                                                    <span>{post.teacherPosition}</span>
+                                                </div>
+                                            </div>
+                                            {/*  */}
+                                            <div className="flex items-center mb-1">
+                                                <span className={`text-sm px-3 mt-1 py-1 rounded-full ${getAudienceColor(post.targetAudience)}`}>
                                                     {getAudienceLabel(post.targetAudience)}
                                                 </span>
                                             </div>
-                                            <div className="border-l-4 border-indigo-500 pl-4 py-2 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-r-lg">
-                                                <p className="text-gray-700 whitespace-pre-line">
-                                                    {expandedPost === post.id || post.postContent.length < 200
-                                                        ? post.postContent
-                                                        : `${post.postContent.substring(0, 200)}...`}
-                                                </p>
-                                                {post.postContent.length > 200 && (
-                                                    <button
-                                                        onClick={() => togglePostExpansion(post.id)}
-                                                        className="mt-3 text-indigo-600 hover:text-indigo-800 flex items-center gap-1 text-sm font-medium transition-colors"
-                                                    >
-                                                        {expandedPost === post.id ? 'কম দেখান' : 'আরও পড়ুন'}
-                                                        <FiChevronDown className={`transition-transform ${expandedPost === post.id ? 'rotate-180' : ''}`} />
-                                                    </button>
-                                                )}
+                                            {/* Title with star icon */}
+                                            <div className="mb-3">
+                                                <h2 className="text-lg text-gray-800">
+                                                    <span className="font-bold text-indigo-700">বিষয়:</span>{" "}
+                                                    <span className="italic font-medium">{post.postTitle}</span>
+                                                </h2>
+                                            </div>
+                                            <div className="mb-4">
+                                                <div className="border-l-4 border-indigo-500 pl-4 py-2 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-r-lg">
+                                                    <p className="text-gray-700 whitespace-pre-line">
+                                                        {expandedPost === post.id || post.postContent.length < 150
+                                                            ? post.postContent
+                                                            : `${post.postContent.substring(0, 150)}...`}
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
+                                        <div className="flex justify-center mt-4">
+                                            <button
+                                                onClick={() => openPostModal(post)}
+                                                className="flex items-center gap-1 text-indigo-600 hover:text-indigo-800 text-sm font-medium transition-colors"
+                                            >
+                                                <FiMaximize2 className="text-lg" />
+                                                সম্পূর্ণ পড়ুন
+                                            </button>
+                                        </div>
                                     </div>
-                                </motion.div>
-                            ))}
-                        </AnimatePresence>
-
-                        {/* Pagination Controls */}
-                        {totalPages > 1 && (
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                className="flex justify-center items-center mt-10 space-x-4"
-                            >
-                                <button
-                                    onClick={goToPrevPage}
-                                    disabled={currentPage === 1}
-                                    className={`flex items-center px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${currentPage === 1
-                                        ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                                        : 'bg-white/90 backdrop-blur-sm text-gray-700 hover:bg-gray-100 border border-gray-200 shadow-sm hover:shadow-md'
-                                        }`}
-                                >
-                                    <FiChevronLeft className="mr-1" />
-                                    পূর্ববর্তী
-                                </button>
-
-                                <div className="flex items-center">
-                                    <span className="text-sm font-medium text-gray-700 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-gray-200">
-                                        পৃষ্ঠা {currentPage} / {totalPages}
-                                    </span>
                                 </div>
-
-                                <button
-                                    onClick={goToNextPage}
-                                    disabled={currentPage === totalPages}
-                                    className={`flex items-center px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${currentPage === totalPages
-                                        ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                                        : 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg hover:from-indigo-700 hover:to-purple-700 transform hover:-translate-y-0.5'
-                                        }`}
-                                >
-                                    পরবর্তী
-                                    <FiChevronRight className="ml-1" />
-                                </button>
-                            </motion.div>
+                            ))}
+                        </div>
+                        {/* Desktop Pagination (centered below content) */}
+                        {totalPages > 1 && (
+                            <div className="hidden sm:flex justify-center mt-8 mb-12">
+                                <div className="flex items-center space-x-2">
+                                    <button
+                                        onClick={goToPrevPage}
+                                        disabled={currentPage === 1}
+                                        className={`flex items-center px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${currentPage === 1
+                                            ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                            : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200 shadow-sm hover:shadow-md'
+                                            }`}
+                                    >
+                                        <FiChevronLeft className="mr-1" />
+                                        পূর্ববর্তী
+                                    </button>
+                                    {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                                        let pageNum;
+                                        if (totalPages <= 5) {
+                                            pageNum = i + 1;
+                                        } else if (currentPage <= 3) {
+                                            pageNum = i + 1;
+                                        } else if (currentPage >= totalPages - 2) {
+                                            pageNum = totalPages - 4 + i;
+                                        } else {
+                                            pageNum = currentPage - 2 + i;
+                                        }
+                                        return (
+                                            <button
+                                                key={pageNum}
+                                                onClick={() => goToPage(pageNum)}
+                                                className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium transition-all ${currentPage === pageNum
+                                                    ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg'
+                                                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200 shadow-sm'
+                                                    }`}
+                                            >
+                                                {pageNum}
+                                            </button>
+                                        );
+                                    })}
+                                    <button
+                                        onClick={goToNextPage}
+                                        disabled={currentPage === totalPages}
+                                        className={`flex items-center px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${currentPage === totalPages
+                                            ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                            : 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg hover:from-indigo-700 hover:to-purple-700'
+                                            }`}
+                                    >
+                                        পরবর্তী
+                                        <FiChevronRight className="ml-1" />
+                                    </button>
+                                </div>
+                            </div>
                         )}
+                    </>
+                )}
+                {/* Mobile Pagination (fixed at bottom) */}
+                {totalPages > 1 && (
+                    <div className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm border-t border-gray-200 py-4 px-1 sm:px-6 z-10 sm:hidden">
+                        <div className="max-w-7xl mx-auto flex justify-between items-center">
+                            <button
+                                onClick={goToPrevPage}
+                                disabled={currentPage === 1}
+                                className={`flex items-center px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${currentPage === 1
+                                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200 shadow-sm hover:shadow-md'
+                                    }`}
+                            >
+                                <FiChevronLeft className="mr-1" />
+                                পূর্ববর্তী
+                            </button>
+                            <div className="flex items-center space-x-2">
+                                {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                                    let pageNum;
+                                    if (totalPages <= 5) {
+                                        pageNum = i + 1;
+                                    } else if (currentPage <= 3) {
+                                        pageNum = i + 1;
+                                    } else if (currentPage >= totalPages - 2) {
+                                        pageNum = totalPages - 4 + i;
+                                    } else {
+                                        pageNum = currentPage - 2 + i;
+                                    }
+                                    return (
+                                        <button
+                                            key={pageNum}
+                                            onClick={() => goToPage(pageNum)}
+                                            className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium transition-all ${currentPage === pageNum
+                                                ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg'
+                                                : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200 shadow-sm'
+                                                }`}
+                                        >
+                                            {pageNum}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                            <button
+                                onClick={goToNextPage}
+                                disabled={currentPage === totalPages}
+                                className={`flex items-center px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${currentPage === totalPages
+                                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                    : 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg hover:from-indigo-700 hover:to-purple-700'
+                                    }`}
+                            >
+                                পরবর্তী
+                                <FiChevronRight className="ml-1" />
+                            </button>
+                        </div>
                     </div>
                 )}
-                {/* Scroll to top button - Improved */}
-                <AnimatePresence>
-                    {showScrollTop && (
-                        <motion.button
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.8 }}
-                            onClick={scrollToTop}
-                            className="fixed bottom-1 right-1 p-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-full shadow-xl hover:from-indigo-700 hover:to-purple-700 transition-all z-0"
-                            aria-label="Scroll to top"
-                            whileHover={{ y: -5 }}
-                            whileTap={{ scale: 0.95 }}
+
+                {/* Post Modal */}
+                {selectedPost && (
+                    <div
+                        className={`fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4 transition-opacity duration-300 ${isModalOpen ? 'opacity-100' : 'opacity-0'}`}
+                        onClick={closePostModal}
+                    >
+                        <div
+                            className={`bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto transform transition-all duration-300 ${isModalOpen ? 'scale-100' : 'scale-90'}`}
+                            onClick={(e) => e.stopPropagation()}
                         >
-                            <FiArrowUp className="text-xl" />
-                        </motion.button>
-                    )}
-                </AnimatePresence>
+                            <div className="p-6">
+                                <div className="flex justify-between items-start mb-6">
+                                    <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
+                                        <FiStar className="hidden md:block text-indigo-500 mt-[-4px] " />
+                                        {selectedPost.postTitle}
+                                    </h2>
+                                    <button
+                                        onClick={closePostModal}
+                                        className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                                    >
+                                        <FiX className="text-gray-500 text-xl" />
+                                    </button>
+                                </div>
+                                <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 mb-6">
+                                    <div className="flex items-center bg-indigo-50 px-3 py-1.5 rounded-full">
+                                        <FiUser className="mr-1.5 mt-[-4px] text-indigo-500" />
+                                        <span className="font-medium">{selectedPost.teacherName}</span>
+                                    </div>
+                                    <div className="flex items-center bg-purple-50 px-3 py-1.5 rounded-full">
+                                        <span>{selectedPost.teacherPosition}</span>
+                                    </div>
+                                    <div className="flex items-center bg-blue-50 px-3 py-1.5 rounded-full">
+                                        <FiCalendar className="mr-1.5 mt-[-4px]" />
+                                        <span>{formatDate(selectedPost.postDate)}</span>
+                                    </div>
+                                </div>
+                                <div className="mb-6">
+                                    <div className="flex items-center mb-4">
+                                        <span className={`text-sm px-3 py-1 rounded-full ${getAudienceColor(selectedPost.targetAudience)}`}>
+                                            {getAudienceLabel(selectedPost.targetAudience)}
+                                        </span>
+                                    </div>
+                                    <div className="border-l-4 border-indigo-500 pl-4 py-2 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-r-lg">
+                                        <p className="text-gray-700 whitespace-pre-line text-lg leading-relaxed">
+                                            {selectedPost.postContent}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="flex justify-center mt-8">
+                                    <button
+                                        onClick={closePostModal}
+                                        className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl"
+                                    >
+                                        <FiMinimize2 />
+                                        বন্ধ করুন
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
                 <br />
             </div>
             <style jsx global>{`
@@ -505,5 +620,4 @@ const TeacherGuidelinesPage = () => {
         </div>
     );
 };
-
 export default TeacherGuidelinesPage;
