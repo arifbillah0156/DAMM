@@ -1,6 +1,6 @@
 "use client";
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 export default function EventCounter() {
     const [isClient, setIsClient] = useState(false);
@@ -17,26 +17,21 @@ export default function EventCounter() {
         const calculateTimeLeft = () => {
             const currentYear = new Date().getFullYear();
 
-            // ইভেন্টের তারিখ সেট করা
-            const eventStart = new Date(Date.UTC(currentYear, 7, 22, 8, 0, 0, 0)); // 22 Aug, 8:00 AM UTC
-            const eventEnd = new Date(Date.UTC(currentYear, 7, 22, 12, 0, 0, 0));  // 22 Aug, 12:00 PM UTC
+            // বাংলাদেশ সময় অনুযায়ী ইভেন্টের তারিখ সেট করলাম
+            const eventStart = new Date(currentYear, 7, 22, 8, 0, 0); // 22 Aug, 8:00 AM (Local BD Time)
+            const eventEnd = new Date(currentYear, 7, 22, 12, 0, 0);   // 22 Aug, 12:00 PM (Local BD Time)
             const now = new Date();
 
             if (now < eventStart) {
-                // ইভেন্ট শুরু হয়নি → কাউন্টডাউন দেখাও
                 setEventStatus("upcoming");
                 const difference = eventStart.getTime() - now.getTime();
                 setDaysLeft(Math.floor(difference / (1000 * 60 * 60 * 24)));
                 setHoursLeft(Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
                 setMinutesLeft(Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)));
                 setSecondsLeft(Math.floor((difference % (1000 * 60)) / 1000));
-            }
-            else if (now >= eventStart && now < eventEnd) {
-                // ইভেন্ট চলছে → "ক্যাম্পটি চলমান"
+            } else if (now >= eventStart && now < eventEnd) {
                 setEventStatus("running");
-            }
-            else {
-                // ইভেন্ট শেষ → "ক্যাম্পটি শেষ হয়েছে"
+            } else {
                 setEventStatus("ended");
             }
         };
@@ -50,17 +45,18 @@ export default function EventCounter() {
         <div>
             {isClient && (
                 <>
+                    {/* Upcoming Event */}
                     {eventStatus === "upcoming" && (
                         <div className="bg-gradient-to-r from-green-500 to-teal-500 rounded-2xl p-4 sm:p-5 md:p-6 lg:p-7 text-center mb-6 sm:mb-8 md:mb-10 shadow-xl max-w-6xl mx-auto">
                             <p className="text-white font-bold text-sm sm:text-base md:text-lg lg:text-xl mb-3 sm:mb-4 md:mb-5">
-                                আগামী মেডিকেল ক্যাম্পের সময় বাকি:
+                                মেডিকেল ক্যাম্পটি শুরু হতে সময় বাকি:
                             </p>
                             <div className="flex justify-center space-x-1 sm:space-x-2 md:space-x-3 lg:space-x-4">
                                 {[
-                                    { value: daysLeft, label: 'দিন' },
-                                    { value: hoursLeft, label: 'ঘন্টা' },
-                                    { value: minutesLeft, label: 'মিনিট' },
-                                    { value: secondsLeft, label: 'সেকেন্ড' }
+                                    { value: daysLeft, label: "দিন" },
+                                    { value: hoursLeft, label: "ঘন্টা" },
+                                    { value: minutesLeft, label: "মিনিট" },
+                                    { value: secondsLeft, label: "সেকেন্ড" }
                                 ].map((item, index) => (
                                     <div
                                         key={index}
@@ -69,13 +65,16 @@ export default function EventCounter() {
                                         <div className="text-white text-xl sm:text-2xl md:text-3xl font-bold">
                                             {item.value}
                                         </div>
-                                        <div className="text-white text-xs sm:text-xs md:text-sm mt-1 sm:mt-1 md:mt-2">{item.label}</div>
+                                        <div className="text-white text-xs sm:text-xs md:text-sm mt-1 sm:mt-1 md:mt-2">
+                                            {item.label}
+                                        </div>
                                     </div>
                                 ))}
                             </div>
                         </div>
                     )}
 
+                    {/* Running Event */}
                     {eventStatus === "running" && (
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9 }}
@@ -84,8 +83,6 @@ export default function EventCounter() {
                             className="relative bg-green-600 rounded-2xl p-6 text-center mb-6 shadow-xl max-w-6xl mx-auto overflow-hidden"
                         >
                             <div className="absolute inset-0 bg-green-400 blur-2xl opacity-40 animate-pulse"></div>
-                            <div className="absolute -top-10 -left-10 w-40 h-40 bg-green-300 rounded-full blur-3xl opacity-30 animate-ping"></div>
-                            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-lime-400 rounded-full blur-3xl opacity-30 animate-ping"></div>
                             <motion.p
                                 initial={{ y: -20 }}
                                 animate={{ y: 0 }}
@@ -94,10 +91,10 @@ export default function EventCounter() {
                             >
                                 🟢 মেডিকেল ক্যাম্পটি চলমান
                             </motion.p>
-                            <div className="relative mt-4 h-1 w-2/3 mx-auto bg-gradient-to-r from-green-300 via-white to-green-300 rounded-full shadow-lg animate-pulse"></div>
                         </motion.div>
                     )}
 
+                    {/* Ended Event */}
                     {eventStatus === "ended" && (
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9 }}
@@ -106,8 +103,6 @@ export default function EventCounter() {
                             className="relative bg-red-600 rounded-2xl p-6 text-center mb-6 shadow-xl max-w-6xl mx-auto overflow-hidden"
                         >
                             <div className="absolute inset-0 bg-red-400 blur-2xl opacity-40 animate-pulse"></div>
-                            <div className="absolute -top-10 -left-10 w-40 h-40 bg-red-300 rounded-full blur-3xl opacity-30 animate-ping"></div>
-                            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-pink-400 rounded-full blur-3xl opacity-30 animate-ping"></div>
                             <motion.p
                                 initial={{ y: -20 }}
                                 animate={{ y: 0 }}
@@ -116,7 +111,6 @@ export default function EventCounter() {
                             >
                                 🔴 মেডিকেল ক্যাম্পটি শেষ হয়েছে
                             </motion.p>
-                            <div className="relative mt-4 h-1 w-2/3 mx-auto bg-gradient-to-r from-red-300 via-white to-red-300 rounded-full shadow-lg animate-pulse"></div>
                         </motion.div>
                     )}
                 </>

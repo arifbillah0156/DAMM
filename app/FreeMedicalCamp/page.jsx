@@ -105,7 +105,7 @@ export default function FreeMedicalCamp() {
                         className="bg-green-100 rounded-2xl p-5 md:p-6 text-center mb-8 border-2 border-green-300 shadow-lg"
                     >
                         <p className="text-gray-800 font-medium text-lg md:text-xl mb-3">
-                            <span className="text-green-700 font-bold text-xl md:text-2xl">২২ ই আগস্ট, শুক্রবার</span>
+                            <span className="text-green-600 font-bold text-xl md:text-2xl underline underline-offset-4">২২ ই আগস্ট, শুক্রবার</span>
                         </p>
                         <p className="text-gray-800 font-medium text-base md:text-lg">
                             সকাল <span className="text-green-600 font-bold">৮ টা</span> থেকে দুপুর <span className="text-green-600 font-bold">১২ টা</span> পর্যন্ত
@@ -130,7 +130,7 @@ export default function FreeMedicalCamp() {
                             <h2 className="text-lg md:text-xl font-bold text-green-700 mb-2">📍 স্থান:</h2>
                             <p className="text-gray-800 text-base md:text-lg">
                                 চালাবন চৈতি গার্মেন্টস সংলগ্ন,
-                                <span className="font-semibold text-green-700">দারুল আজহার মডেল মাদরাসা প্রাঙ্গন</span>
+                                <span className="font-semibold text-green-700"> দারুল আজহার মডেল মাদরাসা প্রাঙ্গন</span>
                             </p>
                         </div>
                     </motion.div>
