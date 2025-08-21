@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { fadeIn, slideIn, staggerContainer, textVariant } from '@/utils/motion';
 import Link from 'next/link';
+import EventCounter from './EventCounter';
 
 export default function FreeMedicalCamp() {
     const [isClient, setIsClient] = useState(false);
@@ -91,29 +92,9 @@ export default function FreeMedicalCamp() {
                     <div className="h-1 w-full bg-gradient-to-r from-green-400 to-teal-500 mb-6 rounded-full"></div>
                     {/* Countdown timer - only rendered on client */}
                     {isClient && (
-                        <div className="bg-gradient-to-r from-green-500 to-teal-500 rounded-2xl p-4 sm:p-5 md:p-6 lg:p-7 text-center mb-6 sm:mb-8 md:mb-10 shadow-xl max-w-6xl mx-auto">
-                            <p className="text-white font-bold text-sm sm:text-base md:text-lg lg:text-xl mb-3 sm:mb-4 md:mb-5">
-                                আগামী মেডিকেল ক্যাম্পের সময় বাকি:
-                            </p>
-                            <div className="flex justify-center space-x-1 sm:space-x-2 md:space-x-3 lg:space-x-4">
-                                {[
-                                    { value: daysLeft, label: 'দিন' },
-                                    { value: hoursLeft, label: 'ঘন্টা' },
-                                    { value: minutesLeft, label: 'মিনিট' },
-                                    { value: secondsLeft, label: 'সেকেন্ড' }
-                                ].map((item, index) => (
-                                    <div
-                                        key={index}
-                                        className="bg-white bg-opacity-20 backdrop-blur-sm rounded-xl p-2 sm:p-3 md:p-4 min-w-[50px] sm:min-w-[60px] md:min-w-[70px] lg:min-w-[80px] shadow-lg transition-all duration-300 hover:bg-opacity-30"
-                                    >
-                                        <div className="text-white text-xl sm:text-2xl md:text-3xl font-bold">
-                                            {item.value}
-                                        </div>
-                                        <div className="text-white text-xs sm:text-xs md:text-sm mt-1 sm:mt-1 md:mt-2">{item.label}</div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
+                        <>
+                            <EventCounter />
+                        </>
                     )}
                     {/* Date and time */}
                     <motion.div

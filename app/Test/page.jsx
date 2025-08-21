@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { fadeIn, slideIn, staggerContainer, textVariant } from '@/utils/motion';
 import Link from 'next/link';
+import EventCounter from './EventCounter';
 
 export default function FreeMedicalCamp() {
     const [isClient, setIsClient] = useState(false);
@@ -96,29 +97,10 @@ export default function FreeMedicalCamp() {
 
                     {/* Countdown timer - only rendered on client */}
                     {isClient && (
-                        <div className="bg-gradient-to-r from-green-500 to-teal-500 rounded-2xl p-4 sm:p-5 md:p-6 lg:p-7 text-center mb-6 sm:mb-8 md:mb-10 shadow-xl max-w-6xl mx-auto">
-                            <p className="text-white font-bold text-sm sm:text-base md:text-lg lg:text-xl mb-3 sm:mb-4 md:mb-5">
-                                আগামী মেডিকেল ক্যাম্পের সময় বাকি:
-                            </p>
-                            <div className="flex justify-center space-x-1 sm:space-x-2 md:space-x-3 lg:space-x-4">
-                                {[
-                                    { value: daysLeft, label: 'দিন' },
-                                    { value: hoursLeft, label: 'ঘন্টা' },
-                                    { value: minutesLeft, label: 'মিনিট' },
-                                    { value: secondsLeft, label: 'সেকেন্ড' }
-                                ].map((item, index) => (
-                                    <div
-                                        key={index}
-                                        className="bg-white bg-opacity-20 backdrop-blur-sm rounded-xl p-2 sm:p-3 md:p-4 min-w-[50px] sm:min-w-[60px] md:min-w-[70px] lg:min-w-[80px] shadow-lg transition-all duration-300 hover:bg-opacity-30"
-                                    >
-                                        <div className="text-white text-xl sm:text-2xl md:text-3xl font-bold">
-                                            {item.value}
-                                        </div>
-                                        <div className="text-white text-xs sm:text-xs md:text-sm mt-1 sm:mt-1 md:mt-2">{item.label}</div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
+                        <>
+                            <EventCounter />
+
+                        </>
                     )}
 
                     {/* Date and time */}
@@ -130,7 +112,7 @@ export default function FreeMedicalCamp() {
                         className="bg-green-100 rounded-2xl p-5 md:p-6 text-center mb-8 border-2 border-green-300 shadow-lg"
                     >
                         <p className="text-gray-800 font-medium text-lg md:text-xl mb-3">
-                            আগামী <span className="text-green-700 font-bold text-xl md:text-2xl">২২ ই আগস্ট, শুক্রবার</span>
+                            <span className="text-green-700 font-bold text-xl md:text-2xl">২২ ই আগস্ট, শুক্রবার</span>
                         </p>
                         <p className="text-gray-800 font-medium text-base md:text-lg">
                             সকাল <span className="text-green-600 font-bold">৮ টা</span> থেকে দুপুর <span className="text-green-600 font-bold">১২ টা</span> পর্যন্ত
