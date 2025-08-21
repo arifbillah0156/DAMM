@@ -56,7 +56,7 @@ export default function FreeMedicalCamp() {
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-green-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
             </div>
 
-            <div className="max-w-4xl w-full relative z-10">
+            <div className="max-w-4xl w-full relative z-0">
                 {/* Header with decorative elements */}
                 <motion.div
                     variants={staggerContainer}
