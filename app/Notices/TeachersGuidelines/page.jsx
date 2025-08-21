@@ -52,11 +52,9 @@ const TeacherGuidelinesPage = () => {
             if (filter === 'students') audienceFilter = post.targetAudience === 'Students';
             if (filter === 'parents') audienceFilter = post.targetAudience === 'Parents';
             if (filter === 'both') audienceFilter = post.targetAudience === 'Students & Parents';
-
             const searchFilter = debouncedSearchTerm === '' ||
                 post.postTitle.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
                 post.postContent.toLowerCase().includes(debouncedSearchTerm.toLowerCase());
-
             return audienceFilter && searchFilter;
         });
     }, [posts, filter, debouncedSearchTerm]);
@@ -85,7 +83,7 @@ const TeacherGuidelinesPage = () => {
                         ...data[key]
                     }));
                     postsArray.sort((a, b) => new Date(b.postDate) - new Date(a.postDate));
-                    setPosts(postsArray.reverse());
+                    setPosts(postsArray);
                 } else {
                     setPosts([]);
                 }
@@ -536,7 +534,6 @@ const TeacherGuidelinesPage = () => {
                         </div>
                     </div>
                 )}
-
                 {/* Post Modal */}
                 {selectedPost && (
                     <div

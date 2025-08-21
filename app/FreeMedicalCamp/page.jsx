@@ -84,16 +84,11 @@ export default function FreeMedicalCamp() {
                 </motion.div>
 
                 {/* Main content card */}
-                <motion.div
-                    variants={fadeIn("up", "spring", 0.5, 0.75)}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, amount: 0.25 }}
+                <div
                     className="bg-gradient-to-b from-green-50 via-white to-green-50 p-6 md:p-8 rounded-3xl shadow-xl border-2 border-green-200 overflow-hidden transform transition-all duration-500 hover:shadow-2xl"
                 >
                     {/* Decorative top border */}
                     <div className="h-1 w-full bg-gradient-to-r from-green-400 to-teal-500 mb-6 rounded-full"></div>
-
                     {/* Countdown timer - only rendered on client */}
                     {isClient && (
                         <div className="bg-gradient-to-r from-green-500 to-teal-500 rounded-2xl p-4 sm:p-5 md:p-6 lg:p-7 text-center mb-6 sm:mb-8 md:mb-10 shadow-xl max-w-6xl mx-auto">
@@ -120,10 +115,9 @@ export default function FreeMedicalCamp() {
                             </div>
                         </div>
                     )}
-
                     {/* Date and time */}
                     <motion.div
-                        variants={fadeIn("up", "spring", 0.7, 0.75)}
+                        variants={fadeIn("up", "spring", 0.3, 0.5)}
                         initial="hidden"
                         whileInView="show"
                         viewport={{ once: true, amount: 0.25 }}
@@ -137,10 +131,9 @@ export default function FreeMedicalCamp() {
                         </p>
                         <p className="text-gray-600 mt-3 text-base md:text-lg">দেশের অভিজ্ঞ চিকিৎসকদের সমন্বয়ে অনুষ্ঠিত হবে একটি বিশেষ মেডিকেল ক্যাম্প।</p>
                     </motion.div>
-
                     {/* Location */}
                     <motion.div
-                        variants={fadeIn("right", "spring", 0.8, 0.75)}
+                        variants={fadeIn("right", "spring", 0.3, 0.75)}
                         initial="hidden"
                         whileInView="show"
                         viewport={{ once: true, amount: 0.25 }}
@@ -160,10 +153,9 @@ export default function FreeMedicalCamp() {
                             </p>
                         </div>
                     </motion.div>
-
                     {/* Services */}
                     <motion.div
-                        variants={fadeIn("left", "spring", 0.9, 0.75)}
+                        variants={fadeIn("left", "spring", 0.3, 0.75)}
                         initial="hidden"
                         whileInView="show"
                         viewport={{ once: true, amount: 0.25 }}
@@ -198,10 +190,9 @@ export default function FreeMedicalCamp() {
                             ))}
                         </ul>
                     </motion.div>
-
                     {/* Sponsor */}
                     <motion.div
-                        variants={fadeIn("right", "spring", 1, 0.75)}
+                        variants={fadeIn("right", "spring", 0.3, 0.75)}
                         initial="hidden"
                         whileInView="show"
                         viewport={{ once: true, amount: 0.25 }}
@@ -222,10 +213,9 @@ export default function FreeMedicalCamp() {
                             </p>
                         </div>
                     </motion.div>
-
                     {/* Organizers */}
                     <motion.div
-                        variants={fadeIn("up", "spring", 1.1, 0.75)}
+                        variants={fadeIn("up", "spring", 0.3, 0.75)}
                         initial="hidden"
                         whileInView="show"
                         viewport={{ once: true, amount: 0.25 }}
@@ -244,10 +234,9 @@ export default function FreeMedicalCamp() {
                             </p>
                         </div>
                     </motion.div>
-
                     {/* Contact */}
                     <motion.div
-                        variants={fadeIn("up", "spring", 1.2, 0.75)}
+                        variants={fadeIn("up", "spring", 0.3, 0.75)}
                         initial="hidden"
                         whileInView="show"
                         viewport={{ once: true, amount: 0.25 }}
@@ -265,10 +254,9 @@ export default function FreeMedicalCamp() {
                             </Link>
                         </p>
                     </motion.div>
-
                     {/* Decorative bottom border */}
                     <div className="h-1 w-full bg-gradient-to-r from-green-400 to-teal-500 mt-8 rounded-full"></div>
-                </motion.div>
+                </div>
 
 
             </div>
