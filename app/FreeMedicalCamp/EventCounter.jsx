@@ -8,37 +8,41 @@ export default function EventCounter() {
     const [hoursLeft, setHoursLeft] = useState(0);
     const [minutesLeft, setMinutesLeft] = useState(0);
     const [secondsLeft, setSecondsLeft] = useState(0);
-    const [eventEnded, setEventEnded] = useState(false); // 👈 নতুন state
+    const [eventStatus, setEventStatus] = useState("upcoming");
+    // "upcoming" | "running" | "ended"
 
     useEffect(() => {
         setIsClient(true);
 
         const calculateTimeLeft = () => {
             const currentYear = new Date().getFullYear();
-            const eventDate = new Date(Date.UTC(currentYear, 7, 22, 8, 0, 0, 0)); // 22 August, 8AM UTC
+
+            // ইভেন্টের তারিখ সেট করা
+            const eventStart = new Date(Date.UTC(currentYear, 7, 22, 8, 0, 0, 0)); // 22 Aug, 8:00 AM UTC
+            const eventEnd = new Date(Date.UTC(currentYear, 7, 22, 12, 0, 0, 0));  // 22 Aug, 12:00 PM UTC
             const now = new Date();
-            const difference = eventDate.getTime() - now.getTime();
 
-            // ✅ যদি ইভেন্ট শেষ হয়ে যায়
-            if (difference <= 0) {
-                setEventEnded(true);
-                setDaysLeft(0);
-                setHoursLeft(0);
-                setMinutesLeft(0);
-                setSecondsLeft(0);
-                return;
+            if (now < eventStart) {
+                // ইভেন্ট শুরু হয়নি → কাউন্টডাউন দেখাও
+                setEventStatus("upcoming");
+                const difference = eventStart.getTime() - now.getTime();
+                setDaysLeft(Math.floor(difference / (1000 * 60 * 60 * 24)));
+                setHoursLeft(Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+                setMinutesLeft(Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)));
+                setSecondsLeft(Math.floor((difference % (1000 * 60)) / 1000));
             }
-
-            // ✅ ইভেন্ট শুরু হয়নি, তাহলে সময় দেখাবে
-            setDaysLeft(Math.floor(difference / (1000 * 60 * 60 * 24)));
-            setHoursLeft(Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-            setMinutesLeft(Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)));
-            setSecondsLeft(Math.floor((difference % (1000 * 60)) / 1000));
+            else if (now >= eventStart && now < eventEnd) {
+                // ইভেন্ট চলছে → "ক্যাম্পটি চলমান"
+                setEventStatus("running");
+            }
+            else {
+                // ইভেন্ট শেষ → "ক্যাম্পটি শেষ হয়েছে"
+                setEventStatus("ended");
+            }
         };
 
         calculateTimeLeft();
         const timer = setInterval(calculateTimeLeft, 1000);
-
         return () => clearInterval(timer);
     }, []);
 
@@ -46,7 +50,7 @@ export default function EventCounter() {
         <div>
             {isClient && (
                 <>
-                    {!eventEnded ? (
+                    {eventStatus === "upcoming" && (
                         <div className="bg-gradient-to-r from-green-500 to-teal-500 rounded-2xl p-4 sm:p-5 md:p-6 lg:p-7 text-center mb-6 sm:mb-8 md:mb-10 shadow-xl max-w-6xl mx-auto">
                             <p className="text-white font-bold text-sm sm:text-base md:text-lg lg:text-xl mb-3 sm:mb-4 md:mb-5">
                                 আগামী মেডিকেল ক্যাম্পের সময় বাকি:
@@ -70,29 +74,48 @@ export default function EventCounter() {
                                 ))}
                             </div>
                         </div>
-                    ) : (
+                    )}
+
+                    {eventStatus === "running" && (
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.6 }}
-                            className="relative bg-red-600 rounded-2xl p-6 text-center mb-6 shadow-xl max-w-6xl mx-auto overflow-hidden"
+                            className="relative bg-green-600 rounded-2xl p-6 text-center mb-6 shadow-xl max-w-6xl mx-auto overflow-hidden"
                         >
-                            {/* Glowing Blur Background */}
-                            <div className="absolute inset-0 bg-red-400 blur-2xl opacity-40 animate-pulse"></div>
-                            <div className="absolute -top-10 -left-10 w-40 h-40 bg-red-300 rounded-full blur-3xl opacity-30 animate-ping"></div>
-                            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-pink-400 rounded-full blur-3xl opacity-30 animate-ping"></div>
-
-                            {/* Main Text */}
+                            <div className="absolute inset-0 bg-green-400 blur-2xl opacity-40 animate-pulse"></div>
+                            <div className="absolute -top-10 -left-10 w-40 h-40 bg-green-300 rounded-full blur-3xl opacity-30 animate-ping"></div>
+                            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-lime-400 rounded-full blur-3xl opacity-30 animate-ping"></div>
                             <motion.p
                                 initial={{ y: -20 }}
                                 animate={{ y: 0 }}
                                 transition={{ duration: 0.5 }}
                                 className="relative text-white text-3xl md:text-4xl font-extrabold drop-shadow-xl tracking-wide"
                             >
-                                🚨 ইভেন্টটি চলমান/শেষ হয়েছে
+                                🟢 মেডিকেল ক্যাম্পটি চলমান
                             </motion.p>
+                            <div className="relative mt-4 h-1 w-2/3 mx-auto bg-gradient-to-r from-green-300 via-white to-green-300 rounded-full shadow-lg animate-pulse"></div>
+                        </motion.div>
+                    )}
 
-                            {/* Shining Line */}
+                    {eventStatus === "ended" && (
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6 }}
+                            className="relative bg-red-600 rounded-2xl p-6 text-center mb-6 shadow-xl max-w-6xl mx-auto overflow-hidden"
+                        >
+                            <div className="absolute inset-0 bg-red-400 blur-2xl opacity-40 animate-pulse"></div>
+                            <div className="absolute -top-10 -left-10 w-40 h-40 bg-red-300 rounded-full blur-3xl opacity-30 animate-ping"></div>
+                            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-pink-400 rounded-full blur-3xl opacity-30 animate-ping"></div>
+                            <motion.p
+                                initial={{ y: -20 }}
+                                animate={{ y: 0 }}
+                                transition={{ duration: 0.5 }}
+                                className="relative text-white text-3xl md:text-4xl font-extrabold drop-shadow-xl tracking-wide"
+                            >
+                                🔴 মেডিকেল ক্যাম্পটি শেষ হয়েছে
+                            </motion.p>
                             <div className="relative mt-4 h-1 w-2/3 mx-auto bg-gradient-to-r from-red-300 via-white to-red-300 rounded-full shadow-lg animate-pulse"></div>
                         </motion.div>
                     )}

@@ -105,7 +105,7 @@ export default function FreeMedicalCamp() {
                         className="bg-green-100 rounded-2xl p-5 md:p-6 text-center mb-8 border-2 border-green-300 shadow-lg"
                     >
                         <p className="text-gray-800 font-medium text-lg md:text-xl mb-3">
-                            আগামী <span className="text-green-700 font-bold text-xl md:text-2xl">২২ ই আগস্ট, শুক্রবার</span>
+                            <span className="text-green-700 font-bold text-xl md:text-2xl">২২ ই আগস্ট, শুক্রবার</span>
                         </p>
                         <p className="text-gray-800 font-medium text-base md:text-lg">
                             সকাল <span className="text-green-600 font-bold">৮ টা</span> থেকে দুপুর <span className="text-green-600 font-bold">১২ টা</span> পর্যন্ত
