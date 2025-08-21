@@ -209,7 +209,7 @@ export default function FreeMedicalCamp() {
                                 আপনাদেরই প্রিয় মুখ,
                                 <span className="text-green-700 font-semibold"> অধ্যাপক মাওলানা সাইফ উদ্দিন আহমদ খন্দকার</span>,
                                 ঢাকা-১৮ আসনে খেলাফত মজলিস মনোনীত
-                                <span className="text-green-700 font-bold">"দেয়াল ঘড়ি মার্কা"</span> সংসদ সদস্য পদপ্রার্থী।
+                                <span className="text-green-700 font-bold"> "দেয়াল ঘড়ি মার্কা"</span> সংসদ সদস্য পদপ্রার্থী।
                             </p>
                         </div>
                     </motion.div>
