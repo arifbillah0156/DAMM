@@ -1,259 +1,667 @@
 "use client";
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { fadeIn, slideIn, staggerContainer, textVariant } from '@/utils/motion';
-import Link from 'next/link';
-import EventCounter from './EventCounter';
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaMosque, FaSun, FaMoon, FaCloudSun, FaPrayingHands, FaStarAndCrescent, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { format, addDays, startOfWeek, endOfWeek, eachDayOfInterval, isSameDay, startOfMonth, endOfMonth, addMonths, subMonths, eachWeekOfInterval } from "date-fns";
+import { bn } from "date-fns/locale";
 
-export default function FreeMedicalCamp() {
-    const [isClient, setIsClient] = useState(false);
-    const [daysLeft, setDaysLeft] = useState(0);
-    const [hoursLeft, setHoursLeft] = useState(0);
-    const [minutesLeft, setMinutesLeft] = useState(0);
-    const [secondsLeft, setSecondsLeft] = useState(0);
-    const [mounted, setMounted] = useState(false);
+// Custom Loading Component
+function LoadingSpinner() {
+    return (
+        <div className="flex justify-center items-center h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+            <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                className="text-6xl text-blue-600"
+            >
+                <FaStarAndCrescent />
+            </motion.div>
+        </div>
+    );
+}
 
-    useEffect(() => {
-        setIsClient(true);
-        setMounted(true);
+// Month and Year Selector Component
+function MonthYearSelector({ currentMonth, setCurrentMonth, isMobile = false }) {
+    const months = [
+        'জানুয়ারী', 'ফেব্রুয়ারী', 'মার্চ', 'এপ্রিল', 'মে', 'জুন',
+        'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'
+    ];
 
-        const calculateTimeLeft = () => {
-            const currentYear = new Date().getFullYear();
-            // Use UTC to ensure consistent dates between server and client
-            const eventDate = new Date(Date.UTC(currentYear, 7, 22, 8, 0, 0, 0)); // August 22, 8 AM UTC
+    const currentYear = new Date().getFullYear();
+    const years = Array.from({ length: 21 }, (_, i) => currentYear - 10 + i); // 10 years back and 10 years forward
 
-            if (eventDate < new Date()) {
-                eventDate.setUTCFullYear(currentYear + 1);
-            }
+    const handleMonthChange = (e) => {
+        const monthIndex = months.indexOf(e.target.value);
+        setCurrentMonth(new Date(currentMonth.getFullYear(), monthIndex, 1));
+    };
 
-            const now = new Date();
-            const difference = eventDate.getTime() - now.getTime();
-
-            if (difference > 0) {
-                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-                setDaysLeft(days);
-                setHoursLeft(hours);
-                setMinutesLeft(minutes);
-                setSecondsLeft(seconds);
-            }
-        };
-
-        calculateTimeLeft();
-        const timer = setInterval(calculateTimeLeft, 1000);
-
-        return () => clearInterval(timer);
-    }, []);
+    const handleYearChange = (e) => {
+        setCurrentMonth(new Date(parseInt(e.target.value), currentMonth.getMonth(), 1));
+    };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-green-50 to-teal-50 py-12 pt-4 px-4 flex items-center justify-center relative overflow-hidden">
-            {/* Decorative background elements */}
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-                <div className="absolute -top-40 -right-40 w-80 h-80 bg-green-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
-                <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-teal-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-green-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-            </div>
-
-            <div className="max-w-4xl w-full relative z-10">
-                {/* Header with decorative elements */}
-                <motion.div
-                    variants={staggerContainer}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, amount: 0.25 }}
-                    className="text-center mb-10"
-                >
-                    <motion.div variants={fadeIn("down", "spring", 0.2, 0.75)} className="inline-block p-3 bg-green-100 rounded-full mb-4 relative">
-                        <div className="absolute inset-0 bg-green-400 rounded-full animate-ping opacity-20"></div>
-                        <div className="bg-gradient-to-r from-green-600 to-teal-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto shadow-lg">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clipRule="evenodd" />
-                            </svg>
-                        </div>
-                    </motion.div>
-
-                    <motion.h1 variants={textVariant(0.3)} className="text-4xl md:text-5xl font-extrabold text-green-800 mb-2 bg-clip-text text-transparent bg-gradient-to-r from-green-700 pt-6 to-teal-700">
-                        🩺 ফ্রি মেডিকেল ক্যাম্প
-                    </motion.h1>
-
-                    <motion.p variants={textVariant(0.4)} className="text-xl md:text-2xl font-semibold text-gray-700">
-                        আসসালামু আলাইকুম, প্রিয় উত্তরাবাসী
-                    </motion.p>
-                </motion.div>
-
-                {/* Main content card */}
-                <motion.div
-                    variants={fadeIn("up", "spring", 0.5, 0.75)}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, amount: 0.25 }}
-                    className="bg-gradient-to-b from-green-50 via-white to-green-50 p-6 md:p-8 rounded-3xl shadow-xl border-2 border-green-200 overflow-hidden transform transition-all duration-500 hover:shadow-2xl"
-                >
-                    {/* Decorative top border */}
-                    <div className="h-1 w-full bg-gradient-to-r from-green-400 to-teal-500 mb-6 rounded-full"></div>
-
-                    {/* Countdown timer - only rendered on client */}
-                    {isClient && (
-                        <>
-                            <EventCounter />
-
-                        </>
-                    )}
-
-                    {/* Date and time */}
-                    <motion.div
-                        variants={fadeIn("up", "spring", 0.7, 0.75)}
-                        initial="hidden"
-                        whileInView="show"
-                        viewport={{ once: true, amount: 0.25 }}
-                        className="bg-green-100 rounded-2xl p-5 md:p-6 text-center mb-8 border-2 border-green-300 shadow-lg"
-                    >
-                        <p className="text-gray-800 font-medium text-lg md:text-xl mb-3">
-                            <span className="text-green-700 font-bold text-xl md:text-2xl">২২ ই আগস্ট, শুক্রবার</span>
-                        </p>
-                        <p className="text-gray-800 font-medium text-base md:text-lg">
-                            সকাল <span className="text-green-600 font-bold">৮ টা</span> থেকে দুপুর <span className="text-green-600 font-bold">১২ টা</span> পর্যন্ত
-                        </p>
-                        <p className="text-gray-600 mt-3 text-base md:text-lg">দেশের অভিজ্ঞ চিকিৎসকদের সমন্বয়ে অনুষ্ঠিত হবে একটি বিশেষ মেডিকেল ক্যাম্প।</p>
-                    </motion.div>
-
-                    {/* Location */}
-                    <motion.div
-                        variants={fadeIn("right", "spring", 0.8, 0.75)}
-                        initial="hidden"
-                        whileInView="show"
-                        viewport={{ once: true, amount: 0.25 }}
-                        className="bg-white rounded-2xl p-5 md:p-6 mb-8 shadow-lg border-2 border-green-200 flex items-start"
-                    >
-                        <div className="bg-gradient-to-r from-green-500 to-teal-500 p-3 rounded-full mr-4 shadow-md">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                        </div>
-                        <div>
-                            <h2 className="text-lg md:text-xl font-bold text-green-700 mb-2">📍 স্থান:</h2>
-                            <p className="text-gray-800 text-base md:text-lg">
-                                চালাবন চৈতি গার্মেন্টস সংলগ্ন,
-                                <span className="font-semibold text-green-700">দারুল আজহার মডেল মাদরাসা প্রাঙ্গন</span>
-                            </p>
-                        </div>
-                    </motion.div>
-
-                    {/* Services */}
-                    <motion.div
-                        variants={fadeIn("left", "spring", 0.9, 0.75)}
-                        initial="hidden"
-                        whileInView="show"
-                        viewport={{ once: true, amount: 0.25 }}
-                        className="bg-green-50 rounded-2xl p-5 md:p-6 mb-8 border-2 border-green-200"
-                    >
-                        <h2 className="text-lg md:text-xl font-bold text-green-700 mb-4 flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                            </svg>
-                            যা যা প্রদান করা হবে:
-                        </h2>
-                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            {[
-                                'সাধারণ স্বাস্থ্যপরীক্ষা',
-                                'প্রাথমিক চিকিৎসা',
-                                'প্রেসক্রিপশন ও পরামর্শ',
-                                'বিনামূল্যে ওষুধ বিতরণ'
-                            ].map((service, index) => (
-                                <motion.li
-                                    key={index}
-                                    variants={fadeIn("up", "spring", 0.1 * index, 0.75)}
-                                    whileHover={{ y: -5, scale: 1.03 }}
-                                    className="flex items-center bg-white rounded-xl p-3 md:p-4 shadow-md"
-                                >
-                                    <div className="bg-green-100 rounded-full p-1.5 mr-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-green-600" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                        </svg>
-                                    </div>
-                                    <span className="text-gray-800">{service}</span>
-                                </motion.li>
-                            ))}
-                        </ul>
-                    </motion.div>
-
-                    {/* Sponsor */}
-                    <motion.div
-                        variants={fadeIn("right", "spring", 1, 0.75)}
-                        initial="hidden"
-                        whileInView="show"
-                        viewport={{ once: true, amount: 0.25 }}
-                        className="bg-white rounded-2xl p-5 md:p-6 mb-8 shadow-lg border-2 border-green-200"
-                    >
-                        <h2 className="text-lg md:text-xl font-bold text-green-700 mb-4 flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
-                            </svg>
-                            এই মহৎ উদ্যোগের পৃষ্ঠপোষক:
-                        </h2>
-                        <div className="bg-gradient-to-r from-green-50 to-teal-50 rounded-xl p-4 md:p-5 border-2 border-green-200">
-                            <p className="text-gray-800 text-base md:text-lg">
-                                আপনাদেরই প্রিয় মুখ,
-                                <span className="text-green-700 font-semibold"> অধ্যাপক মাওলানা সাইফ উদ্দিন আহমদ খন্দকার</span>,
-                                ঢাকা-১৮ আসনে খেলাফত মজলিস মনোনীত
-                                <span className="text-green-700 font-bold">"দেয়াল ঘড়ি মার্কা"</span> সংসদ সদস্য পদপ্রার্থী।
-                            </p>
-                        </div>
-                    </motion.div>
-
-                    {/* Organizers */}
-                    <motion.div
-                        variants={fadeIn("up", "spring", 1.1, 0.75)}
-                        initial="hidden"
-                        whileInView="show"
-                        viewport={{ once: true, amount: 0.25 }}
-                        className="text-center mb-8"
-                    >
-                        <div className="inline-block bg-gradient-to-r from-green-100 to-teal-100 rounded-full px-4 md:px-6 py-2 md:py-3 mb-4 shadow-md border border-green-200">
-                            <p className="text-gray-800 font-medium text-base md:text-lg">
-                                আয়োজনে:
-                                <span className="text-green-700 font-semibold"> খেলাফত মজলিস, ঢাকা মহানগরী উত্তর</span>
-                            </p>
-                        </div>
-                        <div className="inline-block bg-gradient-to-r from-teal-100 to-green-100 rounded-full px-4 md:px-6 py-2 md:py-3 shadow-md border border-green-200">
-                            <p className="text-gray-800 font-medium text-base md:text-lg">
-                                সহযোগিতায়:
-                                <span className="text-green-700 font-semibold"> হাফেজ্জী হুজুর (র.) সেবা ফাউন্ডেশন</span>
-                            </p>
-                        </div>
-                    </motion.div>
-
-                    {/* Contact */}
-                    <motion.div
-                        variants={fadeIn("up", "spring", 1.2, 0.75)}
-                        initial="hidden"
-                        whileInView="show"
-                        viewport={{ once: true, amount: 0.25 }}
-                        className="bg-gradient-to-r from-green-500 to-teal-500 rounded-2xl p-4 md:p-5 text-center shadow-xl"
-                    >
-                        <p className="text-white font-semibold flex flex-col md:flex-row items-center justify-center text-base md:text-lg">
-                            <span className="flex items-center mb-2 md:mb-0 md:mr-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                                </svg>
-                                যোগাযোগ:
-                            </span>
-                            <Link href={"tel:+8801608026999"} className="bg-white text-green-700 px-4 py-2 rounded-full font-bold text-base md:text-lg shadow-lg">
-                                ০১৬০৮-০২৬৯৯৯
-                            </Link>
-                        </p>
-                    </motion.div>
-
-                    {/* Decorative bottom border */}
-                    <div className="h-1 w-full bg-gradient-to-r from-green-400 to-teal-500 mt-8 rounded-full"></div>
-                </motion.div>
-
-
-            </div>
+        <div className={`flex gap-2 ${isMobile ? 'flex-col' : ''}`}>
+            <select
+                value={months[currentMonth.getMonth()]}
+                onChange={handleMonthChange}
+                className={`px-3 py-2 border rounded-md bg-white text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${isMobile ? 'text-sm' : ''}`}
+            >
+                {months.map(month => (
+                    <option key={month} value={month}>{month}</option>
+                ))}
+            </select>
+            <select
+                value={currentMonth.getFullYear()}
+                onChange={handleYearChange}
+                className={`px-3 py-2 border rounded-md bg-white text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${isMobile ? 'text-sm' : ''}`}
+            >
+                {years.map(year => (
+                    <option key={year} value={year}>{year}</option>
+                ))}
+            </select>
         </div>
-    )
+    );
+}
+
+// Desktop View Component
+function DesktopView({
+    currentMonth,
+    setCurrentMonth,
+    selectedDate,
+    setSelectedDate,
+    prayerTimes,
+    hijriDate,
+    isLoadingPrayerTimes
+}) {
+    const prayerNames = [
+        {
+            key: "Fajr",
+            name: "ফজর",
+            icon: <FaMoon className="text-indigo-600" />,
+            color: "from-indigo-500 to-purple-600",
+            endTimeKey: "Sunrise",
+            description: "ভোরের নামাজ"
+        },
+        {
+            key: "Dhuhr",
+            name: "যোহর",
+            icon: <FaSun className="text-orange-500" />,
+            color: "from-orange-400 to-red-500",
+            endTimeKey: "Asr",
+            description: "দুপুরের নামাজ"
+        },
+        {
+            key: "Asr",
+            name: "আসর",
+            icon: <FaCloudSun className="text-amber-500" />,
+            color: "from-amber-400 to-yellow-600",
+            endTimeKey: "Maghrib",
+            description: "বিকেলের নামাজ"
+        },
+        {
+            key: "Maghrib",
+            name: "মাগরিব",
+            icon: <FaSun className="text-red-500" />,
+            color: "from-red-500 to-pink-600",
+            endTimeKey: "Isha",
+            description: "সূর্যাস্তের নামাজ"
+        },
+        {
+            key: "Isha",
+            name: "ইশা",
+            icon: <FaMoon className="text-blue-800" />,
+            color: "from-blue-700 to-indigo-900",
+            endTimeKey: "Midnight",
+            description: "রাতের নামাজ"
+        }
+    ];
+
+    const goToPreviousMonth = () => {
+        setCurrentMonth(subMonths(currentMonth, 1));
+    };
+
+    const goToNextMonth = () => {
+        setCurrentMonth(addMonths(currentMonth, 1));
+    };
+
+    const goToCurrentMonth = () => {
+        setCurrentMonth(new Date());
+    };
+
+    // Generate calendar days
+    const monthStart = startOfMonth(currentMonth);
+    const monthEnd = endOfMonth(currentMonth);
+    const startDate = startOfWeek(monthStart, { weekStartsOn: 0 });
+    const endDate = endOfWeek(monthEnd, { weekStartsOn: 0 });
+    const days = [];
+    let currentDate = startDate;
+
+    while (currentDate <= endDate) {
+        days.push(new Date(currentDate));
+        currentDate = addDays(currentDate, 1);
+    }
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.05
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: {
+            y: 0,
+            opacity: 1,
+            transition: { duration: 0.4, ease: "easeOut" }
+        }
+    };
+
+    return (
+        <div className="hidden md:flex flex-col lg:flex-row gap-8">
+            {/* Calendar Section */}
+            <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="w-full lg:w-2/5 bg-white rounded-2xl shadow-xl p-6"
+            >
+                <div className="flex justify-between items-center mb-6">
+                    <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="p-2 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100"
+                        onClick={goToPreviousMonth}
+                    >
+                        <FaChevronLeft />
+                    </motion.button>
+
+                    <div className="text-center">
+                        <MonthYearSelector currentMonth={currentMonth} setCurrentMonth={setCurrentMonth} />
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="mt-2 text-sm text-blue-600 hover:text-blue-800"
+                            onClick={goToCurrentMonth}
+                        >
+                            বর্তমান মাসে যান
+                        </motion.button>
+                    </div>
+
+                    <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="p-2 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100"
+                        onClick={goToNextMonth}
+                    >
+                        <FaChevronRight />
+                    </motion.button>
+                </div>
+
+                {/* Calendar Grid */}
+                <div className="grid grid-cols-7 gap-1 mb-2">
+                    {["রবি", "সোম", "মঙ্গল", "বুধ", "বৃহস্পতি", "শুক্র", "শনি"].map((day, index) => (
+                        <div key={index} className="text-center text-sm font-medium text-gray-500 py-2">
+                            {day}
+                        </div>
+                    ))}
+                </div>
+
+                <div className="grid grid-cols-7 gap-1">
+                    {days.map((day, index) => (
+                        <motion.div
+                            key={index}
+                            variants={itemVariants}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className={`h-12 flex items-center justify-center rounded-lg cursor-pointer transition-colors ${isSameDay(day, new Date())
+                                ? 'bg-blue-500 text-white'
+                                : isSameDay(day, selectedDate)
+                                    ? 'bg-indigo-500 text-white'
+                                    : day.getMonth() !== currentMonth.getMonth()
+                                        ? 'text-gray-300'
+                                        : 'hover:bg-blue-100'
+                                }`}
+                            onClick={() => setSelectedDate(day)}
+                        >
+                            {format(day, "d")}
+                        </motion.div>
+                    ))}
+                </div>
+            </motion.div>
+
+            {/* Prayer Times Section */}
+            <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="w-full lg:w-3/5 bg-white rounded-2xl shadow-xl p-6"
+            >
+                <div className="flex justify-between items-center mb-6">
+                    <div>
+                        <h2 className="text-2xl font-bold text-gray-800">
+                            {format(selectedDate, "EEEE, d MMMM yyyy", { locale: bn })}
+                        </h2>
+                        {hijriDate && (
+                            <p className="text-gray-600">
+                                {hijriDate.day} {hijriDate.month.bn} {hijriDate.year} হিজরী
+                            </p>
+                        )}
+                    </div>
+                    <div className="text-3xl text-blue-600">
+                        <FaMosque />
+                    </div>
+                </div>
+
+                {isLoadingPrayerTimes ? (
+                    <div className="flex justify-center items-center h-64">
+                        <motion.div
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                            className="text-4xl text-blue-600"
+                        >
+                            <FaStarAndCrescent />
+                        </motion.div>
+                    </div>
+                ) : prayerTimes ? (
+                    <div className="space-y-4">
+                        {prayerNames.map((prayer, index) => (
+                            <motion.div
+                                key={index}
+                                variants={itemVariants}
+                                whileHover={{ y: -5 }}
+                                className={`p-4 rounded-xl ${index % 2 === 0 ? 'bg-blue-50' : 'bg-indigo-50'} border border-gray-100`}
+                            >
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center">
+                                        <div className="mr-3 text-xl">{prayer.icon}</div>
+                                        <div>
+                                            <h3 className="text-lg font-semibold text-gray-800">{prayer.name}</h3>
+                                            <p className="text-sm text-gray-600">{prayer.description}</p>
+                                        </div>
+                                    </div>
+                                    <div className="text-center">
+                                        <div className="text-xl font-bold text-gray-800">
+                                            {prayerTimes[prayer.key].substring(0, 5)} - {prayerTimes[prayer.endTimeKey].substring(0, 5)}
+                                        </div>
+                                        <div className="text-xs text-gray-500">শুরু - শেষ</div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="text-center py-8">
+                        <p className="text-gray-600">নামাজের সময়সূচী লোড করা যাচ্ছে না</p>
+                    </div>
+                )}
+            </motion.div>
+        </div>
+    );
+}
+
+// Mobile View Component
+function MobileView({
+    currentMonth,
+    setCurrentMonth,
+    selectedDate,
+    setSelectedDate,
+    prayerTimes,
+    hijriDate,
+    isLoadingPrayerTimes
+}) {
+    const prayerNames = [
+        {
+            key: "Fajr",
+            name: "ফজর",
+            icon: <FaMoon className="text-indigo-600" />,
+            color: "from-indigo-500 to-purple-600",
+            endTimeKey: "Sunrise",
+            description: "ভোরের নামাজ"
+        },
+        {
+            key: "Dhuhr",
+            name: "যোহর",
+            icon: <FaSun className="text-orange-500" />,
+            color: "from-orange-400 to-red-500",
+            endTimeKey: "Asr",
+            description: "দুপুরের নামাজ"
+        },
+        {
+            key: "Asr",
+            name: "আসর",
+            icon: <FaCloudSun className="text-amber-500" />,
+            color: "from-amber-400 to-yellow-600",
+            endTimeKey: "Maghrib",
+            description: "বিকেলের নামাজ"
+        },
+        {
+            key: "Maghrib",
+            name: "মাগরিব",
+            icon: <FaSun className="text-red-500" />,
+            color: "from-red-500 to-pink-600",
+            endTimeKey: "Isha",
+            description: "সূর্যাস্তের নামাজ"
+        },
+        {
+            key: "Isha",
+            name: "ইশা",
+            icon: <FaMoon className="text-blue-800" />,
+            color: "from-blue-700 to-indigo-900",
+            endTimeKey: "Midnight",
+            description: "রাতের নামাজ"
+        }
+    ];
+
+    const goToPreviousMonth = () => {
+        setCurrentMonth(subMonths(currentMonth, 1));
+    };
+
+    const goToNextMonth = () => {
+        setCurrentMonth(addMonths(currentMonth, 1));
+    };
+
+    const goToCurrentMonth = () => {
+        setCurrentMonth(new Date());
+    };
+
+    // Generate calendar days
+    const monthStart = startOfMonth(currentMonth);
+    const monthEnd = endOfMonth(currentMonth);
+    const startDate = startOfWeek(monthStart, { weekStartsOn: 0 });
+    const endDate = endOfWeek(monthEnd, { weekStartsOn: 0 });
+    const days = [];
+    let currentDate = startDate;
+
+    while (currentDate <= endDate) {
+        days.push(new Date(currentDate));
+        currentDate = addDays(currentDate, 1);
+    }
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.05
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: {
+            y: 0,
+            opacity: 1,
+            transition: { duration: 0.4, ease: "easeOut" }
+        }
+    };
+
+    return (
+        <div className="md:hidden flex flex-col gap-6">
+            {/* Calendar Section */}
+            <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="bg-white rounded-2xl shadow-xl p-4"
+            >
+                <div className="flex justify-between items-center mb-4">
+                    <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="p-2 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100"
+                        onClick={goToPreviousMonth}
+                    >
+                        <FaChevronLeft />
+                    </motion.button>
+
+                    <div className="text-center">
+                        <MonthYearSelector currentMonth={currentMonth} setCurrentMonth={setCurrentMonth} isMobile={true} />
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="mt-2 text-sm text-blue-600 hover:text-blue-800"
+                            onClick={goToCurrentMonth}
+                        >
+                            বর্তমান মাসে যান
+                        </motion.button>
+                    </div>
+
+                    <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="p-2 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100"
+                        onClick={goToNextMonth}
+                    >
+                        <FaChevronRight />
+                    </motion.button>
+                </div>
+
+                {/* Calendar Grid */}
+                <div className="grid grid-cols-7 gap-1 mb-2">
+                    {["র", "সো", "ম", "বু", "বৃ", "শু", "শ"].map((day, index) => (
+                        <div key={index} className="text-center text-xs font-medium text-gray-500 py-1">
+                            {day}
+                        </div>
+                    ))}
+                </div>
+
+                <div className="grid grid-cols-7 gap-1">
+                    {days.map((day, index) => (
+                        <motion.div
+                            key={index}
+                            variants={itemVariants}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className={`h-10 flex items-center justify-center rounded-lg cursor-pointer transition-colors ${isSameDay(day, new Date())
+                                ? 'bg-blue-500 text-white'
+                                : isSameDay(day, selectedDate)
+                                    ? 'bg-indigo-500 text-white'
+                                    : day.getMonth() !== currentMonth.getMonth()
+                                        ? 'text-gray-300'
+                                        : 'hover:bg-blue-100'
+                                }`}
+                            onClick={() => setSelectedDate(day)}
+                        >
+                            {format(day, "d")}
+                        </motion.div>
+                    ))}
+                </div>
+            </motion.div>
+
+            {/* Prayer Times Section */}
+            <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="bg-white rounded-2xl shadow-xl p-4"
+            >
+                <div className="flex justify-between items-center mb-4">
+                    <div>
+                        <h2 className="text-xl font-bold text-gray-800">
+                            {format(selectedDate, "EEEE, d MMMM", { locale: bn })}
+                        </h2>
+                        {hijriDate && (
+                            <p className="text-gray-600 text-sm">
+                                {hijriDate.day} {hijriDate.month.bn} {hijriDate.year} হিজরী
+                            </p>
+                        )}
+                    </div>
+                    <div className="text-2xl text-blue-600">
+                        <FaMosque />
+                    </div>
+                </div>
+
+                {isLoadingPrayerTimes ? (
+                    <div className="flex justify-center items-center h-32">
+                        <motion.div
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                            className="text-3xl text-blue-600"
+                        >
+                            <FaStarAndCrescent />
+                        </motion.div>
+                    </div>
+                ) : prayerTimes ? (
+                    <div className="space-y-3">
+                        {prayerNames.map((prayer, index) => (
+                            <motion.div
+                                key={index}
+                                variants={itemVariants}
+                                whileHover={{ y: -5 }}
+                                className={`p-3 rounded-xl ${index % 2 === 0 ? 'bg-blue-50' : 'bg-indigo-50'} border border-gray-100`}
+                            >
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center">
+                                        <div className="mr-2">{prayer.icon}</div>
+                                        <div>
+                                            <h3 className="font-semibold text-gray-800">{prayer.name}</h3>
+                                            <p className="text-xs text-gray-600">{prayer.description}</p>
+                                        </div>
+                                    </div>
+                                    <div className="text-center">
+                                        <div className="text-lg font-bold text-gray-800">
+                                            {prayerTimes[prayer.key].substring(0, 5)} - {prayerTimes[prayer.endTimeKey].substring(0, 5)}
+                                        </div>
+                                        <div className="text-xs text-gray-500">শুরু - শেষ</div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="text-center py-6">
+                        <p className="text-gray-600">নামাজের সময়সূচী লোড করা যাচ্ছে না</p>
+                    </div>
+                )}
+            </motion.div>
+        </div>
+    );
+}
+
+export default function PrayerTimesCalendar() {
+    const [currentMonth, setCurrentMonth] = useState(new Date());
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [prayerTimes, setPrayerTimes] = useState(null);
+    const [hijriDate, setHijriDate] = useState(null);
+    const [isLoadingPrayerTimes, setIsLoadingPrayerTimes] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        async function fetchPrayerTimes() {
+            setIsLoadingPrayerTimes(true);
+            setError(null);
+            try {
+                const dateStr = format(selectedDate, 'dd-MM-yyyy');
+                const res = await fetch(
+                    `https://api.aladhan.com/v1/timingsByCity/${dateStr}?city=Dhaka&country=Bangladesh&method=1`
+                );
+                const data = await res.json();
+
+                if (data.code === 200) {
+                    setPrayerTimes(data.data.timings);
+                    setHijriDate(data.data.date.hijri);
+                } else {
+                    throw new Error(`API error: ${data.status}`);
+                }
+            } catch (error) {
+                console.error("Error fetching prayer times:", error);
+                setError(error.message);
+            } finally {
+                setIsLoadingPrayerTimes(false);
+            }
+        }
+
+        fetchPrayerTimes();
+    }, [selectedDate]);
+
+    if (error) {
+        return (
+            <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+                <motion.div
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    className="text-center p-8 bg-white rounded-2xl shadow-xl max-w-md"
+                >
+                    <div className="text-5xl text-red-500 mb-4">
+                        <FaStarAndCrescent />
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-800 mb-2">নামাজের সময়সূচী লোড করা যাচ্ছে না</h2>
+                    <p className="text-gray-600 mb-4">{error || "দুঃখিত, সার্ভার থেকে ডেটা আনতে সমস্যা হচ্ছে।"}</p>
+                    <p className="text-gray-500 text-sm mb-6">অনুগ্রহ করে কিছুক্ষণ পরে আবার চেষ্টা করুন।</p>
+                    <div className="flex gap-3 justify-center">
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-full font-medium shadow-md"
+                            onClick={() => window.location.reload()}
+                        >
+                            পুনরায় চেষ্টা করুন
+                        </motion.button>
+                    </div>
+                </motion.div>
+            </div>
+        );
+    }
+
+    return (
+        <section className="min-h-screen py-8 px-4 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+            <div className="max-w-7xl mx-auto">
+                {/* Header */}
+                <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7 }}
+                    className="text-center mb-8"
+                >
+                    <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mb-2 shadow-lg"
+                    >
+                        <FaMosque className="text-white text-3xl" />
+                    </motion.div>
+                    <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-800 mb-3 pt-4">
+                        নামাজের সময়সূচী
+                    </h1>
+                    <p className="text-lg text-gray-600 mb-6">ঢাকা, বাংলাদেশ</p>
+                </motion.div>
+
+                {/* Desktop View */}
+                <DesktopView
+                    currentMonth={currentMonth}
+                    setCurrentMonth={setCurrentMonth}
+                    selectedDate={selectedDate}
+                    setSelectedDate={setSelectedDate}
+                    prayerTimes={prayerTimes}
+                    hijriDate={hijriDate}
+                    isLoadingPrayerTimes={isLoadingPrayerTimes}
+                />
+
+                {/* Mobile View */}
+                <MobileView
+                    currentMonth={currentMonth}
+                    setCurrentMonth={setCurrentMonth}
+                    selectedDate={selectedDate}
+                    setSelectedDate={setSelectedDate}
+                    prayerTimes={prayerTimes}
+                    hijriDate={hijriDate}
+                    isLoadingPrayerTimes={isLoadingPrayerTimes}
+                />
+
+                {/* Footer */}
+                {/* <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.8 }}
+                    className="mt-8 text-center text-gray-600"
+                >
+                    <p>তথ্য সরবরাহ করেছে আলাদান এপিআই • সময়সূচী সামান্য ভিন্ন হতে পারে</p>
+                </motion.div> */}
+            </div>
+        </section>
+    );
 }

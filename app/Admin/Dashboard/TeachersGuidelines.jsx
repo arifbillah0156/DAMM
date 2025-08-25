@@ -241,7 +241,7 @@ const TeacherPostForm = () => {
                                             <motion.textarea
                                                 whileFocus={{ scale: 1.01 }}
                                                 minLength={10}
-                                                maxLength={1000}
+                                                maxLength={5000}
                                                 id={field.id}
                                                 name={field.id}
                                                 value={formData[field.id]}
@@ -254,7 +254,7 @@ const TeacherPostForm = () => {
                                                 placeholder={field.placeholder}
                                             />
                                             <div className="absolute bottom-2 right-2 text-xs text-gray-400">
-                                                {characterCount}/1000
+                                                {characterCount}/5000
                                             </div>
                                         </div>
                                     ) : field.type === 'select' ? (
