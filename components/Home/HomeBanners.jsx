@@ -23,7 +23,7 @@ const images = [
 
 export default function FullSlider() {
   return (
-    <section id="slider_area" className="w-full h-full z-0 border-[3px] lg:border-[10px] border-white">
+    <section id="slider_area" className="max-w-full h-full z-0 m-1 lg:m-2 border border-blue-200 rounded-md lg:rounded-lg">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         // navigation
