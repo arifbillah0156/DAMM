@@ -1,4 +1,6 @@
-import React from "react";
+import CountUp from 'react-countup';
+import CountUpNumber from '../Others/CountUp';
+
 
 
 const HomeSection8 = () => {
@@ -20,7 +22,8 @@ const HomeSection8 = () => {
               Teachers
             </h3>
             <div className="text-4xl font-bold text-green-600">
-              100<span className="">+</span>
+              <CountUpNumber num="50" />
+              <span className="">+</span>
             </div>
           </div>
           {/* Counter 2 */}
@@ -31,7 +34,7 @@ const HomeSection8 = () => {
               Students
             </h3>
             <div className="text-4xl font-bold text-green-600">
-              1,000<span className="">+</span>
+              <CountUpNumber num="1000" /><span className="">+</span>
             </div>
           </div>
           {/* Counter 3 */}
@@ -42,7 +45,7 @@ const HomeSection8 = () => {
               Staff
             </h3>
             <div className="text-4xl font-bold text-green-600">
-              50<span className="">+</span>
+              <CountUpNumber num="20" /><span className="">+</span>
             </div>
           </div>
         </div>

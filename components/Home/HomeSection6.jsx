@@ -1,3 +1,5 @@
+import SplitText from "../Others/SplitText";
+
 export default function HomeSection6() {
   return (
     <section className="relative bg-gray-50 py-16">
@@ -23,11 +25,14 @@ export default function HomeSection6() {
           <div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-green-600 lg:mt-24 abril-fatface-regular">
               Recognized as a{" "} <br />
-              <p className="text-lc md:mt-1">Premier Model Madrasah</p>
+              <SplitText text="Premier Model Madrasah" className="text-lc md:mt-1" />
+              {/* <p className="text-lc md:mt-1">Premier Model Madrasah</p> */}
             </h2>
-            <p className="mt-4 text-gray-700 text-justify">
+
+            <SplitText text="We are committed to providing quality Islamic education with a modern approach, nurturing students with values, knowledge, and character. Our mission is to build an enlightened generation rooted in faith and ethics." className="mt-4 text-gray-800 text-justify" />
+            {/* <p className="mt-4 text-gray-700 text-justify">
               We are committed to providing quality Islamic education with a modern approach, nurturing students with values, knowledge, and character. Our mission is to build an enlightened generation rooted in faith and ethics.
-            </p>
+            </p> */}
           </div>
 
           {/* Right Column */}
@@ -38,9 +43,10 @@ export default function HomeSection6() {
                 <i className="fa-solid fa-book-quran mr-3"></i>
                 আধুনিক ও ইসলামী শিক্ষার সমন্বয়
               </h3>
-              <p className="mt-2 text-lg text-justify">
+              <SplitText text="দারুল আজহার মাদরাসায় ইসলামী আদর্শের সাথে আধুনিক পাঠ্যক্রমের অপূর্ব সমন্বয় ঘটানো হয়েছে, যা একজন শিক্ষার্থীকে যুগোপযোগী করে তোলে।" className="mt-2 text-lg text-justify" />
+              {/* <p className="mt-2 text-lg text-justify">
                 দারুল আজহার মাদরাসায় ইসলামী আদর্শের সাথে আধুনিক পাঠ্যক্রমের অপূর্ব সমন্বয় ঘটানো হয়েছে, যা একজন শিক্ষার্থীকে যুগোপযোগী করে তোলে।
-              </p>
+              </p> */}
             </div>
 
             {/* Feature Box 2 */}
@@ -49,9 +55,10 @@ export default function HomeSection6() {
                 <i className="fa-solid fa-user-graduate mr-3"></i>
                 নৈতিক ও আদর্শ চরিত্র গঠনে অঙ্গীকারবদ্ধ
               </h3>
-              <p className="mt-2 text-lg text-justify">
+              <SplitText text="শুধুমাত্র শিক্ষা নয়, বরং চারিত্রিক গঠন, শৃঙ্খলা, ও আদর্শিক জীবনচর্যায় শিক্ষার্থীদের গড়ে তোলাই আমাদের অন্যতম লক্ষ্য।" className="mt-2 text-lg text-justify" />
+              {/* <p className="mt-2 text-lg text-justify">
                 শুধুমাত্র শিক্ষা নয়, বরং চারিত্রিক গঠন, শৃঙ্খলা, ও আদর্শিক জীবনচর্যায় শিক্ষার্থীদের গড়ে তোলাই আমাদের অন্যতম লক্ষ্য।
-              </p>
+              </p> */}
             </div>
 
             {/* Feature Box 3 */}
@@ -60,9 +67,10 @@ export default function HomeSection6() {
                 <i className="fa-solid fa-chalkboard-user mr-3"></i>
                 অভিজ্ঞ শিক্ষক ও প্রযুক্তি-সমৃদ্ধ পরিবেশ
               </h3>
-              <p className="mt-2 text-lg text-justify">
+              <SplitText text="আমাদের অভিজ্ঞ আলেম ও মডার্ন টিচারগণ যুগোপযোগী প্রযুক্তি ব্যবহার করে শিক্ষাদান করেন, যাতে শিক্ষার্থীরা সময়ের সঙ্গে তাল মিলিয়ে এগিয়ে যেতে পারে।" className="mt-2 text-lg text-justify" />
+              {/* <p className="mt-2 text-lg text-justify">
                 আমাদের অভিজ্ঞ আলেম ও মডার্ন টিচারগণ যুগোপযোগী প্রযুক্তি ব্যবহার করে শিক্ষাদান করেন, যাতে শিক্ষার্থীরা সময়ের সঙ্গে তাল মিলিয়ে এগিয়ে যেতে পারে।
-              </p>
+              </p> */}
             </div>
           </div>
 

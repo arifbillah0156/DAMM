@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import SplitText from "../Others/SplitText";
 
 export default function HomeSection4() {
   const [activeTab, setActiveTab] = useState(1);
@@ -34,9 +35,12 @@ export default function HomeSection4() {
   return (
     <div className="max-w-5xl mx-auto mt-8 p-6 bg-gray-50 rounded-lg shadow-md">
       {/* Heading */}
-      <h2 className="text-3xl font-bold text-lc text-center mb-4 abril-fatface-regular">
+      <div className="w-full text-center">
+        <SplitText text="Addresses of all Our Campuses" className="text-3xl font-bold text-lc text-center mb-4 abril-fatface-regular" />
+      </div>
+      {/* <h2 className="text-3xl font-bold text-lc text-center mb-4 abril-fatface-regular">
         <span className="">Addresses of all</span> <p className="block md:hidden"></p>  Our Campuses
-      </h2>
+      </h2> */}
       {/* Divider */}
       <div className="w-full mx-auto border-b-4 border-lc mb-6"></div>
       {/* Tabs */}

@@ -1,3 +1,5 @@
+import SplitText from "../Others/SplitText";
+
 export default function HomeSection5() {
   return (
     <div className="h-max w-[100%] relative mt-12">
@@ -16,9 +18,10 @@ export default function HomeSection5() {
         <div className="container mx-auto px-6 py-12 relative z-10">
           <div className="text-center">
             {/* Heading */}
-            <h2 className="text-2xl sm:text-4xl font-bold text-lc mb-4 abril-fatface-regular">
+            <SplitText text="A Unique Model Madrasah In Bangladesh" className="text-2xl sm:text-4xl font-bold text-lc abril-fatface-regular" />
+            {/* <h2 className="text-2xl sm:text-4xl font-bold text-lc mb-4 abril-fatface-regular">
               A Unique Model Madrasah In Bangladesh
-            </h2>
+            </h2> */}
             {/* Divider */}
             <div className="w-full h-1 bg-lc mx-auto my-6"></div>
           </div>

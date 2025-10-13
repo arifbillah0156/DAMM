@@ -20,27 +20,44 @@ function LoadingSpinner() {
     );
 }
 
+// সময় ফরম্যাটিং ফাংশন (24 ঘন্টা থেকে 12 ঘন্টায় রূপান্তর)
+function formatTime(time24) {
+    if (!time24) return "";
+
+    // সময় থেকে ঘন্টা এবং মিনিট আলাদা করা
+    const [hours, minutes] = time24.split(':').map(Number);
+
+    // 12-ঘন্টার ফরম্যাটে রূপান্তর
+    const period = hours >= 12 ? 'PM' : 'AM';
+    const hours12 = hours % 12 || 12; // 0 হলে 12 হবে
+    const formattedMinutes = minutes.toString().padStart(2, '0');
+
+    // ফরম্যাট করা সময় রিটার্ন করা
+    return `${hours12}:${formattedMinutes} ${period}`;
+}
+
 // Month and Year Selector Component
 function MonthYearSelector({ currentMonth, setCurrentMonth, isMobile = false }) {
     const months = [
         'জানুয়ারী', 'ফেব্রুয়ারী', 'মার্চ', 'এপ্রিল', 'মে', 'জুন',
         'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'
     ];
-
     const currentYear = new Date().getFullYear();
     const years = Array.from({ length: 21 }, (_, i) => currentYear - 10 + i); // 10 years back and 10 years forward
-
     const handleMonthChange = (e) => {
         const monthIndex = months.indexOf(e.target.value);
         setCurrentMonth(new Date(currentMonth.getFullYear(), monthIndex, 1));
     };
-
     const handleYearChange = (e) => {
         setCurrentMonth(new Date(parseInt(e.target.value), currentMonth.getMonth(), 1));
     };
-
     return (
-        <div className={`flex gap-2 ${isMobile ? 'flex-col' : ''}`}>
+        <motion.div
+            className={`flex gap-2 ${isMobile ? 'flex-col' : ''}`}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+        >
             <select
                 value={months[currentMonth.getMonth()]}
                 onChange={handleMonthChange}
@@ -59,7 +76,7 @@ function MonthYearSelector({ currentMonth, setCurrentMonth, isMobile = false }) 
                     <option key={year} value={year}>{year}</option>
                 ))}
             </select>
-        </div>
+        </motion.div>
     );
 }
 
@@ -115,19 +132,15 @@ function DesktopView({
             description: "রাতের নামাজ"
         }
     ];
-
     const goToPreviousMonth = () => {
         setCurrentMonth(subMonths(currentMonth, 1));
     };
-
     const goToNextMonth = () => {
         setCurrentMonth(addMonths(currentMonth, 1));
     };
-
     const goToCurrentMonth = () => {
         setCurrentMonth(new Date());
     };
-
     // Generate calendar days
     const monthStart = startOfMonth(currentMonth);
     const monthEnd = endOfMonth(currentMonth);
@@ -135,12 +148,10 @@ function DesktopView({
     const endDate = endOfWeek(monthEnd, { weekStartsOn: 0 });
     const days = [];
     let currentDate = startDate;
-
     while (currentDate <= endDate) {
         days.push(new Date(currentDate));
         currentDate = addDays(currentDate, 1);
     }
-
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -150,7 +161,6 @@ function DesktopView({
             }
         }
     };
-
     const itemVariants = {
         hidden: { y: 20, opacity: 0 },
         visible: {
@@ -159,9 +169,13 @@ function DesktopView({
             transition: { duration: 0.4, ease: "easeOut" }
         }
     };
-
     return (
-        <div className="hidden md:flex flex-col justify-center lg:flex-row gap-8">
+        <motion.div
+            className="hidden md:flex flex-col justify-center lg:flex-row gap-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+        >
             {/* Calendar Section */}
             <motion.div
                 variants={containerVariants}
@@ -178,7 +192,6 @@ function DesktopView({
                     >
                         <FaChevronLeft />
                     </motion.button>
-
                     <div className="text-center">
                         <MonthYearSelector currentMonth={currentMonth} setCurrentMonth={setCurrentMonth} />
                         <motion.button
@@ -190,7 +203,6 @@ function DesktopView({
                             বর্তমান মাসে যান
                         </motion.button>
                     </div>
-
                     <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
@@ -200,7 +212,6 @@ function DesktopView({
                         <FaChevronRight />
                     </motion.button>
                 </div>
-
                 {/* Calendar Grid */}
                 <div className="grid grid-cols-7 gap-1 mb-2">
                     {["রবি", "সোম", "মঙ্গল", "বুধ", "বৃহস্পতি", "শুক্র", "শনি"].map((day, index) => (
@@ -209,7 +220,6 @@ function DesktopView({
                         </div>
                     ))}
                 </div>
-
                 <div className="grid grid-cols-7 gap-1">
                     {days.map((day, index) => (
                         <motion.div
@@ -232,7 +242,6 @@ function DesktopView({
                     ))}
                 </div>
             </motion.div>
-
             {/* Prayer Times Section */}
             <motion.div
                 variants={containerVariants}
@@ -251,11 +260,21 @@ function DesktopView({
                             </p>
                         )}
                     </div>
-                    <div className="text-3xl text-blue-600">
+                    <motion.div
+                        className="text-3xl text-blue-600"
+                        animate={{
+                            scale: [1, 1.1, 1],
+                            rotate: [0, 5, 0, -5, 0]
+                        }}
+                        transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            repeatType: "reverse"
+                        }}
+                    >
                         <FaMosque />
-                    </div>
+                    </motion.div>
                 </div>
-
                 {isLoadingPrayerTimes ? (
                     <div className="flex justify-center items-center h-64">
                         <motion.div
@@ -268,30 +287,37 @@ function DesktopView({
                     </div>
                 ) : prayerTimes ? (
                     <div className="space-y-4">
-                        {prayerNames.map((prayer, index) => (
-                            <motion.div
-                                key={index}
-                                variants={itemVariants}
-                                whileHover={{ y: -5 }}
-                                className={`p-4 rounded-xl ${index % 2 === 0 ? 'bg-blue-50' : 'bg-indigo-50'} border border-gray-100`}
-                            >
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center">
-                                        <div className="mr-3 text-xl">{prayer.icon}</div>
-                                        <div>
-                                            <h3 className="text-lg font-semibold text-gray-800">{prayer.name}</h3>
-                                            <p className="text-sm text-gray-600">{prayer.description}</p>
+                        <AnimatePresence>
+                            {prayerNames.map((prayer, index) => (
+                                <motion.div
+                                    key={index}
+                                    variants={itemVariants}
+                                    whileHover={{ y: -5 }}
+                                    className={`p-4 rounded-xl ${index % 2 === 0 ? 'bg-blue-50' : 'bg-indigo-50'} border border-gray-100`}
+                                >
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex items-center">
+                                            <motion.div
+                                                className="mr-3 text-xl"
+                                                whileHover={{ scale: 1.2 }}
+                                            >
+                                                {prayer.icon}
+                                            </motion.div>
+                                            <div>
+                                                <h3 className="text-lg font-semibold text-gray-800">{prayer.name}</h3>
+                                                <p className="text-sm text-gray-600">{prayer.description}</p>
+                                            </div>
+                                        </div>
+                                        <div className="text-center">
+                                            <div className="text-xl font-bold text-gray-800">
+                                                {formatTime(prayerTimes[prayer.key])} - {formatTime(prayerTimes[prayer.endTimeKey])}
+                                            </div>
+                                            <div className="text-xs text-gray-500">শুরু - শেষ</div>
                                         </div>
                                     </div>
-                                    <div className="text-center">
-                                        <div className="text-xl font-bold text-gray-800">
-                                            {prayerTimes[prayer.key].substring(0, 5)} - {prayerTimes[prayer.endTimeKey].substring(0, 5)}
-                                        </div>
-                                        <div className="text-xs text-gray-500">শুরু - শেষ</div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
+                                </motion.div>
+                            ))}
+                        </AnimatePresence>
                     </div>
                 ) : (
                     <div className="text-center py-8">
@@ -299,7 +325,7 @@ function DesktopView({
                     </div>
                 )}
             </motion.div>
-        </div>
+        </motion.div>
     );
 }
 
@@ -355,19 +381,15 @@ function MobileView({
             description: "রাতের নামাজ"
         }
     ];
-
     const goToPreviousMonth = () => {
         setCurrentMonth(subMonths(currentMonth, 1));
     };
-
     const goToNextMonth = () => {
         setCurrentMonth(addMonths(currentMonth, 1));
     };
-
     const goToCurrentMonth = () => {
         setCurrentMonth(new Date());
     };
-
     // Generate calendar days
     const monthStart = startOfMonth(currentMonth);
     const monthEnd = endOfMonth(currentMonth);
@@ -375,12 +397,10 @@ function MobileView({
     const endDate = endOfWeek(monthEnd, { weekStartsOn: 0 });
     const days = [];
     let currentDate = startDate;
-
     while (currentDate <= endDate) {
         days.push(new Date(currentDate));
         currentDate = addDays(currentDate, 1);
     }
-
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -390,7 +410,6 @@ function MobileView({
             }
         }
     };
-
     const itemVariants = {
         hidden: { y: 20, opacity: 0 },
         visible: {
@@ -399,9 +418,13 @@ function MobileView({
             transition: { duration: 0.4, ease: "easeOut" }
         }
     };
-
     return (
-        <div className="md:hidden flex flex-col gap-6">
+        <motion.div
+            className="md:hidden flex flex-col gap-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+        >
             {/* Calendar Section */}
             <motion.div
                 variants={containerVariants}
@@ -418,7 +441,6 @@ function MobileView({
                     >
                         <FaChevronLeft />
                     </motion.button>
-
                     <div className="text-center">
                         <MonthYearSelector currentMonth={currentMonth} setCurrentMonth={setCurrentMonth} isMobile={true} />
                         <motion.button
@@ -430,7 +452,6 @@ function MobileView({
                             বর্তমান মাসে যান
                         </motion.button>
                     </div>
-
                     <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
@@ -440,7 +461,6 @@ function MobileView({
                         <FaChevronRight />
                     </motion.button>
                 </div>
-
                 {/* Calendar Grid */}
                 <div className="grid grid-cols-7 gap-1 mb-2">
                     {["র", "সো", "ম", "বু", "বৃ", "শু", "শ"].map((day, index) => (
@@ -449,7 +469,6 @@ function MobileView({
                         </div>
                     ))}
                 </div>
-
                 <div className="grid grid-cols-7 gap-1">
                     {days.map((day, index) => (
                         <motion.div
@@ -472,7 +491,6 @@ function MobileView({
                     ))}
                 </div>
             </motion.div>
-
             {/* Prayer Times Section */}
             <motion.div
                 variants={containerVariants}
@@ -491,11 +509,21 @@ function MobileView({
                             </p>
                         )}
                     </div>
-                    <div className="text-2xl text-blue-600">
+                    <motion.div
+                        className="text-2xl text-blue-600"
+                        animate={{
+                            scale: [1, 1.1, 1],
+                            rotate: [0, 5, 0, -5, 0]
+                        }}
+                        transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            repeatType: "reverse"
+                        }}
+                    >
                         <FaMosque />
-                    </div>
+                    </motion.div>
                 </div>
-
                 {isLoadingPrayerTimes ? (
                     <div className="flex justify-center items-center h-32">
                         <motion.div
@@ -508,30 +536,37 @@ function MobileView({
                     </div>
                 ) : prayerTimes ? (
                     <div className="space-y-3">
-                        {prayerNames.map((prayer, index) => (
-                            <motion.div
-                                key={index}
-                                variants={itemVariants}
-                                whileHover={{ y: -5 }}
-                                className={`p-3 rounded-xl ${index % 2 === 0 ? 'bg-blue-50' : 'bg-indigo-50'} border border-gray-100`}
-                            >
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center">
-                                        <div className="mr-2">{prayer.icon}</div>
-                                        <div>
-                                            <h3 className="font-semibold text-gray-800">{prayer.name}</h3>
-                                            <p className="text-xs text-gray-600">{prayer.description}</p>
+                        <AnimatePresence>
+                            {prayerNames.map((prayer, index) => (
+                                <motion.div
+                                    key={index}
+                                    variants={itemVariants}
+                                    whileHover={{ y: -5 }}
+                                    className={`p-3 rounded-xl ${index % 2 === 0 ? 'bg-blue-50' : 'bg-indigo-50'} border border-gray-100`}
+                                >
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex items-center">
+                                            <motion.div
+                                                className="mr-2"
+                                                whileHover={{ scale: 1.2 }}
+                                            >
+                                                {prayer.icon}
+                                            </motion.div>
+                                            <div>
+                                                <h3 className="font-semibold text-gray-800">{prayer.name}</h3>
+                                                <p className="text-xs text-gray-600">{prayer.description}</p>
+                                            </div>
+                                        </div>
+                                        <div className="text-center">
+                                            <div className="text-lg font-bold text-gray-800">
+                                                {formatTime(prayerTimes[prayer.key])} - {formatTime(prayerTimes[prayer.endTimeKey])}
+                                            </div>
+                                            <div className="text-xs text-gray-500">শুরু - শেষ</div>
                                         </div>
                                     </div>
-                                    <div className="text-center">
-                                        <div className="text-lg font-bold text-gray-800">
-                                            {prayerTimes[prayer.key].substring(0, 5)} - {prayerTimes[prayer.endTimeKey].substring(0, 5)}
-                                        </div>
-                                        <div className="text-xs text-gray-500">শুরু - শেষ</div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
+                                </motion.div>
+                            ))}
+                        </AnimatePresence>
                     </div>
                 ) : (
                     <div className="text-center py-6">
@@ -539,7 +574,7 @@ function MobileView({
                     </div>
                 )}
             </motion.div>
-        </div>
+        </motion.div>
     );
 }
 
@@ -561,7 +596,6 @@ export default function PrayerTimesCalendar() {
                     `https://api.aladhan.com/v1/timingsByCity/${dateStr}?city=Dhaka&country=Bangladesh&method=1`
                 );
                 const data = await res.json();
-
                 if (data.code === 200) {
                     setPrayerTimes(data.data.timings);
                     setHijriDate(data.data.date.hijri);
@@ -575,21 +609,36 @@ export default function PrayerTimesCalendar() {
                 setIsLoadingPrayerTimes(false);
             }
         }
-
         fetchPrayerTimes();
     }, [selectedDate]);
 
     if (error) {
         return (
-            <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+            <motion.div
+                className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-blue-50 to-indigo-100"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+            >
                 <motion.div
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     className="text-center p-8 bg-white rounded-2xl shadow-xl max-w-md"
                 >
-                    <div className="text-5xl text-red-500 mb-4">
+                    <motion.div
+                        className="text-5xl text-red-500 mb-4"
+                        animate={{
+                            scale: [1, 1.2, 1],
+                            rotate: [0, 10, 0, -10, 0]
+                        }}
+                        transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            repeatType: "reverse"
+                        }}
+                    >
                         <FaStarAndCrescent />
-                    </div>
+                    </motion.div>
                     <h2 className="text-2xl font-bold text-gray-800 mb-2">নামাজের সময়সূচী লোড করা যাচ্ছে না</h2>
                     <p className="text-gray-600 mb-4">{error || "দুঃখিত, সার্ভার থেকে ডেটা আনতে সমস্যা হচ্ছে।"}</p>
                     <p className="text-gray-500 text-sm mb-6">অনুগ্রহ করে কিছুক্ষণ পরে আবার চেষ্টা করুন।</p>
@@ -604,12 +653,17 @@ export default function PrayerTimesCalendar() {
                         </motion.button>
                     </div>
                 </motion.div>
-            </div>
+            </motion.div>
         );
     }
 
     return (
-        <section className="min-h-screen py-8 px-4 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+        <motion.section
+            className="min-h-screen py-8 px-4 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+        >
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <motion.div
@@ -662,6 +716,6 @@ export default function PrayerTimesCalendar() {
                     <p>তথ্য সরবরাহ করেছে আলাদান এপিআই • সময়সূচী সামান্য ভিন্ন হতে পারে</p>
                 </motion.div> */}
             </div>
-        </section>
+        </motion.section>
     );
 }

@@ -1,24 +1,7 @@
 "use client"
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { toast, Toaster } from 'react-hot-toast';
 import { FaUser, FaBook, FaPhone, FaCalendar, FaBuilding, FaMapMarkerAlt, FaShieldAlt, FaMoneyBill, FaSave, FaCheck, FaTrash, FaCloudUploadAlt } from 'react-icons/fa';
-import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, addDoc, serverTimestamp } from 'firebase/firestore';
-
-// Firebase configuration
-const firebaseConfig = {
-    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-    measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 
 // Reusable Form Input Component
 const FormInput = ({
@@ -67,7 +50,7 @@ const FormInput = ({
 };
 
 // Reusable Image Upload Component
-const ImageUpload = ({ imagePreview, onChange, isUploading }) => {
+const ImageUpload = ({ imagePreview, onChange }) => {
     return (
         <div className="mt-6">
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -77,15 +60,7 @@ const ImageUpload = ({ imagePreview, onChange, isUploading }) => {
                 <label className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-xl cursor-pointer bg-gray-50 hover:bg-gray-100 transition-all duration-300 group relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="relative flex flex-col items-center justify-center pt-5 pb-6">
-                        {isUploading ? (
-                            <div className="flex flex-col items-center justify-center">
-                                <svg className="animate-spin h-10 w-10 text-blue-600 mb-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-                                <p className="text-sm text-gray-700">Uploading image...</p>
-                            </div>
-                        ) : imagePreview ? (
+                        {imagePreview ? (
                             <div className="relative group/image">
                                 <img src={imagePreview} alt="Preview" className="w-32 h-32 object-cover rounded-lg shadow-md transition-transform duration-300 group-hover/image:scale-105" />
                                 <div className="absolute inset-0 bg-black bg-opacity-40 rounded-lg flex items-center justify-center opacity-0 group-hover/image:opacity-100 transition-opacity duration-300">
@@ -154,14 +129,8 @@ const MainComponent = () => {
 
     const [image, setImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
-    const [imageUrl, setImageUrl] = useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
-    const [isImageUploading, setIsImageUploading] = useState(false);
-
-    // Cloudinary configuration
-    const CLOUDINARY_CLOUD_NAME = "draa5hcsq";
-    const CLOUDINARY_UPLOAD_PRESET = "Scholarship_Registration_Form_2025";
 
     // Helper function to check if draft has actual data
     const hasDraftData = (data) => {
@@ -183,7 +152,6 @@ const MainComponent = () => {
                 if (hasDraftData(draftData)) {
                     setFormData(draftData.formData);
                     setImagePreview(draftData.imagePreview);
-                    setImageUrl(draftData.imageUrl);
                     toast.success('Draft loaded successfully!');
                 }
             } catch (error) {
@@ -197,46 +165,16 @@ const MainComponent = () => {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleImageChange = async (e) => {
+    const handleImageChange = (e) => {
         if (e.target.files && e.target.files[0]) {
             const file = e.target.files[0];
             setImage(file);
-            setIsImageUploading(true);
 
-            // Create a preview immediately
             const reader = new FileReader();
             reader.onloadend = () => {
                 setImagePreview(reader.result);
             };
             reader.readAsDataURL(file);
-
-            // Upload to Cloudinary
-            const formData = new FormData();
-            formData.append('file', file);
-            formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-
-            try {
-                const response = await fetch(
-                    `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
-                    {
-                        method: 'POST',
-                        body: formData
-                    }
-                );
-
-                if (!response.ok) {
-                    throw new Error('Image upload failed');
-                }
-
-                const data = await response.json();
-                setImageUrl(data.secure_url);
-                toast.success('Image uploaded successfully!');
-            } catch (error) {
-                console.error('Error uploading image:', error);
-                toast.error('Failed to upload image');
-            } finally {
-                setIsImageUploading(false);
-            }
         }
     };
 
@@ -260,7 +198,6 @@ const MainComponent = () => {
         });
         setImage(null);
         setImagePreview(null);
-        setImageUrl(null);
         toast.success('Form cleared successfully!');
     };
 
@@ -274,7 +211,6 @@ const MainComponent = () => {
         const draftData = {
             formData,
             imagePreview,
-            imageUrl,
             savedAt: new Date().toISOString()
         };
 
@@ -283,56 +219,22 @@ const MainComponent = () => {
         toast.success('Draft saved successfully!');
     };
 
-    const saveToFirebase = async (data) => {
-        try {
-            // Add a new document with a generated id
-            const docRef = await addDoc(collection(db, "scholarshipApplications"), {
-                ...data,
-                createdAt: serverTimestamp(),
-                status: "pending" // You can set initial status
-            });
-            console.log("Document written with ID: ", docRef.id);
-            return true;
-        } catch (e) {
-            console.error("Error adding document: ", e);
-            return false;
-        }
-    };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!imageUrl) {
-            toast.error('Please upload an image');
-            return;
-        }
-
         setIsSubmitting(true);
 
-        try {
-            // Prepare data for Firebase
-            const applicationData = {
-                ...formData,
-                imageUrl,
-                submittedAt: new Date().toISOString()
-            };
+        // Simulate API call
+        await new Promise(resolve => setTimeout(resolve, 1500));
 
-            // Save to Firebase
-            const saved = await saveToFirebase(applicationData);
+        // Form submission logic here
+        console.log({ ...formData, image });
+        setIsSubmitting(false);
 
-            if (saved) {
-                // Clear form and local storage after successful submission
-                clearForm();
-                localStorage.removeItem('scholarshipFormDraft');
-                toast.success("Form submitted successfully!");
-            } else {
-                toast.error("Failed to save data. Please try again.");
-            }
-        } catch (error) {
-            console.error('Error submitting form:', error);
-            toast.error("An error occurred while submitting the form.");
-        } finally {
-            setIsSubmitting(false);
-        }
+        // Clear draft after successful submission
+        localStorage.removeItem('scholarshipFormDraft');
+
+        // Show success message
+        toast.success("Form submitted successfully!");
     };
 
     return (
@@ -354,6 +256,7 @@ const MainComponent = () => {
                         <span className="inline-block w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full"></span>
                     </div>
                 </div>
+
 
                 <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                     <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-800 p-6 rounded-t-2xl shadow-md">
@@ -382,6 +285,8 @@ const MainComponent = () => {
                         </div>
                     </div>
 
+
+
                     <div className="w-full flex justify-center">
                         <p className="mt-4 flex items-center gap-2 text-sm font-medium text-red-600 bg-red-50 border border-red-200 px-4 py-2 rounded-full shadow-sm">
                             <svg xmlns="http://www.w3.org/2000/svg"
@@ -393,6 +298,7 @@ const MainComponent = () => {
                             All fields marked with <span className="font-bold">*</span> are required
                         </p>
                     </div>
+
 
                     <div className="p-6 sm:p-8">
                         <form onSubmit={handleSubmit} className="space-y-6">
@@ -565,7 +471,6 @@ const MainComponent = () => {
                             <ImageUpload
                                 imagePreview={imagePreview}
                                 onChange={handleImageChange}
-                                isUploading={isImageUploading}
                             />
 
                             {/* Action Buttons */}
