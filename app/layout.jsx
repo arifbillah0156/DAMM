@@ -3,6 +3,7 @@ import "./globals.css";
 import Footer from "@/components/Footer/Footer";
 import 'swiper/css';
 import 'swiper/css/navigation';
+import ElectricCursor from "@/components/Others/ElectricCursor";
 
 
 export const metadata = {
@@ -60,6 +61,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className="bg-white text-gray-900 merriweather-regular noto-sans-bengali-damm">
         <Navbar />
+        <ElectricCursor />
         {children}
         <Footer />
       </body>

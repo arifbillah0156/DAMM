@@ -197,9 +197,9 @@ export default function ResultSystem() {
                     {(activeTab === 'all' || activeTab === 'distribution') && (
                         <div
                             className={`rounded-2xl overflow-hidden shadow-xl transition-all duration-700 transform hover:-translate-y-1 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                                } ${darkMode ? 'bg-gray-800' : 'bg-white'}`}
+                                } ${darkMode ? 'bg-gray-800' : 'bg-white'}  p-1 ${darkMode ? 'bg-gradient-to-r from-green-600 to-teal-500' : 'bg-gradient-to-r from-green-500 to-teal-500'}`}
                         >
-                            <div className={`p-1 ${darkMode ? 'bg-gradient-to-r from-green-600 to-teal-500' : 'bg-gradient-to-r from-green-500 to-teal-500'}`}>
+                            <div>
                                 <div className={`p-6 rounded-xl ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
                                     <div className="flex items-center mb-4">
                                         <div className={`p-3 rounded-lg mr-4 ${darkMode ? 'bg-green-900' : 'bg-green-100'}`}>
@@ -210,8 +210,8 @@ export default function ResultSystem() {
                                         </h2>
                                     </div>
 
-                                    <div className="space-y-6">
-                                        <div className="space-y-4">
+                                    <div className="">
+                                        <div className="space-y-5">
                                             {[
                                                 { title: "শ্রেণি অভিক্ষা", value: "২০ নম্বর", percent: 20 },
                                                 { title: "সেমিস্টার ফাইনাল", value: "৮০ নম্বর", percent: 80 },

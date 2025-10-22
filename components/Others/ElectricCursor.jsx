@@ -1,9 +1,3 @@
-// export default function Test() {
-//     return (
-//         <div>Nothing to Test</div>
-//     )
-// }
-
 "use client";
 import React, { useEffect, useRef } from "react";
 const ElectricCursor = () => {
