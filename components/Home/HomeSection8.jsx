@@ -16,8 +16,10 @@ const HomeSection8 = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Counter 1 */}
           <div className="bg-white px-4 py-8 shadow rounded-lg hover:scale-105 duration-100">
-            <i className="fa-solid fa-chalkboard-user text-4xl text-green-600"></i>{" "}
-            <br /> <br />
+            <div className='w-full flex justify-center mt-[-20px] mb-1'>
+              <img width={70} src="/gif/teacher.gif" alt="students" />
+            </div>
+            {/* <i className="fa-solid fa-chalkboard-user text-4xl text-green-600"></i>{" "} */}
             <h3 className="text-3xl font-bold mb-3 abril-fatface-regular text-gray-800">
               Teachers
             </h3>
@@ -28,8 +30,10 @@ const HomeSection8 = () => {
           </div>
           {/* Counter 2 */}
           <div className="bg-white p-8 shadow rounded-lg hover:scale-105 duration-100">
-            <i className="fa-solid fa-users-viewfinder text-4xl text-green-600"></i>{" "}
-            <br /> <br />
+            <div className='w-full flex justify-center mt-[-20px] mb-1'>
+              <img width={75} src="/gif/students.gif" alt="students" />
+            </div>
+            {/* <i className="fa-solid fa-users-viewfinder text-4xl text-green-600"></i>{" "} */}
             <h3 className="text-3xl font-bold tracking-wide mb-3 abril-fatface-regular text-gray-800">
               Students
             </h3>
@@ -39,8 +43,10 @@ const HomeSection8 = () => {
           </div>
           {/* Counter 3 */}
           <div className="bg-white p-8 shadow rounded-lg hover:scale-105 duration-100">
-            <i className="fa-solid fa-people-carry-box text-4xl text-green-600"></i> <br />{" "}
-            <br />
+            <div className='w-full flex justify-center mt-[-20px] mb-1'>
+              <img width={70} src="/gif/teamwork.gif" alt="students" />
+            </div>
+            {/* <i className="fa-solid fa-people-carry-box text-4xl text-green-600"></i>  */}
             <h3 className="text-2xl font-bold tracking-wide mb-3 abril-fatface-regular text-gray-800">
               Staff
             </h3>

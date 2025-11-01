@@ -3,21 +3,25 @@ export default function WhyChooseUs() {
   const features = [
     {
       icon: "fa-solid fa-chart-line",
+      animatedIcon: "growth.gif",
       title: "সাফল্যের প্রমাণিত ইতিহাস",
       description: "আমরা আমাদের শিক্ষার্থীদের সর্বোচ্চ সাফল্য নিশ্চিত করতে দৃঢ় প্রতিজ্ঞ।"
     },
     {
       icon: "fa-solid fa-book-open-reader",
+      animatedIcon: "management-consulting.gif",
       title: "আধুনিক ও টেকসই পাঠদান ব্যবস্থা",
       description: "সুপরিকল্পিত কারিকুলাম ও প্রযুক্তিনির্ভর শিক্ষাদান নিশ্চিত করি।"
     },
     {
       icon: "fas fa-circle-check",
+      animatedIcon: "mentor.gif",
       title: "পরিপূর্ণ ও সুচারু ব্যবস্থাপনা",
       description: "মাদরাসার প্রতিটি দিকেই রয়েছে সুশৃঙ্খল প্রশাসনিক ও শিক্ষাগত ব্যবস্থাপনা।"
     },
     {
       icon: "fas fa-chalkboard-teacher",
+      animatedIcon: "problem-solving.gif",
       title: "প্রতিটি শিক্ষার্থীর জন্য কাস্টমাইজড সমাধান",
       description: "আলাদা মনোযোগ ও প্রয়োজন অনুযায়ী সবার জন্য আলাদা শিক্ষাপদ্ধতি।"
     }
@@ -35,7 +39,8 @@ export default function WhyChooseUs() {
           {features.map((feature, index) => (
             <div key={index} className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all duration-300 hover:scale-[1.03]">
               <div className="flex items-center justify-center w-12 h-12 text-2xl bg-blue-100 rounded-full mb-4 text-lc">
-                <i className={feature.icon}></i>
+                <img src={`/gif/${feature.animatedIcon}`} alt="AnimatedIcon" />
+                {/* <i className={feature.icon}></i> */}
               </div>
 
               <h3 className="text-lg font-semibold text-lc">{feature.title}</h3>

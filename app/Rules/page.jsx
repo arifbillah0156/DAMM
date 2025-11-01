@@ -186,7 +186,7 @@ const HostelRules = () => {
         { id: 'hostel-rules', title: 'ছাত্রাবাসের নিয়মাবলীঃ', icon: '📋' },
         { id: 'students-note', title: 'ছাত্রদের জ্ঞাতব্যঃ', icon: '👨‍🎓' },
         { id: 'meeting-schedule', title: 'সাক্ষাতের নিয়ম ও সময়সূচিঃ', icon: '🕒' },
-        { id: 'student-leave', title: 'ছাত্রদের ছুটি প্রসঙ্গঃ', icon: '📅' },
+        { id: 'student-leave', title: 'আবাসিক শিক্ষার্থীদের ছুটিঃ', icon: '📅' },
         { id: 'meeting-rules', title: 'সাক্ষাতের নিয়মাবলিঃ', icon: '📝' },
         { id: 'female-guardians', title: 'মহিলা অভিভাবকের জন্য জ্ঞাতব্যঃ', icon: '👩' },
         { id: 'uniform', title: 'ইউনিফর্মঃ', icon: '👔' }
@@ -417,28 +417,28 @@ const HostelRules = () => {
                                 <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center mr-4">
                                     <span className="text-xl">📅</span>
                                 </div>
-                                <h2 className="text-2xl md:text-3xl font-bold text-white">ছাত্রদের ছুটি প্রসঙ্গঃ</h2>
+                                <h2 className="text-2xl md:text-3xl font-bold text-white">আবাসিক শিক্ষার্থীদের ছুটিঃ</h2>
                             </motion.div>
                             <div className="p-6 md:p-8">
                                 <ul className="list-decimal pl-6 space-y-4 text-gray-700">
                                     <motion.li variants={itemVariants} className="hover:text-pink-700 transition-colors duration-300 flex items-start">
                                         <span className=" w-6 h-6 rounded-full bg-pink-100 text-pink-700 flex items-center justify-center mr-3 flex-shrink-0">1</span>
-                                        নতুন ছাত্র: সপ্তাহে একদিন (শুক্রবার)।
+                                        নতুন শিক্ষার্থী: সপ্তাহে একদিন (শুক্রবার)।
                                     </motion.li>
                                     <motion.li variants={itemVariants} className="hover:text-pink-700 transition-colors duration-300 flex items-start">
                                         <span className=" w-6 h-6 rounded-full bg-pink-100 text-pink-700 flex items-center justify-center mr-3 flex-shrink-0">2</span>
-                                        পুরাতন ছাত্র: মাসে দু'দিন।
+                                        পুরাতন শিক্ষার্থী: মাসে দু'দিন।
                                     </motion.li>
-                                    <motion.li variants={itemVariants} className="hover:text-pink-700 transition-colors duration-300 flex items-start">
+                                    {/* <motion.li variants={itemVariants} className="hover:text-pink-700 transition-colors duration-300 flex items-start">
                                         <span className=" w-6 h-6 rounded-full bg-pink-100 text-pink-700 flex items-center justify-center mr-3 flex-shrink-0">3</span>
                                         ৪র্থ শ্রেণির উপরে: বিশেষ ছুটি নিষিদ্ধ।
-                                    </motion.li>
+                                    </motion.li> */}
                                 </ul>
                             </div>
                         </motion.div>
 
                         {/* Section 5: Meeting rules */}
-                        <motion.div
+                        {/* <motion.div
                             id="meeting-rules"
                             ref={el => sectionRefs.current[4] = el}
                             className="bg-white rounded-2xl shadow-xl overflow-hidden border border-blue-100"
@@ -475,7 +475,7 @@ const HostelRules = () => {
                                     </motion.li>
                                 </ul>
                             </div>
-                        </motion.div>
+                        </motion.div> */}
 
                         {/* Section 6: Female guardians */}
                         <motion.div
@@ -535,7 +535,7 @@ const HostelRules = () => {
                                         </div>
                                         <p className="font-bold text-lg text-gray-800">ছাত্র:</p>
                                     </div>
-                                    <p className="text-gray-700 ml-11">নেভীব্লু সেরওয়ানি, সাদা সেলোয়ার, কালো জুতা-মোজা ও সাদা টুপি।</p>
+                                    <p className="text-gray-700 ml-11">নেভীব্লু পাঞ্জাবী, সাদা পায়জামা, কালো জুতা-মোজা ও সাদা টুপি।</p>
                                 </motion.div>
 
                                 <motion.div variants={itemVariants} className="p-4 bg-pink-50 rounded-xl border border-pink-100">
@@ -545,7 +545,7 @@ const HostelRules = () => {
                                         </div>
                                         <p className="font-bold text-lg text-gray-800">ছাত্রী:</p>
                                     </div>
-                                    <p className="text-gray-700 ml-11">একই রঙের কামিজ, সাদা পায়জামা-স্কার্ফ, কালো জুতা-মোজা।</p>
+                                    <p className="text-gray-700 ml-11">নেভীব্লু বোরকা (সাদা হাতা), সাদা নিকাব, সাদা পায়জামা, কালো জুতা-মোজা।</p>
                                 </motion.div>
                             </div>
                         </motion.div>
