@@ -74,7 +74,7 @@ const TeacherPostForm = () => {
         setIsSubmitting(true);
         setSubmitError('');
         try {
-            // Get current date
+            // Get-current-date
             const currentDate = new Date().toISOString().split('T')[0];
             // Save to Firebase with current date
             const usersRef = ref(database, "TeachersGuidelines");
