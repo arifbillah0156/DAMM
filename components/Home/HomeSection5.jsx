@@ -1,64 +1,3 @@
-// import SplitText from "../Others/SplitText";
-
-// export default function HomeSection5() {
-//   return (
-//     <div className="h-max w-[100%] relative mt-12">
-//       {/* Background Image */}
-//       <div
-//         className="absolute inset-0 bg-cover bg-center opacity-10"
-//         style={{
-//           backgroundImage: `url(/Images/HomeS5BG.jpg)`,
-//         }}
-//       ></div>
-
-//       {/* Main Content */}
-//       <section className="relative">
-//         {/* Background Overlay */}
-//         <div className="absolute inset-0 bg-black opacity-0"></div>
-//         <div className="container mx-auto px-6 py-12 relative z-10">
-//           <div className="text-center">
-//             {/* Heading */}
-//             <SplitText text="A Unique Model Madrasah In Bangladesh" className="text-2xl sm:text-4xl font-bold text-lc abril-fatface-regular" />
-//             {/* <h2 className="text-2xl sm:text-4xl font-bold text-lc mb-4 abril-fatface-regular">
-//               A Unique Model Madrasah In Bangladesh
-//             </h2> */}
-//             {/* Divider */}
-//             <div className="w-full h-1 bg-lc mx-auto my-6"></div>
-//           </div>
-//           {/* Additional Content */}
-//           <div className="mt-12 md:text-lg text-justify">
-//             <div className="bg-white p-6 shadow-md rounded-lg" id="our-words">
-//               <p className="text-gray-70">
-//                 <strong className="text-lc">আমাদের কথা:</strong> উপনিবেশ আমল থেকে প্রচলিত সেক্যুলার শিক্ষাব্যবস্থার পরিবর্তন সময়ের দাবি। সেই প্রয়োজন পূরণে “দারুল আজহার মডেল মাদরাসা” একটি প্রতিশ্রুতিশীল উদ্যোগ হিসেবে আত্মপ্রকাশ করেছে। এখানে ইসলামিক শিক্ষা, আধুনিক বিজ্ঞান ও হিফজুল কুরআনের সমন্বিত সিলেবাস চালু হয়েছে, যা আল-আজহারসহ আন্তর্জাতিক মানের পাঠ্যক্রম অনুসরণে প্রস্তুত। প্রাথমিকভাবে দেশের বিভিন্ন জেলায় ক্যাম্পাস চালু হয়েছে, ভবিষ্যতে প্রতিটি জেলায় ক্যাম্পাস স্থাপন ও একটি পূর্ণাঙ্গ ইসলামী বিশ্ববিদ্যালয় প্রতিষ্ঠার লক্ষ্য রয়েছে। আমরা চাই, এক ও অভিন্ন শিক্ষাব্যবস্থায় দেশব্যাপী শিক্ষার্থীরা সমভাবে উপকৃত হোক।
-
-//               </p>
-//             </div> <br />
-//             <div className="bg-white p-6 shadow-md rounded-lg" id="why-this-event">
-//               <p className="text-gray-700">
-//                 <strong className="text-lc">কেন এ আয়োজন:</strong>  নতুন শতাব্দীর চ্যালেঞ্জ মোকাবিলায় জাগতিক বিদ্যা ও প্রযুক্তির পাশাপাশি দ্বীনি শিক্ষা ও নৈতিকতা অর্জন অপরিহার্য। অথচ দেশে এমন সার্বজনীন শিক্ষাব্যবস্থা প্রায় অনুপস্থিত। এই শূন্যতা পূরণে “দারুল আজহার মডেল মাদরাসা” গড়ে তোলা হয়েছে, যার লক্ষ্য হলো বিশ্বমানের শিক্ষার মাধ্যমে যুগোপযোগী, দক্ষ ও চারিত্রিকভাবে গঠিত মানুষ তৈরি করা।
-//               </p>
-//             </div> <br />
-//             <div className="bg-white p-6 shadow-md rounded-lg" id="our-uniqueness">
-//               <p className="text-gray-700">
-//                 <strong className="text-lc">আমাদের স্বাতন্ত্র্য:</strong> মাধ্যমিক ও উচ্চ মাধ্যমিক স্তরে ধর্মীয় জ্ঞানের পাশাপাশি বাংলা, ইংরেজি, গণিত, বিজ্ঞান, ইতিহাস, ভূগোল ও সমাজবিজ্ঞান শিক্ষা দেওয়া হয়, যাতে শিক্ষার্থীরা যুগোপযোগী, আধুনিক জ্ঞানসমৃদ্ধ আলেম হিসেবে গড়ে উঠতে পারে। হিফজ বিভাগের শিক্ষার্থীদের জন্যও বাংলা, ইংরেজি, গণিত ও আরবি ভাষা শিক্ষার বিশেষ ব্যবস্থা রয়েছে।
-
-
-//               </p>
-//             </div> <br />
-//             <div className="bg-white p-6 shadow-md rounded-lg" id="our-specialty">
-//               <p className="text-gray-700">
-//                 <strong className="text-lc">আমাদের বৈশিষ্ঠ্য:</strong> “দারুল আজহার মডেল মাদরাসা”-তে বিশুদ্ধ কুরআন তেলাওয়াত ও মর্মার্থ অনুধাবনের পাশাপাশি বলিষ্ঠ ইসলামী স্কলার তৈরির লক্ষ্যে কুরআনের আহকাম সম্পর্কিত আয়াতসহ ন্যূনতম ৫ পারা ও ৩০০ সহিহ হাদিস হিফজ বাধ্যতামূলক। পাঠদানে ইংরেজি ভাষায় দক্ষতা অর্জনের জন্য শ্রেণিভিত্তিক প্র্যাকটিক্যাল ইংলিশ কোর্স, ব্রিটিশ IELTS ধাঁচের মূল্যায়ন পদ্ধতি এবং আরবি ও ইংরেজি ভাষায় বিশুদ্ধ উচ্চারণে কথোপকথনের বিশেষ ব্যবস্থা রয়েছে। জাতীয় ও আন্তর্জাতিক শিক্ষাবিদ ও আলেমদের তত্ত্বাবধানে পরিচালিত এই প্রতিষ্ঠানে ছাত্রদের মেধা বিকাশে রয়েছে বক্তৃতা, বিতর্ক, লেখনী চর্চা ও ইসলামী সঙ্গীতের সুযোগ। ব্যস্ত ও প্রবাসী অভিভাবকদের জন্য পূর্ণ অভিভাবকত্ব গ্রহণের ব্যবস্থাসহ আবাসিক ছাত্রদের ২৪ ঘণ্টা শিক্ষকগণের সরাসরি তত্ত্বাবধানে রাখা হয়। নিরাপদ ক্যাম্পাসে রয়েছে সার্বক্ষণিক নিরাপত্তা, নিরবচ্ছিন্ন বিদ্যুৎ, স্বাস্থ্যসেবা, মাল্টি-সিস্টেম জেনারেটর, সিসিটিভি এবং প্রজেক্টরযুক্ত আধুনিক শ্রেণিকক্ষ। ছাত্রদের জন্য নির্ধারিত খাট, লন্ড্রি সার্ভিস, স্বাস্থ্যসম্মত উন্নতমানের খাবার, ইনডোর গেমস, শরীরচর্চা ও খেলাধুলার সুযোগ, কম্পিউটার ল্যাব ও সমৃদ্ধ লাইব্রেরির ব্যবস্থা রয়েছে। শিক্ষার মান উন্নয়নে শিক্ষকদের প্রশিক্ষণ ও প্রতিটি বিষয় অভিজ্ঞ ভিজিটিং শিক্ষকদের তত্ত্বাবধানে পরিচালিত হয়।
-
-
-//               </p>
-//             </div>
-//           </div>
-//         </div>
-//       </section>
-//     </div>
-//   );
-// }
-
 "use client"
 import SplitText from "../Others/SplitText";
 import { useRef } from "react";
@@ -74,7 +13,7 @@ export default function HomeSection5() {
   };
 
   return (
-    <div className="h-max w-[100%] relative mt-12 overflow-hidden">
+    <section className="h-max w-[100%] relative mt-12 overflow-hidden">
       {/* Background Image with Gradient Overlay */}
       <div className="absolute inset-0 ">
         <div
@@ -196,6 +135,6 @@ export default function HomeSection5() {
 
         </div>
       </section>
-    </div>
+    </section>
   );
 }
