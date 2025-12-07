@@ -3,7 +3,7 @@ import { Phone, Mail, MessageSquareText, BadgeInfo } from 'lucide-react';
 
 export default function ContactCard({ title, phone, whatsapp, name, email }) {
     return (
-        <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 border border-gray-200 overflow-hidden">
+        <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 border border-gray-200 overflow-hidden merriweather">
             {/* Header with Name */}
             <div className="bg-gradient-to-r from-blue-500 to-cyan-500 p-5 text-white text-center">
                 <h2 className="text-xl md:text-2xl font-bold ">{name}</h2>

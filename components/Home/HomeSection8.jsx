@@ -24,7 +24,7 @@ const HomeSection8 = () => {
               Teachers
             </h3>
             <div className="text-4xl font-bold text-green-600">
-              <CountUpNumber num="50" />
+              <CountUpNumber num="80" />
               <span className="">+</span>
             </div>
           </div>

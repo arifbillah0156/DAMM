@@ -77,7 +77,7 @@ const AnimatedTeachersGuidelines = () => {
 
                 {/* Animated text with stagger effect */}
                 <motion.h1
-                    className="text-xl md:text-3xl font-medium text-white"
+                    className="text-xl md:text-3xl merriweather font-medium text-white"
                     initial={{ opacity: 0, x: -15 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.2, duration: 0.6 }}

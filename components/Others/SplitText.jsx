@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger, GSAPSplitText, useGSAP);
 const SplitText = ({
     text,
     className,
-    delay = 50,
+    delay = 25,
     duration = 0.6,
     ease = 'power3.out',
     splitType = 'chars',
