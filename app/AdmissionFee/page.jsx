@@ -29,6 +29,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Link from 'next/link';
+import ImageViewer from '@/components/Others/ImageViewer';
 
 const FeeStructure = () => {
     const [activeTab, setActiveTab] = useState('admission');
@@ -307,6 +308,11 @@ const FeeStructure = () => {
                             </motion.div>
                         )}
                     </motion.div>
+
+                    {/* Prospectus */}
+                    <div>
+                        <ImageViewer src={"/Images/AdmissionFee.jpg"} alt={"AdmissionFee Image"} />
+                    </div>
 
                     {/* Footer Note */}
                     <motion.div

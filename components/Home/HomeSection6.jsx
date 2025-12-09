@@ -29,7 +29,7 @@ export default function HomeSection6() {
               {/* <p className="text-lc md:mt-1">Premier Model Madrasah</p> */}
             </h2>
 
-            <SplitText text="We are committed to providing quality Islamic education with a modern approach, nurturing students with values, knowledge, and character. Our mission is to build an enlightened generation rooted in faith and ethics." className="mt-4 text-gray-800 text-justify" />
+            <SplitText text="We are committed to providing quality Islamic education with a modern approach, nurturing students with values, knowledge, and character. Our mission is to build an enlightened generation rooted in faith and ethics." className="mt-4 text-gray-800 text-justify merriweather tracking-wider" />
             {/* <p className="mt-4 text-gray-700 text-justify">
               We are committed to providing quality Islamic education with a modern approach, nurturing students with values, knowledge, and character. Our mission is to build an enlightened generation rooted in faith and ethics.
             </p> */}

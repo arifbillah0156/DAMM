@@ -5,7 +5,7 @@ import DAMM from "@/public/Images/DAMM Logo SVG.svg";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 merriweather text-white py-8">
+    <footer className="bg-gray-900 text-white py-8">
       <div className="container mx-auto px-6">
         {/* Footer Top Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pb-4 border-b border-gray-700">
@@ -16,7 +16,7 @@ const Footer = () => {
               alt="Studio Architect"
               className="w-24 mb-1 rounded-sm"
             />
-            <p className="text-sm text-justify">
+            <p className="text-sm text-justify merriweather tracking-wider">
               Darul Azhar Model Madrasah has emerged as a promising educational institution, committed to providing inclusive and quality education for all.
             </p>
           </div>
@@ -109,7 +109,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="mt-2 text-center">
-          <p className="text-sm px-1">
+          <p className="text-sm px-1 merriweather">
             © All Rights Reserved {new Date().getFullYear()} - DAMM.
           </p>
         </div>
